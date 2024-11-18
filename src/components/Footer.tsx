@@ -55,6 +55,9 @@ const Footer: React.FC = () => {
                         Subscribe
                     </Button>
                 </HStack>
+                <Text fontWeight="400" fontSize="14px" color="#888888" lineHeight="16.8px">
+                    By subscribing you agree to with our Privacy Policy and provide consent to receive updates from our company.
+                </Text>
             </Field>
           </Stack>
 
@@ -70,55 +73,33 @@ const Footer: React.FC = () => {
             {/* Main Menu Links */}
             <Stack spacing={2} mr={{ base: 0, md: 8 }}>
               <Text fontWeight="bold">Main Menu</Text>
-              <Link href="/" _hover={{ color: 'teal.300' }}>Home</Link>
-              <Link href="/about" _hover={{ color: 'teal.300' }}>About</Link>
-              <Link href="/services" _hover={{ color: 'teal.300' }}>Services</Link>
-              <Link href="/contact" _hover={{ color: 'teal.300' }}>Contact</Link>
+              <Link href="/" _hover={{ color: 'teal.300' }} color="#B6B6B6">Home</Link>
+              <Link href="/about" _hover={{ color: 'teal.300' }} color="#B6B6B6">About</Link>
+              <Link href="/services" _hover={{ color: 'teal.300' }} color="#B6B6B6">Services</Link>
+              <Link href="/contact" _hover={{ color: 'teal.300' }} color="#B6B6B6">Contact</Link>
             </Stack>
 
             {/* Personal Links */}
             <Stack spacing={2} mr={{ base: 0, md: 8 }}>
               <Text fontWeight="bold">Personal</Text>
-              <Link href="/profile" _hover={{ color: 'teal.300' }}>My Profile</Link>
-              <Link href="/orders" _hover={{ color: 'teal.300' }}>My Orders</Link>
-              <Link href="/wishlist" _hover={{ color: 'teal.300' }}>Wishlist</Link>
+              <Link href="/profile" _hover={{ color: 'teal.300' }} color="#B6B6B6">My Profile</Link>
+              <Link href="/orders" _hover={{ color: 'teal.300' }} color="#B6B6B6">My Orders</Link>
+              <Link href="/wishlist" _hover={{ color: 'teal.300' }} color="#B6B6B6">Wishlist</Link>
             </Stack>
 
             {/* Socials Links */}
             <Stack spacing={2}>
               <Text fontWeight="bold">Follow Us</Text>
-              <HStack spacing={4}>
-                <IconButton
-                  as="a"
-                  href="https://facebook.com"
-                  aria-label="Facebook"
-                  icon={<FaFacebook />}
-                  colorScheme="facebook"
-                  variant="ghost"
-                />
-                <IconButton
-                  as="a"
-                  href="https://twitter.com"
-                  aria-label="Twitter"
-                  icon={<FaTwitter />}
-                  colorScheme="twitter"
-                  variant="ghost"
-                />
-                <IconButton
-                  as="a"
-                  href="https://instagram.com"
-                  aria-label="Instagram"
-                  icon={<FaInstagram />}
-                  colorScheme="pink"
-                  variant="ghost"
-                />
-              </HStack>
+              <Link href="/profile" _hover={{ color: 'teal.300' }} color="#B6B6B6">Facebook</Link>
+              <Link href="/orders" _hover={{ color: 'teal.300' }} color="#B6B6B6">Instagram</Link>
+              <Link href="/wishlist" _hover={{ color: 'teal.300' }} color="#B6B6B6">Twitter</Link>
+              <Link href="/wishlist" _hover={{ color: 'teal.300' }} color="#B6B6B6">Linked in</Link>
             </Stack>
           </Flex>
         </Flex>
 
         {/* Copyright Text */}
-        <Box textAlign="left" pt={4} mt={4} borderTopWidth={1} borderColor="white">
+        <Box textAlign="left" pt={4} mt={4}>
           <Text fontSize="sm">
             © {new Date().getFullYear()} Nia. All rights reserved.
           </Text>

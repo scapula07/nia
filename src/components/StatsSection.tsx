@@ -2,7 +2,7 @@ import { Box, Container, Text, Flex, Stack } from "@chakra-ui/react";
 
 const StatsSection = () => {
   return (
-    <Box bg="gray.50" py={16}>
+    <Box bg="white" py={16}>
       <Container maxW="container.xl">
         {/* Section Title and Subtitle */}
         <Stack spacing={4} textAlign="center" mb={12}>

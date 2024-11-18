@@ -1,100 +1,123 @@
-import { Box, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Heading, Text } from '@chakra-ui/react';
-
-const FaqSection = () => {
-  return (
-    <Box p={8} bg="gray.100" borderRadius="md" boxShadow="lg">
-      <Heading as="h2" size="xl" mb={6} textAlign="center" fontWeight="bold">
-        Frequently Asked Questions
-      </Heading>
-
-      <Accordion allowToggle>
-        {/* FAQ Item 1 */}
-        <AccordionItem>
-          <h2>
-            <AccordionButton>
-              <Box flex="1" textAlign="left">
-                <Text fontSize="lg" fontWeight="bold">
-                  What is your return policy?
-                </Text>
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
-          <AccordionPanel pb={4}>
-            Our return policy allows you to return products within 30 days of purchase. Items must be in their original condition, and a receipt is required for returns.
-          </AccordionPanel>
-        </AccordionItem>
-
-        {/* FAQ Item 2 */}
-        <AccordionItem>
-          <h2>
-            <AccordionButton>
-              <Box flex="1" textAlign="left">
-                <Text fontSize="lg" fontWeight="bold">
-                  How long does shipping take?
-                </Text>
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
-          <AccordionPanel pb={4}>
-            Shipping times vary depending on your location, but generally, we process orders within 2-3 business days, and shipping takes 5-7 days after that.
-          </AccordionPanel>
-        </AccordionItem>
-
-        {/* FAQ Item 3 */}
-        <AccordionItem>
-          <h2>
-            <AccordionButton>
-              <Box flex="1" textAlign="left">
-                <Text fontSize="lg" fontWeight="bold">
-                  Do you offer international shipping?
-                </Text>
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
-          <AccordionPanel pb={4}>
-            Yes, we offer international shipping to several countries. Shipping rates and times will vary based on your location.
-          </AccordionPanel>
-        </AccordionItem>
-
-        {/* FAQ Item 4 */}
-        <AccordionItem>
-          <h2>
-            <AccordionButton>
-              <Box flex="1" textAlign="left">
-                <Text fontSize="lg" fontWeight="bold">
-                  Can I modify my order after placing it?
-                </Text>
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
-          <AccordionPanel pb={4}>
-            Once your order is placed, we are unable to make changes. However, you can cancel it within 30 minutes of placing the order, and then place a new order with the correct details.
-          </AccordionPanel>
-        </AccordionItem>
-
-        {/* FAQ Item 5 */}
-        <AccordionItem>
-          <h2>
-            <AccordionButton>
-              <Box flex="1" textAlign="left">
-                <Text fontSize="lg" fontWeight="bold">
-                  How can I contact customer support?
-                </Text>
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
-          <AccordionPanel pb={4}>
-            You can reach our customer support team via email at support@example.com, or by calling our toll-free number at 1-800-123-4567.
-          </AccordionPanel>
-        </AccordionItem>
-      </Accordion>
-    </Box>
-  );
-};
-
-export default FaqSection;
+import {
+    AccordionRoot,
+    AccordionItem,
+    AccordionItemTrigger,
+    AccordionItemContent,
+  } from "@/components/ui/accordion";
+  import { Box, Container, Stack, Text, Button } from "@chakra-ui/react";
+  
+  const FAQSection = () => {
+    return (
+      <Box bg="gray.50" p={64} color="black">
+        <Container maxW="container.xl">
+          {/* Tagline and Subtitle */}
+          <Stack spacing={4} textAlign="center" mb={12}>
+            <Text fontSize="48px" fontWeight="bold" color="black">
+              Your Questions Answered
+            </Text>
+            <Text fontSize="lg" color="gray.600">
+              Discover Our Commitment
+            </Text>
+          </Stack>
+  
+          {/* Accordion */}
+          <AccordionRoot collapsible defaultValue={["b"]}>
+            {/* FAQ Item 1 */}
+            <Box
+              border="1px solid #E2E8F0" // Light gray border
+              borderRadius="8px"
+              p={4} // Add padding inside the border
+              mb={4} // Add spacing between items
+            >
+              <AccordionItem value="item1">
+                <AccordionItemTrigger color="black">
+                  What types of food do you offer?
+                </AccordionItemTrigger>
+                <AccordionItemContent>
+                  We offer a diverse selection of fresh fruits, vegetables, grains, and proteins, focusing on nutritious and sustainable options.
+                </AccordionItemContent>
+              </AccordionItem>
+            </Box>
+  
+            {/* FAQ Item 2 */}
+            <Box
+              border="1px solid #E2E8F0"
+              borderRadius="8px"
+              p={4}
+              mb={4}
+            >
+              <AccordionItem value="item2">
+                <AccordionItemTrigger>How do you ensure food quality?</AccordionItemTrigger>
+                <AccordionItemContent>
+                  We prioritize quality by partnering with trusted local farmers and suppliers who adhere to stringent safety and freshness standards. Regular inspections and customer feedback help us maintain our high quality.
+                </AccordionItemContent>
+              </AccordionItem>
+            </Box>
+  
+            {/* FAQ Item 3 */}
+            <Box
+              border="1px solid #E2E8F0"
+              borderRadius="8px"
+              p={4}
+              mb={4}
+            >
+              <AccordionItem value="item3">
+                <AccordionItemTrigger>Can I order online?</AccordionItemTrigger>
+                <AccordionItemContent>
+                  Absolutely! Our user-friendly website allows you to browse our extensive catalog and place orders conveniently from your home. We offer delivery options to ensure everyone can access healthy food easily.
+                </AccordionItemContent>
+              </AccordionItem>
+            </Box>
+  
+            {/* FAQ Item 4 */}
+            <Box
+              border="1px solid #E2E8F0"
+              borderRadius="8px"
+              p={4}
+              mb={4}
+            >
+              <AccordionItem value="item4">
+                <AccordionItemTrigger>What areas do you serve?</AccordionItemTrigger>
+                <AccordionItemContent>
+                  Our services extend to various food deserts across America. We aim to reach underserved communities to provide access to fresh and nutritious food options.
+                </AccordionItemContent>
+              </AccordionItem>
+            </Box>
+  
+            {/* FAQ Item 5 */}
+            <Box
+              border="1px solid #E2E8F0"
+              borderRadius="8px"
+              p={4}
+              mb={4}
+            >
+              <AccordionItem value="item5">
+                <AccordionItemTrigger>How can I get involved?</AccordionItemTrigger>
+                <AccordionItemContent>
+                  You can support our mission by spreading the word, volunteering, or making a donation. Every effort contributes to providing healthy food options to those in need.
+                </AccordionItemContent>
+              </AccordionItem>
+            </Box>
+  
+            {/* FAQ Item 6 */}
+            <Box
+              border="1px solid #E2E8F0"
+              borderRadius="8px"
+              p={4}
+              mb={4}
+            >
+              <AccordionItem value="item6">
+                <AccordionItemTrigger>Do you offer discounts for low-income communities?</AccordionItemTrigger>
+                <AccordionItemContent>
+                  Yes, we offer special discounts and programs for low-income communities to ensure that everyone has access to nutritious food, regardless of their financial situation.
+                </AccordionItemContent>
+              </AccordionItem>
+            </Box>
+          </AccordionRoot>
+        </Container>
+      </Box>
+    );
+  };
+  
+  export default FAQSection;
+  

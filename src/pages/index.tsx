@@ -1,9 +1,12 @@
 import localFont from "next/font/local";
 import { Box } from "@chakra-ui/react";
 import { HeroSection } from "@/components/HeroSection";
-import ShopSection from "@/components/Section";
+import WelcomeSection from "@/components/WelcomeSection";
 import StatsSection from "@/components/StatsSection";
 import CategoriesSection from "@/components/CategoriesSection";
+import FAQSection from "@/components/FAQSection";
+import FeatureSection from "@/components/FeatureSection";
+import ValueSection from "@/components/ValueSection";
 
 
 
@@ -21,11 +24,14 @@ const geistMono = localFont({
 
 export default function Home() {
     return (
-        <Box bg="gray.50">
+        <Box bg="white">
             <HeroSection />
             <StatsSection />
-            <ShopSection />
+            <WelcomeSection />
+            <FeatureSection />
             <CategoriesSection /> 
+            <ValueSection />
+            <FAQSection />
         </Box>
 
       );

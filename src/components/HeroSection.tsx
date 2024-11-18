@@ -2,6 +2,7 @@
 import { FunctionComponent } from 'react';
 import { Box, Heading, Text, Button, Container } from '@chakra-ui/react';
 import { MdOutlineShoppingCart } from "react-icons/md";
+import ShopButton from '@/components/ShopButton';
 
 interface HeroSectionProps {}
 
@@ -46,9 +47,13 @@ export const HeroSection: FunctionComponent<HeroSectionProps> = () => {
             Bringing healthy, affordable food to your doorstep. We make it easy to shop fresh, <br /> 
             eat well, and thrive in areas where food options are limited.
         </Text>
-        <Button variant="solid" colorPalette="black" size="lg">
-        Shop now <MdOutlineShoppingCart />
-        </Button>
+        <Box
+            display="flex" 
+            justifyContent="center"
+            alignItems="center" 
+        >
+            <ShopButton />
+        </Box>
       </Container>
     </Box>
   );

@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { InputGroup } from './ui/input-group';
 import { HamburgerIcon, CloseIcon, SearchIcon } from '@chakra-ui/icons';
+import { MdShoppingCart } from 'react-icons/md';
 import Link from 'next/link';
 
 interface NavLink {
@@ -37,30 +38,50 @@ const Navbar: React.FC = () => {
           width={100} // Adjust width of the image
           height={100} 
         />
+        {/* Search Input*/}
         <Box width="400px" height="46px">
-            <InputGroup flex="1" width="400px" height="46px">
-                <Input 
-                    placeholder="Search products or categories"
-                    height="46px"
-                    width="100%" 
-                    borderRadius="md"
-                    borderColor="gray.300"
-                    color="black"
-                    paddingLeft="12px"
-                />
-            </InputGroup>
+          <InputGroup flex="1" width="400px" height="46px" ml={2}>
+            <Input 
+              placeholder="Search products or categories"
+              height="46px"
+              width="100%" 
+              borderRadius="md"
+              border="1px solid"  // Solid 1px border
+              borderColor="gray.300" // Set the border color
+              color="black"
+              paddingLeft="16px"
+              _focus={{
+                borderColor: "gray.500", // Optional: Border color change on focus
+              }}
+            />
+          </InputGroup>
         </Box>
 
         {/* Links */}
         <HStack spacing={8} alignItems="center" display={{ base: 'none', md: 'flex' }}>
           {links.map((link) => (
             <Link href={link.href} key={link.label} passHref>
-              <Button variant="ghost" fontFamily="'Proxima Nova Condensed', sans-serif" color="black">
+              <Button
+                variant="ghost"
+                fontFamily="'Proxima Nova Condensed', sans-serif"
+                color={link.label === 'Home' ? '#D41A1F' : 'black'} // Change color for Home
+              >
                 {link.label}
               </Button>
             </Link>
           ))}
+            {/* Sign In and Sign Up Buttons */}
         </HStack>
+        <Box>
+            <Button variant="ghost" fontFamily="'Proxima Nova Condensed', sans-serif" color="black" border="1px solid">
+                Sign In
+            </Button>
+            <Button variant="ghost" fontFamily="'Proxima Nova Condensed', sans-serif" color="white" bg="#D41A1F">
+                Sign up to Shop
+            </Button>
+        </Box>
+        {/* Shopping Cart Icon */}
+        <MdShoppingCart color='black'/>
       </Flex>
     </Box>
   );
