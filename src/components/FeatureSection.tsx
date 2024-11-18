@@ -1,4 +1,4 @@
-import { Box, Container, Flex, Grid, Text, Heading, Image, Button } from "@chakra-ui/react";
+import { Box, Container, Flex, Grid, Text, Heading, Image } from "@chakra-ui/react";
 
 const FeatureSection = () => {
   return (
@@ -20,10 +20,10 @@ const FeatureSection = () => {
           {/* Right Feature Boxes Section */}
           <Box flex="1">
             <Heading fontSize="56px" fontWeight="700" lineHeight="67.2px" color="black">
-                Here’s How Ordering on <Text as="span" color="#D41A1F" >Nia </Text> Works
+              Here’s How Ordering on <Text as="span" color="#D41A1F">Nia</Text> Works
             </Heading>
             <Text fontSize="25.4px" lineHeight="30.48px" fontWeight="400">
-                Get started on how it works
+              Get started on how it works
             </Text>
             
             <Grid templateColumns="repeat(2, 1fr)" gap={6}>
@@ -33,10 +33,20 @@ const FeatureSection = () => {
                 borderRadius="8px"
                 p={6}
                 bg="gray.100"
-                
               >
-                <Heading as="h3" size="md" mb={2}>Feature 1</Heading>
-                <Text fontSize="lg" color="gray.600">Description of feature 1. Highlight key points and benefits of this feature.</Text>
+                <Flex align="center" gap={4}>
+                  <Box w="50px" h="50px" display="flex" justifyContent="center" alignItems="center">
+                    <Image
+                      src="./store_icon.png" // Path to your icon
+                    />
+                  </Box>
+                  <Box>
+                    <Heading as="h3" size="md" mb={2}>Shop</Heading>
+                    <Text fontSize="14px" color="#5B5B5B">
+                      Choose from a wide selection of tasty and nutritious food and buy together with friends and family.
+                    </Text>
+                  </Box>
+                </Flex>
               </Box>
 
               {/* Feature Box 2 */}
@@ -45,10 +55,23 @@ const FeatureSection = () => {
                 borderRadius="8px"
                 p={6}
                 bg="gray.100"
-                
               >
-                <Heading as="h3" size="md" mb={2}>Feature 2</Heading>
-                <Text fontSize="lg" color="gray.600">Description of feature 2. Explain how it solves a problem or adds value.</Text>
+                <Flex align="center" gap={4}>
+                  <Box w="50px" h="50px" display="flex" justifyContent="center" alignItems="center">
+                    <Image
+                      src="./icons/feature2_icon.png" // Path to your icon
+                      alt="Feature 2 Icon"
+                      width="24px"
+                      height="24px"
+                    />
+                  </Box>
+                  <Box>
+                    <Heading as="h3" size="md" mb={2}>Schedule</Heading>
+                    <Text fontSize="lg" color="gray.600">
+                      Schedule a convenient time for you to pick up your groceries, where you live, work, or play.
+                    </Text>
+                  </Box>
+                </Flex>
               </Box>
 
               {/* Feature Box 3 */}
@@ -57,10 +80,23 @@ const FeatureSection = () => {
                 borderRadius="8px"
                 p={6}
                 bg="gray.100"
-                
               >
-                <Heading as="h3" size="md" mb={2}>Feature 3</Heading>
-                <Text fontSize="lg" color="gray.600">Description of feature 3. Provide insight into how it benefits the user.</Text>
+                <Flex align="center" gap={4}>
+                  <Box w="50px" h="50px" display="flex" justifyContent="center" alignItems="center">
+                    <Image
+                      src="./icons/feature3_icon.png" // Path to your icon
+                      alt="Feature 3 Icon"
+                      width="24px"
+                      height="24px"
+                    />
+                  </Box>
+                  <Box>
+                    <Heading as="h3" size="md" mb={2}>Pay</Heading>
+                    <Text fontSize="lg" color="gray.600">
+                      Pay with SNAP/EBT, Stripe, Credit, and Debit Cards.
+                    </Text>
+                  </Box>
+                </Flex>
               </Box>
 
               {/* Feature Box 4 */}
@@ -69,10 +105,23 @@ const FeatureSection = () => {
                 borderRadius="8px"
                 p={6}
                 bg="gray.100"
-                
               >
-                <Heading as="h3" size="md" mb={2}>Feature 4</Heading>
-                <Text fontSize="lg" color="gray.600">Description of feature 4. A clear explanation of what this feature offers.</Text>
+                <Flex align="center" gap={4}>
+                  <Box w="50px" h="50px" display="flex" justifyContent="center" alignItems="center">
+                    <Image
+                      src="./icons/feature4_icon.png" // Path to your icon
+                      alt="Feature 4 Icon"
+                      width="24px"
+                      height="24px"
+                    />
+                  </Box>
+                  <Box>
+                    <Heading as="h3" size="md" mb={2}>Pick-up</Heading>
+                    <Text fontSize="lg" color="gray.600">
+                      At your scheduled pick-up time, your groceries will be bagged and ready for you to receive.
+                    </Text>
+                  </Box>
+                </Flex>
               </Box>
             </Grid>
           </Box>

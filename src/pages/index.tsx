@@ -7,6 +7,7 @@ import CategoriesSection from "@/components/CategoriesSection";
 import FAQSection from "@/components/FAQSection";
 import FeatureSection from "@/components/FeatureSection";
 import ValueSection from "@/components/ValueSection";
+import FeaturedProducts from "@/components/FeaturedProducts";
 
 
 
@@ -29,7 +30,8 @@ export default function Home() {
             <StatsSection />
             <WelcomeSection />
             <FeatureSection />
-            <CategoriesSection /> 
+            <CategoriesSection />
+            <FeaturedProducts /> 
             <ValueSection />
             <FAQSection />
         </Box>

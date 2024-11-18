@@ -21,12 +21,22 @@ interface NavLink {
 }
 
 const Navbar: React.FC = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const [links] = useState<NavLink[]>([
-    { label: 'Home', href: '/' },
-    { label: 'Shop', href: '/shop' },
-    { label: 'Contact Us', href: '/contact' },
-  ]);
+    const [links] = useState<NavLink[]>([
+        { label: 'Home', href: '/' },
+        { label: 'Shop', href: '/shop' },
+        { label: 'Contact Us', href: '/contact' },
+    ]);
+
+    const handleSignIn = () => {
+        // Handle sign-in logic here
+        console.log('Email:', email);
+        console.log('Password:', password);
+        onClose(); // Close modal after signing in
+    };
 
   return (
     <Box bg="white" px={4} color="white">
@@ -73,7 +83,7 @@ const Navbar: React.FC = () => {
             {/* Sign In and Sign Up Buttons */}
         </HStack>
         <Box>
-            <Button variant="ghost" fontFamily="'Proxima Nova Condensed', sans-serif" color="black" border="1px solid">
+            <Button variant="ghost" fontFamily="'Proxima Nova Condensed', sans-serif" color="black" border="1px solid" onClick={onOpen}>
                 Sign In
             </Button>
             <Button variant="ghost" fontFamily="'Proxima Nova Condensed', sans-serif" color="white" bg="#D41A1F">
