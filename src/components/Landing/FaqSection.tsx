@@ -8,7 +8,7 @@ import {
   
   const FAQSection = () => {
     return (
-      <Box p={64} color="black">
+      <Box p={16} color="black">
         <Container maxW="container.xl">
           {/* Tagline and Subtitle */}
           <Stack spacing={4} textAlign="center" mb={12}>

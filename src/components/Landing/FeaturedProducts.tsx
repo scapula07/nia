@@ -1,67 +1,47 @@
-import { Box, Container, Heading, Text, Grid } from "@chakra-ui/react";
+import { Box, Container, Heading, Text, Grid, Flex, Link, Icon } from "@chakra-ui/react";
+import { MdArrowForward } from "react-icons/md"; // Import the right arrow icon
 import ProductCard from "./ProductCard"; // Import the ProductCard component
 
 const FeaturedProducts = () => {
   // Sample product data
   const products = [
     {
-      image: "./images/gallon_of_fresh_milk.jpg", // Add actual image path
+      image: "./p1.png", // Add actual image path
       title: "Gallon of Fresh Milk",
       price: "$14.99",
       discount: "-15%",
       onAddToCart: () => console.log("Added Gallon of Fresh Milk to Cart"),
     },
     {
-      image: "./images/crate_of_fresh_eggs.jpg", // Add actual image path
+      image: "./p2.png", // Add actual image path
       title: "Crate of Fresh Eggs",
       price: "$14.99",
       discount: "-15%",
       onAddToCart: () => console.log("Added Crate of Fresh Eggs to Cart"),
     },
     {
-      image: "./images/galbani_mozzarella_cheese.jpg", // Add actual image path
+      image: "./p3.png", // Add actual image path
       title: "Galbani Italian Mozzarella Cheese",
       price: "$14.99",
       discount: "-15%",
       onAddToCart: () => console.log("Added Galbani Italian Mozzarella Cheese to Cart"),
     },
     {
-      image: "./images/siggis_yogurt.jpg", // Add actual image path
+      image: "./p4.png", // Add actual image path
       title: "Siggi's Whole Milk Drinkable Yogurt",
       price: "$14.99",
       discount: "-15%",
       onAddToCart: () => console.log("Added Siggi's Whole Milk Drinkable Yogurt to Cart"),
     },
     {
-      image: "./images/organic_valley_milk.jpg", // Add actual image path
+      image: "./p5.png", // Add actual image path
       title: "Organic Valley Organic Whole Milk",
       price: "$14.99",
       discount: "-15%",
       onAddToCart: () => console.log("Added Organic Valley Organic Whole Milk to Cart"),
     },
     {
-      image: "./images/lala_shelf_stable_milk.jpg", // Add actual image path
-      title: "Lala Shelf Stable Whole Milk",
-      price: "$14.99",
-      discount: "-15%",
-      onAddToCart: () => console.log("Added Lala Shelf Stable Whole Milk to Cart"),
-    },
-    {
-      image: "./images/siggis_yogurt.jpg", // Add actual image path
-      title: "Siggi's Whole Milk Drinkable Yogurt",
-      price: "$14.99",
-      discount: "-15%",
-      onAddToCart: () => console.log("Added Siggi's Whole Milk Drinkable Yogurt to Cart"),
-    },
-    {
-      image: "./images/organic_valley_milk.jpg", // Add actual image path
-      title: "Organic Valley Organic Whole Milk",
-      price: "$14.99",
-      discount: "-15%",
-      onAddToCart: () => console.log("Added Organic Valley Organic Whole Milk to Cart"),
-    },
-    {
-      image: "./images/lala_shelf_stable_milk.jpg", // Add actual image path
+      image: "./p6.png", // Add actual image path
       title: "Lala Shelf Stable Whole Milk",
       price: "$14.99",
       discount: "-15%",
@@ -70,14 +50,67 @@ const FeaturedProducts = () => {
   ];
 
   return (
-    <Box bg="gray.50" py={16} color="black">
+    <Box py={16} px={16} color="black">
       <Container maxW="container.xl">
+        {/* Subheader */}
         <Heading fontSize="56px" fontWeight="700" lineHeight="67.2px" mb={6} textAlign="center">
           Featured Products
         </Heading>
-        <Text fontSize="25.4px" lineHeight="30.48px" fontWeight="400" textAlign="center" mb={10}>
+        <Text fontSize="25.4px" lineHeight="30.48px" fontWeight="400" textAlign="center" mb={6}>
           Visit our shop for more amazing deals.
         </Text>
+
+        {/* Navigation Links */}
+        <Flex justify="center" mb={10} gap={4}>
+          <Link
+            fontSize="16px"
+            fontWeight="600"
+            _hover={{ color: "#009E4D"  }}
+            href="#"
+          >
+            Groceries and Vegetables
+          </Link>
+          <Link
+            fontSize="16px"
+            fontWeight="600"
+            _hover={{ color: "#009E4D" }}
+            href="#"
+          >
+            Grains and Breads
+          </Link>
+          <Link
+            fontSize="16px"
+            fontWeight="600"
+            _hover={{ color: "#009E4D"  }}
+            href="#"
+          >
+            Canned Products
+          </Link>
+          <Link
+            fontSize="16px"
+            fontWeight="600"
+            _hover={{ color: "#009E4D"  }}
+            href="#"
+          >
+            Meats and Proteins
+          </Link>
+          <Link
+            fontSize="16px"
+            fontWeight="600"
+            _hover={{ color: "#009E4D"  }}
+            href="#"
+          >
+            Dairy Products
+          </Link>
+          <Link
+            fontSize="16px"
+            fontWeight="600"
+            _hover={{ color: "#009E4D" }}
+            href="#"
+          >
+            Snacks and Treats
+          </Link>
+        </Flex>
 
         {/* Grid Layout for Featured Products */}
         <Grid templateColumns="repeat(3, 1fr)" gap={6}>
@@ -92,6 +125,23 @@ const FeaturedProducts = () => {
             />
           ))}
         </Grid>
+
+        {/* Go to Shop Link */}
+        <Flex justify="center" mt={6}>
+          <Link
+            fontSize="18px"
+            fontWeight="600"
+            color="green.500"
+            _hover={{ color: "#009E4D" }}
+            href="#"
+            display="flex"
+            alignItems="center"
+            textDecoration="underline"
+          >
+            Go to Shop <MdArrowForward/>
+            
+          </Link>
+        </Flex>
       </Container>
     </Box>
   );

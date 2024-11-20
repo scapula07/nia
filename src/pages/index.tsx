@@ -25,7 +25,7 @@ const geistMono = localFont({
 
 export default function Home() {
     return (
-        <Box bg="white">
+        <Box bg="#FAFAFA">
             <HeroSection />
             <StatsSection />
             <WelcomeSection />
