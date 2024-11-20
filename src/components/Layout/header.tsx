@@ -11,7 +11,7 @@ export default function Header() {
                  className='w-20 h-20'
                 />
 
-              <div className='border py-4 px-3 rounded-lg flex w-1/2 justify-between items-center'>
+              <div className='border py-4 px-3 rounded-lg flex w-1/2 justify-between items-center bg-white'>
                 <input
                     placeholder='Search products or categories'
                     className='outline-none border-0 w-full text-xs text-black'

@@ -8,7 +8,7 @@ import {
   
   const FAQSection = () => {
     return (
-      <Box bg="gray.50" p={64} color="black">
+      <Box p={64} color="black">
         <Container maxW="container.xl">
           {/* Tagline and Subtitle */}
           <Stack spacing={4} textAlign="center" mb={12}>
@@ -34,7 +34,7 @@ import {
                   What types of food do you offer?
                 </AccordionItemTrigger>
                 <AccordionItemContent>
-                  We offer a diverse selection of fresh fruits, vegetables, grains, and proteins, focusing on nutritious and sustainable options.
+                Nia offers a complete selection of fresh meats, produce, dairy, pantry staples, and frozen foods to nourish your family. From farm-fresh fruits and vegetables to quality cuts of meat, nutritious grains, and everyday essentials, we're your one-stop shop for all your grocery needs.
                 </AccordionItemContent>
               </AccordionItem>
             </Box>
