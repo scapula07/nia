@@ -1,5 +1,5 @@
 import { Box, Button, Container, HStack, Text, Stack, Image } from '@chakra-ui/react';
-import ShopButton from '@/components/ShopButton';
+import ShopButton from '@/components/Landing/ShopButton';
 import { MdOutlineShoppingCart } from "react-icons/md";
 
 const WelcomeSection = () => {

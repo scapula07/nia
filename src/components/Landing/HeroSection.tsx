@@ -2,7 +2,7 @@
 import { FunctionComponent } from 'react';
 import { Box, Heading, Text, Button, Container } from '@chakra-ui/react';
 import { MdOutlineShoppingCart } from "react-icons/md";
-import ShopButton from '@/components/ShopButton';
+import ShopButton from '@/components/Landing/ShopButton';
 
 interface HeroSectionProps {}
 

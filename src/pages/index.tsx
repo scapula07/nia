@@ -1,13 +1,13 @@
 import localFont from "next/font/local";
 import { Box } from "@chakra-ui/react";
-import { HeroSection } from "@/components/HeroSection";
-import WelcomeSection from "@/components/WelcomeSection";
-import StatsSection from "@/components/StatsSection";
-import CategoriesSection from "@/components/CategoriesSection";
-import FAQSection from "@/components/FAQSection";
-import FeatureSection from "@/components/FeatureSection";
-import ValueSection from "@/components/ValueSection";
-import FeaturedProducts from "@/components/FeaturedProducts";
+import { HeroSection } from "@/components/Landing/HeroSection";
+import WelcomeSection from "@/components/Landing/WelcomeSection";
+import StatsSection from "@/components/Landing/StatsSection";
+import CategoriesSection from "@/components/Landing/CategoriesSection";
+import FAQSection from "@/components/Landing/FaqSection";
+import FeatureSection from "@/components/Landing/FeatureSection";
+import ValueSection from "@/components/Landing/ValueSection";
+import FeaturedProducts from "@/components/Landing/FeaturedProducts";
 
 
 
