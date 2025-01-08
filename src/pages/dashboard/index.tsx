@@ -1,54 +1,45 @@
-import { Box, Text, VStack, Grid, GridItem } from "@chakra-ui/react";
-import Sidebar from "@/components/Dashboard/Sidebar"; // Sidebar component (optional)
+import { Box, Text, Grid, GridItem } from "@chakra-ui/react";
+import Sidebar from "@/components/Dashboard/Sidebar";
+import StatBox from "@/components/Dashboard/StatBox";
+import TopProductBox from "@/components/Dashboard/TopProductBox";
 
 const Dashboard = () => {
+    const handleFilterChange = (filter: string) => {
+        console.log("Filter changed to:", filter);
+        // Logic for fetching or filtering data based on the selected time range
+    };
 
-  // Placeholder content until user authentication is added
-  return (
-    <Box display="flex">
-      <Sidebar />
-      <Box flex="1" p={6}>
-        <Text fontSize="2xl" fontWeight="bold">
-          Welcome to the Dashboard!
-        </Text>
-        <Text mt={4}>This is your dashboard. Content will be user-specific later.</Text>
+    // Placeholder content until user authentication is added
+    return (
+        <Box display="flex" bg="#EEEFF1">
+            <Sidebar />
+            <Box flex="1" p={6}>
+                {/* Stats Boxes */}
+                <Grid templateColumns="repeat(3, 1fr)" gap={6} mt={6}>
 
-        {/* Stats Boxes */}
-        <Grid templateColumns="repeat(3, 1fr)" gap={6} mt={6}>
-          {/* Stat Box 1 */}
-          <GridItem>
-            <Box bg="gray.100" p={4} borderRadius="md" boxShadow="sm">
+                        <StatBox
+                            title="Total Orders"
+                            number={1245}
+                            bgColor="#FBDCDD"
+                        />
+     
+                        <StatBox
+                            title="Total Customers"
+                            number={1245}
+                            bgColor="#D3FFE8"
+                        />
 
+                        <StatBox
+                            title="Total Products"
+                            number={1245}
+                            bgColor="#8B58F533"
+                        />
+
+                </Grid>
+                <TopProductBox />
             </Box>
-          </GridItem>
-
-          {/* Stat Box 2 */}
-          <GridItem>
-            <Box bg="gray.100" p={4} borderRadius="md" boxShadow="sm">
-
-            </Box>
-          </GridItem>
-
-          {/* Stat Box 3 */}
-          <GridItem>
-            <Box bg="gray.100" p={4} borderRadius="md" boxShadow="sm">
-
-            </Box>
-          </GridItem>
-        </Grid>
-
-        {/* Additional Features Section */}
-        <Box mt={6}>
-          <Text fontWeight="bold">Dashboard Features:</Text>
-          <ul>
-            <li>Overview of your activities</li>
-            <li>Statistics and insights (to be added)</li>
-            <li>Upcoming events or tasks (to be added)</li>
-          </ul>
         </Box>
-      </Box>
-    </Box>
-  );
+    );
 };
 
 export default Dashboard;
