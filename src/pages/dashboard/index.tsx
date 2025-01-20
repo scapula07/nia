@@ -1,44 +1,41 @@
-import { Box, Text, Grid, GridItem } from "@chakra-ui/react";
-import Sidebar from "@/components/Dashboard/Sidebar";
+import { Box, Grid } from "@chakra-ui/react";
+import DashboardLayout from "@/components/Layout/DashboardLayout";  // Import the DashboardLayout
 import StatBox from "@/components/Dashboard/StatBox";
-import TopProductBox from "@/components/Dashboard/TopProductBox";
+import IncomeStats from "@/components/Dashboard/IncomeStats";
+import RecentOrders from "@/components/Dashboard/RecentOrders";
+import TopSellingProducts from "@/components/Dashboard/TopSellingProducts";
 
 const Dashboard = () => {
-    const handleFilterChange = (filter: string) => {
-        console.log("Filter changed to:", filter);
-        // Logic for fetching or filtering data based on the selected time range
-    };
+    const recentOrders = [
+        { id: 101, customer: "Alice Johnson", status: "Completed", total: "$150.00" },
+        { id: 102, customer: "Bob Smith", status: "Pending", total: "$300.00" },
+        { id: 103, customer: "Charlie Brown", status: "Shipped", total: "$200.00" },
+        { id: 104, customer: "Diana Prince", status: "Completed", total: "$400.00" },
+        { id: 105, customer: "Eve Adams", status: "Cancelled", total: "$0.00" },
+    ];
 
-    // Placeholder content until user authentication is added
     return (
-        <Box display="flex" bg="#EEEFF1">
-            <Sidebar />
-            <Box flex="1" p={6}>
+        <DashboardLayout> {/* Wrap the content with DashboardLayout */}
+            <Box bg="#EEEFF1" flex="1" p={6}>
                 {/* Stats Boxes */}
                 <Grid templateColumns="repeat(3, 1fr)" gap={6} mt={6}>
-
-                        <StatBox
-                            title="Total Orders"
-                            number={1245}
-                            bgColor="#FBDCDD"
-                        />
-     
-                        <StatBox
-                            title="Total Customers"
-                            number={1245}
-                            bgColor="#D3FFE8"
-                        />
-
-                        <StatBox
-                            title="Total Products"
-                            number={1245}
-                            bgColor="#8B58F533"
-                        />
-
+                    <StatBox title="Total Orders" number={1245} bgColor="#FBDCDD" />
+                    <StatBox title="Total Customers" number={1245} bgColor="#D3FFE8" />
+                    <StatBox title="Total Products" number={1245} bgColor="#8B58F533" />
                 </Grid>
-                <TopProductBox />
+
+                {/* Income Stats and Top Selling Products Section */}
+                <Grid templateColumns={{ base: "1fr", lg: "2fr 1fr" }} gap={6} mt={6}>
+                    <IncomeStats />
+                    <TopSellingProducts />
+                </Grid>
+
+                {/* Recent Orders */}
+                <Box mt={6}>
+                    <RecentOrders orders={recentOrders} pageSize={5} />
+                </Box>
             </Box>
-        </Box>
+        </DashboardLayout> 
     );
 };
 
