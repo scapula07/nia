@@ -13,7 +13,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
     <Flex direction="column" minHeight="100vh">
 
       {/* Main content area */}
-      <Flex flex="1" bg="gray.50">
+      <Flex flex="1" bg="#EEEFF1">
         {/* Sidebar */}
         <Box width="250px" bg="gray.100" borderRight="1px" borderColor="gray.200">
           <Sidebar />

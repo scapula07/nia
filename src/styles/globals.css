@@ -7,15 +7,23 @@
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
   color:black;
   background:white;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Customize highlight (selection) color */
+::selection {
+    background-color: #4a90e2; /* Change background color */
+    color: #ffffff; /* Change text color */
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    /* Customize highlight for dark mode */
+    ::selection {
+      background-color: #333333; /* Darker background for dark mode */
+      color: #ededed; /* Lighter text color for dark mode */
+    }
 }

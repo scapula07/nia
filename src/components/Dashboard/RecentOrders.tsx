@@ -39,7 +39,7 @@ const RecentOrders: React.FC<RecentOrdersProps> = ({ orders, pageSize = 5 }) => 
         </Table.Header>
         <Table.Body>
           {orders.map((order) => (
-            <Table.Row key={order.id}>
+            <Table.Row key={order.id} borderWidth="1px">
               <Table.Cell>{order.id}</Table.Cell>
               <Table.Cell>{order.customer}</Table.Cell>
               <Table.Cell>{order.status}</Table.Cell>
