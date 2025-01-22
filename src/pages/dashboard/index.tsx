@@ -16,7 +16,7 @@ const Dashboard = () => {
 
     return (
         <DashboardLayout> {/* Wrap the content with DashboardLayout */}
-            <Box bg="#EEEFF1" flex="1" p={6}>
+            <Box bg="#EEEFF1" flex="1" >
                 {/* Stats Boxes */}
                 <Grid templateColumns="repeat(3, 1fr)" gap={6} mt={6}>
                     <StatBox title="Total Orders" number={1245} bgColor="#FBDCDD" />

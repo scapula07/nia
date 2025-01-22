@@ -4,7 +4,7 @@ import { IoNotificationsOutline } from "react-icons/io5";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 export default function Header() {
     return (
-        <div className='w-full fixed flex px-20 bg-white'>
+        <div className='w-full fixed flex px-20 bg-white shadow-md'>
             <div className='flex w-1/2 items-center space-x-20'>
                 <a href='/'>
                     <img

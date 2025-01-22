@@ -46,6 +46,8 @@ const TopSellingProducts = () => {
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
+
+            
             <Legend
               layout="horizontal"
               align="left"

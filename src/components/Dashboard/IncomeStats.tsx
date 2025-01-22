@@ -3,68 +3,24 @@ import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 
 // Define the type for a single data point
 interface RevenueData {
-    date: string;
-    Revenue: number;
+    name: string;
+    income: number;
 }
 
-// Define the valueFormatter function with a parameter type
+// Format values as "$120K", "$100K", etc.
 const valueFormatter = (value: number): string => {
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    }).format(value);
+    return `$${value / 1000}K`;
 };
 
-const data = [
-    {
-        name: 'Jan',
-        uv: 4000,
-        pv: 2400,
-        amt: 2400,
-    },
-    {
-        name: 'Feb',
-        uv: 3000,
-        pv: 1398,
-        amt: 2210,
-    },
-    {
-        name: 'Mar',
-        uv: 2000,
-        pv: 9800,
-        amt: 2290,
-    },
-    {
-        name: 'Apr',
-        uv: 2780,
-        pv: 3908,
-        amt: 2000,
-    },
-    {
-        name: 'May',
-        uv: 1890,
-        pv: 4800,
-        amt: 2181,
-    },
-    {
-        name: 'Jun',
-        uv: 2390,
-        pv: 3800,
-        amt: 2500,
-    },
-    {
-        name: 'Jul',
-        uv: 3490,
-        pv: 4300,
-        amt: 2100,
-    },
-    {
-        name: 'Aug',
-        uv: 3490,
-        pv: 4300,
-        amt: 2100,
-    },
-
+// Update the data to represent income values
+const data: RevenueData[] = [
+    { name: 'Jan', income: 120000 },
+    { name: 'Feb', income: 100000 },
+    { name: 'Mar', income: 80000 },
+    { name: 'Apr', income: 60000 },
+    { name: 'May', income: 40000 },
+    { name: 'Jun', income: 20000 },
+    { name: 'Jul', income: 0 },
 ];
 
 export default function Page() {
@@ -72,22 +28,32 @@ export default function Page() {
         <Card.Root
             width="744px"
             height="405px"
-            bg='white'
-            p={12}
+            bg="white"
+            p={6}
         >
-            <Card.Title pb="0" color={'black'} font-weight="700">
-                Income statistics
+            <Card.Title pb="0" color="black" fontWeight="700" fontSize="18px">
+                Income Statistics
             </Card.Title>
             <Card.Body>
                 <ResponsiveContainer width="100%" height="100%">
-                    <BarChart height={40} data={data}>
-                        <XAxis dataKey="name" axisLine={false} tickLine={false}/>
-                        <YAxis axisLine={false} tickLine={false}/>
-                        <Bar dataKey="uv" fill="#009E4D" background={{ fill: '#EEEFF1' }}/>
+                    <BarChart data={data}>
+                        {/* X-Axis for months */}
+                        <XAxis dataKey="name" axisLine={false} tickLine={false} />
+
+                        {/* Y-Axis for income with custom ticks */}
+                        <YAxis
+                            axisLine={false}
+                            tickLine={false}
+                            tickFormatter={valueFormatter}
+                            domain={[0, 120000]}
+                            ticks={[0, 20000, 40000, 60000, 80000, 100000, 120000]}
+                        />
+
+                        {/* Bar for income */}
+                        <Bar dataKey="income" fill="#009E4D" background={{ fill: '#EEEFF1' }} />
                     </BarChart>
                 </ResponsiveContainer>
             </Card.Body>
         </Card.Root>
-
     );
 }
