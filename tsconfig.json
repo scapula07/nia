@@ -33,7 +33,7 @@
     "**/*.tsx",
     "next-env.d.ts",
     ".next/types/**/*.ts"
-, "src/lib/theme.js", "src/pages/_app.tsx"  ],
+, "src/lib/theme.js", "src/pages/_app.tsx", "next.config.mjs"  ],
   "exclude": [
     "node_modules"
   ]

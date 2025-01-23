@@ -4,7 +4,7 @@ import { IoIosArrowUp,IoIosArrowDown } from "react-icons/io";
 import Product from './product';
 
 
-export default function Order() {
+export default function Order({item}:any) {
       const [dropDown,setDropDown]=useState(true)
   return (
     <div className='w-full bg-[#f3f3f3] flex flex-col space-y-4  py-4 rounded-xl px-6 '>
@@ -22,9 +22,8 @@ export default function Order() {
                <IoIosArrowDown 
                   className='text-green-600 text-3xl'
                />
-
           </div>
-          <Product />
+          <Product item={item}/>
           <Details />
     </div>
   )
