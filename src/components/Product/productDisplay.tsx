@@ -1,11 +1,11 @@
 import React from 'react'
 
-export default function ProductDisplay() {
+export default function ProductDisplay({product}:any) {
   return (
     <div className='w-full flex flex-col space-y-6'>
           <div className='w-full'>
                 <img 
-                  src='/p4.png'
+                  src={product.img}
                   className='w-full h-96'
                />
           </div>
@@ -25,8 +25,6 @@ export default function ProductDisplay() {
                })
 
              }
-               
-
           </div>
 
     </div>

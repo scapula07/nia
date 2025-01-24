@@ -24,7 +24,7 @@ export default function Orders() {
              <div className='border py-2.5 px-3 rounded-lg flex w-1/4 justify-between items-center'>
                   <input
                       placeholder='Search'
-                      className='outline-none border-0 w-full text-xs text-black'
+                      className='outline-none border-0 w-full text-xs text-black bg-white'
                     /> 
                     <FiSearch
                         className='text-slate-600'

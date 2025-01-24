@@ -14,16 +14,42 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Customize highlight (selection) color */
-::selection {
-    background-color: #4a90e2; /* Change background color */
-    color: #ffffff; /* Change text color */
-  }
-  
-  @media (prefers-color-scheme: dark) {
-    /* Customize highlight for dark mode */
-    ::selection {
-      background-color: #333333; /* Darker background for dark mode */
-      color: #ededed; /* Lighter text color for dark mode */
-    }
+.modal-upload{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* background-color:white; */
+  z-index: 1000;
+ 
+}
+
+.overlay-style{
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom: 0;
+  /* background-color:rgba(242, 242, 242, 1); */
+  background-color: rgba(0,0,0,0.7);
+  z-index: 1000;
+
+}
+
+
+
+#nprogress .bar {
+  background: red !important;
+  border: 1px solid red !important;
+} 
+
+
+progress::-webkit-progress-bar {
+  background-color: #e5e7eb; /* Gray background */
+  border-radius: 0.5rem; /* Rounded corners */
+}
+
+progress::-webkit-progress-value {
+  background-color: #ef4444; /* Red fill */
+  border-radius: 0.5rem; /* Rounded corners */
 }

@@ -1,9 +1,30 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import Sort from '@/components/Shop/sort'
 import Category from '@/components/Shop/category'
 import Product from '@/components/Shop/product'
+import { collection,  onSnapshot,
+    doc, getDocs,
+    query, orderBy, 
+    limit,getDoc,setDoc ,
+   updateDoc,addDoc,startAt,endAt } from 'firebase/firestore'
+import { db } from '@/firebase/config'
+
 
 export default function Shop() {
+     const [products,setProducts]=useState([])
+    useEffect(()=>{
+        const q = query(collection(db, "products"));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            const products:any = []
+            querySnapshot.forEach((doc) => {
+              products.push({ ...doc.data(), id: doc.id })
+    
+            });
+            setProducts(products) 
+          });
+       },[])
+    
+   
   return (
     <div className='w-full'>
           <div className='w-full'> </div>
@@ -12,25 +33,12 @@ export default function Shop() {
               <div></div>
               <div className='w-full flex '>
                    <div className='w-3/5'>
-                      <Sort />
+                      <Sort count={products.length} />
                       <div className='w-full grid grid-cols-3 py-4 gap-4'>
-                          {[
-                              {
-                               img:'/p1.png',
-                               title:'Gallon of milk'
-                              },
-                              {
-                                img:'/p2.png',
-                                title:'Create of eggs'
-                               },
-                               {
-                                img:'/p3.png',
-                                title:'Bag of milk'
-                               }
-                              ]?.map((item)=>{
+                          {products?.map((item)=>{
                              return(
                                 <Product 
-                                    {...item}
+                                    product={item}
                                  />
                               )
                            })}
