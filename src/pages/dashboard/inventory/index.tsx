@@ -1,46 +1,39 @@
 "use client";
 
-import { Box, Heading, Input, Flex, Spacer, Table, Button } from "@chakra-ui/react";
+import { Heading, Input, Flex, Spacer, Table, Button, Link } from "@chakra-ui/react";
 import { InputGroup } from "@/components/ui/input-group";
 import DashboardLayout from "@/components/Layout/DashboardLayout";
-import { useState } from "react";
-import {
-    SelectContent,
-    SelectItem,
-    SelectLabel,
-    SelectRoot,
-    SelectTrigger,
-    SelectValueText,
-} from "@/components/ui/select";
+import { useEffect, useState } from "react";
+import { db } from "@/firebase/config";
+import { collection, getDocs } from "firebase/firestore";
 
-// Sample inventory data (expanded for demonstration)
-const inventory = [
-    { id: 101, product: "Product A", customer: "Alice Johnson", quantity: 5, price: "$10", stock: 100 },
-    { id: 102, product: "Product B", customer: "Bob Smith", quantity: 8, price: "$15", stock: 200 },
-    { id: 103, product: "Product C", customer: "Charlie Brown", quantity: 3, price: "$20", stock: 300 },
-    { id: 104, product: "Product D", customer: "Diana Prince", quantity: 10, price: "$25", stock: 400 },
-    { id: 105, product: "Product E", customer: "Eve Adams", quantity: 1, price: "$30", stock: 500 },
-    { id: 106, product: "Product F", customer: "Frank Miller", quantity: 7, price: "$12", stock: 150 },
-    { id: 107, product: "Product G", customer: "Grace Lee", quantity: 6, price: "$18", stock: 250 },
-    { id: 108, product: "Product H", customer: "Henry Wilson", quantity: 4, price: "$22", stock: 350 },
-    { id: 109, product: "Product I", customer: "Ivy Turner", quantity: 9, price: "$27", stock: 450 },
-    { id: 110, product: "Product J", customer: "Jack Clark", quantity: 2, price: "$35", stock: 550 },
-];
 
 // Pagination settings
 const pageSize = 5;
 
 const Inventory = () => {
     const [currentPage, setCurrentPage] = useState(1);
+    const [inventory, setInventory] = useState<any[]>([]);
+
+    useEffect(() => {
+        // Fetch inventory data from Firestore on component mount
+        const fetchInventory = async () => {
+            const inventoryCollection = collection(db, "inventory");
+            const inventorySnapshot = await getDocs(inventoryCollection);
+            const inventoryList = inventorySnapshot.docs.map(doc => ({
+                id: doc.id, // Firebase document ID
+                ...doc.data() // The document data
+            }));
+            setInventory(inventoryList);
+        };
+
+        fetchInventory();
+    }, []);
 
     const startIndex = (currentPage - 1) * pageSize;
     const currentInventory = inventory.slice(startIndex, startIndex + pageSize);
 
-    const totalPages = Math.ceil(inventory.length / pageSize);
 
-    const handlePageChange = (page) => {
-        setCurrentPage(page);
-    };
 
     return (
         <DashboardLayout>
@@ -65,13 +58,16 @@ const Inventory = () => {
                         pl={10}  // Adjust padding for space for the icon
                     />
                 </InputGroup>
-                <SelectRoot width="156px"height="46px" mr="10px" bg="#D41A1F" borderRadius="md">
-                    <SelectTrigger>
-                        <SelectValueText fontSize="14px" fontWeight="600" color="#FAFAFA" placeholder="Add Product" />
-                    </SelectTrigger>
-                    <SelectContent bg="white">
-                    </SelectContent>
-                </SelectRoot>
+
+                <Button width="156px" bg="#D41A1F" mr={4} color="white" asChild>
+                    <a href="/dashboard/inventory/upload-csv">Upload CSV File</a>
+                </Button>
+
+
+                <Button width="156px" bg="#D41A1F" color="white" asChild>
+                    <a href="/dashboard/inventory/manual-upload">Manual Upload</a>
+                </Button>
+
             </Flex>
 
             <Table.Root key="line" variant="line" size="md" borderRadius="lg" overflow="hidden">
@@ -81,7 +77,7 @@ const Inventory = () => {
                             Product Name
                         </Table.Cell>
                         <Table.Cell fontSize="18px" color="#888888">
-                            Customer
+                            Category
                         </Table.Cell>
                         <Table.Cell fontSize="18px" color="#888888">
                             Quantity
@@ -97,33 +93,15 @@ const Inventory = () => {
                 <Table.Body>
                     {currentInventory.map((item) => (
                         <Table.Row key={item.id} bg="white" borderWidth="1px">
-                            <Table.Cell>{item.product}</Table.Cell>
-                            <Table.Cell>{item.customer}</Table.Cell>
+                            <Table.Cell>{item.productName}</Table.Cell>
+                            <Table.Cell>{item.categories}</Table.Cell>
                             <Table.Cell>{item.quantity}</Table.Cell>
                             <Table.Cell>{item.price}</Table.Cell>
-                            <Table.Cell>{item.stock}</Table.Cell>
+                            <Table.Cell>{item.quantity}</Table.Cell>
                         </Table.Row>
                     ))}
                 </Table.Body>
             </Table.Root>
-
-            <Flex justify="center" mt={4}>
-                <Button
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    isDisabled={currentPage === 1}
-                >
-                    Previous
-                </Button>
-                <Box mx={2}>
-                    Page {currentPage} of {totalPages}
-                </Box>
-                <Button
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    isDisabled={currentPage === totalPages}
-                >
-                    Next
-                </Button>
-            </Flex>
         </DashboardLayout>
     );
 };
