@@ -27,6 +27,7 @@ const Dashboard = () => {
                 // Fetch total products
                 const productsSnapshot = await getDocs(collection(db, "inventory"));
                 setTotalProducts(productsSnapshot.size);
+                
             } catch (error) {
                 console.error("Error fetching stats:", error);
             }
@@ -35,13 +36,6 @@ const Dashboard = () => {
         fetchStats();
     }, []);
 
-    const recentOrders = [
-        { id: 101, customer: "Alice Johnson", status: "Completed", total: "$150.00" },
-        { id: 102, customer: "Bob Smith", status: "Pending", total: "$300.00" },
-        { id: 103, customer: "Charlie Brown", status: "Shipped", total: "$200.00" },
-        { id: 104, customer: "Diana Prince", status: "Completed", total: "$400.00" },
-        { id: 105, customer: "Eve Adams", status: "Cancelled", total: "$0.00" },
-    ];
 
     return (
         <DashboardLayout>
@@ -141,7 +135,6 @@ const Dashboard = () => {
 
                 {/* Recent Orders */}
                 <Box mt={6}>
-                    <RecentOrders orders={recentOrders} pageSize={5} />
                 </Box>
             </Box>
         </DashboardLayout>

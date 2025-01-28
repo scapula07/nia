@@ -18,45 +18,6 @@ type RecentOrdersProps = {
   pageSize?: number;
 };
 
-const orders = [
-    {
-        id: 1,
-        product: "Laptop",
-        customer: "John Doe",
-        quantity: 1,
-        status: "Completed",
-        total: "$1000",
-        dateTime: "2025-01-20 10:00 AM",
-    },
-    {
-        id: 2,
-        product: "Headphones",
-        customer: "Jane Smith",
-        quantity: 2,
-        status: "Pending",
-        total: "$150",
-        dateTime: "2025-01-21 12:30 PM",
-    },
-    {
-        id: 3,
-        product: "Smartphone",
-        customer: "Alice Johnson",
-        quantity: 1,
-        status: "Shipped",
-        total: "$500",
-        dateTime: "2025-01-22 03:00 PM",
-    },
-    {
-        id: 1,
-        product: "Laptop",
-        customer: "John Doe",
-        quantity: 1,
-        status: "Completed",
-        total: "$1000",
-        dateTime: "2025-01-20 10:00 AM",
-    },
-]
-
 const RecentOrders: React.FC<RecentOrdersProps> = ({ orders, pageSize = 5 }) => {
   return (
       <Table.Root size="md" borderRadius="lg" overflow="hidden">
