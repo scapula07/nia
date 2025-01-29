@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Heading, Input, Flex, Spacer, Table, HStack } from "@chakra-ui/react";
+import { Heading, Input, Flex, Spacer, Table, Badge } from "@chakra-ui/react";
 import { InputGroup } from "@/components/ui/input-group";
+
+
 import {
     PaginationItems,
     PaginationNextTrigger,
@@ -53,6 +55,21 @@ const Orders = () => {
     const formatDate = (timestamp: number) => {
         const date = new Date(timestamp);
         return date.toLocaleString(); // Converts to a human-readable date string
+    };
+
+    const getStatusBadge = (status: string) => {
+        switch (status) {
+            case "active":
+                return <Badge colorPalette="green" width="122px" height="25px" justifyContent="center" textAlign="center">Order Confirmed</Badge>;
+            case "shipped":
+                return <Badge colorScheme="green">Shipped</Badge>;
+            case "delivered":
+                return <Badge colorScheme="blue">Delivered</Badge>;
+            case "canceled":
+                return <Badge colorScheme="red">Canceled</Badge>;
+            default:
+                return <Badge colorScheme="gray">Unknown</Badge>;
+        }
     };
 
     return (
@@ -110,7 +127,7 @@ const Orders = () => {
                             <Table.Cell>{order.product.title}</Table.Cell>
                             <Table.Cell>{order.customer.name}</Table.Cell>
                             <Table.Cell>{order.product.qty}</Table.Cell>
-                            <Table.Cell>{order.status}</Table.Cell>
+                            <Table.Cell>{getStatusBadge(order.status)}</Table.Cell>
                             <Table.Cell>${order.total}</Table.Cell>
                             <Table.Cell>{formatDate(order.time)}</Table.Cell>
                         </Table.Row>
