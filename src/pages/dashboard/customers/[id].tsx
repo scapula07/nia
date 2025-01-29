@@ -1,12 +1,12 @@
 "use client";
 
 import { useRouter } from "next/router";
-import { Box, Heading, Text, Stack, Button, Input, Link, Flex, IconButton, Avatar, Spinner } from "@chakra-ui/react";
+import { Box, Heading, Text, Stack, Button, Input, Link, Flex, Badge, Avatar, Spinner } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import DashboardLayout from "@/components/Layout/DashboardLayout";
 import { db } from "@/firebase/config";
 import { doc, getDoc } from "firebase/firestore";
-import { FiTrash } from "react-icons/fi";
+
 
 const CustomerDetails = () => {
     const router = useRouter();
@@ -81,67 +81,100 @@ const CustomerDetails = () => {
                 </Button>
             </Box>
             <Heading mb={4} fontSize="32px" fontWeight="700">Customer Information</Heading>
-            <Box width="100%" p={4} border="1px" bg="#F6F8FF" borderColor="gray.200" borderRadius="lg">
-                {/* Profile Information Section */}
-                <Flex mb={6} align="center" justify="space-between">
-                    <Flex align="center">
+            <Box
+                className="overflow-hidden"
+                px={5}
+                py={6}
+                mx="auto"
+                my={0}
+                rounded="lg"
+                bg="gray.50"
+                maxW="1127px"
+                sm={{ p: 4 }}
+            >
+                <Flex gap={5} direction={{ base: "column", md: "row" }}>
+                    <Box flex="1" maxW={{ base: "100%", md: "50%" }}>
+                        <Box>
+                            <Flex gap={5} direction={{ base: "column", md: "row" }}>
+                                <Box flex="1">
+                                    {/* User Details Section */}
+                                    <Box p={5} >
+                                        <Heading size="md" mb={2}>
+                                            {customer.name}
+                                        </Heading>
+                                        <Text color="gray.500" mb={2}>
+                                            Location: San Antonio, Texas
+                                        </Text>
+                                        <Text color="gray.500" mb={2}>
+                                            Orders: 14
+                                        </Text>
+                                        <Text color="gray.500">Joined: July 2024</Text>
+                                    </Box>
+                                </Box>
+                                <Box ml={5} flex="1">
+                                    {/* Address Section */}
+                                    <Box p={5} >
+                                        <Heading size="sm" mb={2}>
+                                            Address
+                                        </Heading>
+                                        <Text color="gray.600">{customer.address}</Text>
+                                    </Box>
+                                </Box>
+                            </Flex>
 
-                        <Stack spacing={1}>
-                            <Text fontSize="lg" fontWeight="bold">{customer.name}</Text>
-                            <Text color="gray.500">Order #: {customer.orders}</Text>
-                        </Stack>
-                    </Flex>
+                            <Box mt={8} maxW="495px">
+                                <Flex gap={5} direction={{ base: "column", md: "row" }}>
+                                    <Box w={{ base: "full", md: "73%" }}>
+                                        {/* Notes Section */}
+                                        <Box p={5}>
+                                            <Heading size="sm" mb={2}>
+                                                Notes
+                                            </Heading>
+                                            <Input pl="2" placeholder="" size="md" min-height="90px" borderWidth={1} borderRadius="md" bg="white" />
+                                        </Box>
+                                    </Box>
+                                    <Box ml={5} w={{ base: "full", md: "27%" }}>
+                                        {/* Last Order Section */}
+                                        <Box p={5} >
+                                            <Heading size="sm" mb={2}>
+                                                Last Order
+                                            </Heading>
+                                            <Text color="gray.600">September 29, 2024</Text>
+                                        </Box>
+                                    </Box>
+                                </Flex>
+                            </Box>
+                        </Box>
+                    </Box>
 
-                    <Stack spacing={1} align="flex-end">
-                        <Text><strong>Address:</strong> {customer.address}</Text>
-                        <Text><strong>Email:</strong> {customer.email}</Text>
-                        <Text><strong>Phone:</strong> {customer.phone}</Text>
-                    </Stack>
-                </Flex>
-
-                {/* Notes Section */}
-                <Box mb={6}>
-                    <Heading size="sm" mb={2}>Notes</Heading>
-                    <Input
-                        value={notes}
-                        onChange={(e) => setNotes(e.target.value)}
-                        placeholder="Add notes here..."
-                        size="md"
-                        mb={4}
-                    />
-                </Box>
-
-                {/* Last Order Section */}
-                <Box mb={6}>
-                    <Heading size="sm" mb={2}>Last Order</Heading>
-                    <Text>{customer.lastOrder || "No recent orders."}</Text>
-                </Box>
-
-                {/* Status Section */}
-                <Box mb={6}>
-                    <Heading size="sm" mb={2}>Status</Heading>
-                    <Text>{customer.status || "No status available."}</Text>
-                </Box>
-
-                {/* Delete Customer Link */}
-                <Flex justify="flex-end">
-                    <Link
-                        href="#"
-                        onClick={handleDelete}
-                        color="red.500"
-                        fontWeight="bold"
-                        display="flex"
-                        alignItems="center"
-                    >
-                        <IconButton
-                            icon={<FiTrash />}
-                            variant="link"
-                            color="red.500"
-                            aria-label="Delete Customer"
-                            mr={2}
-                        />
-                        Delete Customer
-                    </Link>
+                    <Box ml={5} flex="1" maxW={{ base: "100%", md: "50%" }}>
+                        <Flex direction="column" w="full" mt={{ base: 10, md: 0 }} align="flex-start">
+                            <Flex gap={5} justify="space-between" w="full" direction={{ base: "column", sm: "row" }}>
+                                {/* Contact Info Section */}
+                                <Box p={5} w="full">
+                                    <Heading size="sm" mb={2}>
+                                        Email
+                                    </Heading>
+                                    <Text color="gray.600">{customer.email}</Text>
+                                </Box>
+                                <Box p={5} w="full">
+                                    <Heading size="sm" mb={2}>
+                                        Phone
+                                    </Heading>
+                                    <Text color="gray.600">+1(123) 232 3634</Text>
+                                </Box>
+                            </Flex>
+                            {/* User Status Section */}
+                            <Box p={5}mt={5}>
+                                <Heading size="sm" mb={2}>
+                                    Status
+                                </Heading>
+                                <Badge colorScheme="green" variant="solid">
+                                    Active
+                                </Badge>
+                            </Box>
+                        </Flex>
+                    </Box>
                 </Flex>
             </Box>
         </DashboardLayout>

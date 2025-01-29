@@ -18,15 +18,15 @@ const Dashboard = () => {
             try {
                 // Fetch total orders
                 const ordersSnapshot = await getDocs(collection(db, "orders"));
-                setTotalOrders(ordersSnapshot.size);
+                setTotalOrders(ordersSnapshot.empty ? 0 : ordersSnapshot.size);
 
                 // Fetch total customers
                 const customersSnapshot = await getDocs(collection(db, "customers"));
-                setTotalCustomers(customersSnapshot.size);
+                setTotalCustomers(customersSnapshot.empty ? 0 : customersSnapshot.size);
 
                 // Fetch total products
                 const productsSnapshot = await getDocs(collection(db, "inventory"));
-                setTotalProducts(productsSnapshot.size);
+                setTotalProducts(productsSnapshot.empty ? 0 : productsSnapshot.size);
                 
             } catch (error) {
                 console.error("Error fetching stats:", error);
@@ -54,7 +54,7 @@ const Dashboard = () => {
                             <StatLabel pb={23} fontWeight="bold" color="#444444">
                                 Total Orders
                             </StatLabel>
-                            <StatValueText fontSize="40px">{totalOrders}</StatValueText>
+                            <StatValueText fontSize="40px"> {totalOrders}</StatValueText>
                         </StatRoot>
                         <Link
                             href="/dashboard/orders"

@@ -9,6 +9,8 @@ const Sidebar = () => {
 
     const handleLogout = async () => {
         try {
+            localStorage.clear();
+            sessionStorage.clear();
             await signOut(auth); // Sign out from Firebase
             router.push("/") // Redirect to the landing page
         } catch (error) {

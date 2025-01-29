@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import Sidebar from "../Dashboard/Sidebar"; // Assuming you have a Sidebar component
-import Navbar from "./Navbar"; // Assuming you have a Navbar component
+
 
 // Define the layout props type
 type DashboardLayoutProps = {

@@ -1,7 +1,7 @@
 "use client";
 
 import { Heading, Input, Flex, Spacer, Table, Button } from "@chakra-ui/react";
-
+import { IoMdClose } from "react-icons/io";
 import { InputGroup } from "@/components/ui/input-group";
 import DashboardLayout from "@/components/Layout/DashboardLayout";
 import { useEffect, useState } from "react";
@@ -126,7 +126,7 @@ const Inventory = () => {
                                     size="sm"
                                     onClick={() => setDeleteItemId(item.id)}
                                 >
-                                    X
+                                    {<IoMdClose></IoMdClose>}
                                 </Button>
                             </Table.Cell>
                         </Table.Row>

@@ -1,8 +1,6 @@
 "use client";
 
-import { Box, Flex, Heading, HStack, Stack, Text, Input, Separator } from "@chakra-ui/react";
-import { Field } from "@/components/ui/field"
-import { Avatar } from "@/components/ui/avatar";
+import { Box, Flex, Heading, HStack, Text, Input } from "@chakra-ui/react";
 import DashboardLayout from "@/components/Layout/DashboardLayout";
 import {
     Button,
@@ -85,7 +83,7 @@ const Settings = () => {
                                     Admin Name
                                 </Text>
                                 <Text mt={1} fontWeight="bold" color="black">
-                                    
+                                   {user?.name || "Unknown User"} 
                                 </Text>
                             </Box>
                             <Box bg="gray.100" p={3} width="324px" borderRadius="md" mt={3}>
