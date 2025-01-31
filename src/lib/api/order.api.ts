@@ -1,7 +1,11 @@
+declare const window: any;
 import { auth ,db} from "@/firebase/config";
 import { doc,getDoc,setDoc , updateDoc,collection,addDoc}  from "firebase/firestore";
 import {getStorage, ref, uploadBytes } from "firebase/storage"
+import axios from "axios";
 
+const host = globalThis?.window?.location?.origin;
+console.log(host,"host")
 
 export const orderApi= {
     create:async function (products:any,user:any,customer:any) {
@@ -10,8 +14,7 @@ export const orderApi= {
       
      try{
                 const orderPromises = products.map(async (product:any) => {
-                      const total = parseFloat(product.price); // Total price for the order is just the price of the product
-                
+                      const total = parseFloat(product.price); // Total price for the order is just the price of the product        
                       const snap = await addDoc(collection(db, "orders"), {
                         product, // Place the product in an array to match the structure of orders
                         creator: user?.id,
@@ -35,7 +38,6 @@ export const orderApi= {
                                   qty:newQty
                               
                                 })
-
                               await updateDoc(doc(db,"bucket",user?.id), {
                                 cart:[]
                               })
@@ -44,11 +46,8 @@ export const orderApi= {
                             //   throw new Error(e)
                         }
 
-                      return snap;
-                    });
-
-
-                
+                      return snap?.id;
+                    });             
                     return Promise.all(orderPromises);
             
                   }catch(e){
@@ -57,4 +56,28 @@ export const orderApi= {
                   }
 
  },
+  checkout:async function (products:any,id:string) {
+  console.log(host,"host")
+    try{
+        const url=`${host}/api/stripe`
+        const config = {
+          headers:{
+              'Content-Type': 'application/json',
+              },
+          };
+        const response= await axios.post(
+                  url,
+                  {
+                   products,
+                   orderId:id
+                  },
+                  config
+            )
+            console.log(response,"response")
+            return response?.data?.session
+     }catch(e){
+          console.log(e)
+     }
+
+}
 }

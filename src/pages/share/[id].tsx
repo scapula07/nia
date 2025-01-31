@@ -1,8 +1,29 @@
-import React from 'react'
+import React ,{useEffect,useState} from 'react'
 import { IoIosLink } from "react-icons/io";
 import { MdArrowForwardIos } from "react-icons/md";
 import Link from 'next/link';
+import { orderApi } from '@/lib/api/order.api';
+import { doc,getDoc,setDoc , updateDoc,collection,addDoc,getDocs,query,where,onSnapshot}  from "firebase/firestore";
+import { db } from '@/firebase/config';
+import { useRouter } from 'next/router';
+
 export default function Share() {
+  const [product,setProduct]=useState<any>({})
+  const router = useRouter();
+  const { id } = router.query; 
+  const productId=id as string
+  useEffect(()=>{
+    if(id?.length != undefined){
+      const unsub = onSnapshot(doc(db,"order",productId), (doc) => {
+        console.log(doc.data(),"daa")
+        setProduct({...doc.data(),id:doc?.id})
+       });
+      }
+     },[id])
+
+     console.log(id,product,"id")
+
+
   return (
     <div className='w-full py-20 px-20 '>
           <div className='w-full'>
@@ -17,7 +38,7 @@ export default function Share() {
                     <div className='flex flex-col items-center space-y-6'>
                          <h5 className='font-bold text-xl'>Thank You For Your Order!</h5>
                          <img 
-                           src='/p1.png'
+                           src={'/p2.png'}
                            className='w-44 h-44'
                          />
                          <div className='flex flex-col space-y-3 py-4'>
@@ -41,7 +62,7 @@ export default function Share() {
                          </div>
 
 
-                         <div className='flex flex-col px-6 space-y-1'>
+                         {/* <div className='flex flex-col px-6 space-y-1'>
                               <h5 className='font-bold'>Group Buying Offer</h5>
                               <p className='text-sm'>Buy 25 gallons of Prairie Farms Fresh Milk together with Friends and Family or other members of your community. Each one gets 15% discount on their order. Get 20% Off if group goal is achieved in 24 hours. </p>
 
@@ -53,23 +74,23 @@ export default function Share() {
                                     <MdArrowForwardIos className='text-xl' />
                                 </div>
 
-                         </div>
+                         </div> */}
 
 
-                         <div className='flex flex-col px-6 space-y-1 border-b py-4 w-full'>
+                         {/* <div className='flex flex-col px-6 space-y-1 border-b py-4 w-full'>
                               <h5 className='font-bold'>Status</h5>
                               <div className='w-full flex '>
                                   <progress value={40} max={100} className="w-full rounded-lg " style={{background:"red"}}></progress>
                               </div>
                               <p className='text-sm'>You already bought 5 gallons. The goal is 25 gallons. Invite more family, friends and community members to buy together. </p>
 
-                         </div>
+                         </div> */}
 
 
-                         <div className=' px-6 space-y-1 border-b py-4'>
+                         {/* <div className=' px-6 space-y-1 border-b py-4'>
                               <h5 className='font-bold text-left'>Members</h5>
                               <h5></h5>
-                          </div>
+                          </div> */}
 
                           <div className='flex items-center w-full space-x-4 px-6'>
                               <Link href={"/orders/active"} className="w-1/2">
@@ -77,8 +98,7 @@ export default function Share() {
                               </Link>
                       
                             <Link href={"/shop"} className="w-1/2"> 
-                               <button className='w-full py-3 bg-[#009E4D] text-white rounded-lg'>Continue Shopping</button>
-                             
+                               <button className='w-full py-3 bg-[#009E4D] text-white rounded-lg'>Continue Shopping</button>    
                             </Link>
                           
 

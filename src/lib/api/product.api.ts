@@ -4,8 +4,9 @@ import {getStorage, ref, uploadBytes } from "firebase/storage"
 
 
 export const productApi= {
-    addToCart:async function (product:any,user:any) {
-        console.log(user)
+    addToCart:async function (product:any,user:any,quantity:any) {
+      
+      const { qty, ...rest } = product;
         try{
               const ref =doc(db,"bucket",user?.id)
               const docSnap = await getDoc(ref);
@@ -14,7 +15,7 @@ export const productApi= {
                     return true
                   }else{
                       await updateDoc(doc(db,"bucket",user?.id), {
-                     cart:[...docSnap?.data()?.cart,{id:1,qty:1,...product}]
+                     cart:[...docSnap?.data()?.cart,{qty:quantity,...rest}]
                   })
                 return true
 

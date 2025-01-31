@@ -6,10 +6,10 @@ export default function ProductDisplay({product}:any) {
           <div className='w-full'>
                 <img 
                   src={product.img}
-                  className='w-full h-96'
+                  className='w-full h-[500px]'
                />
           </div>
-          <div className='w-full flex items-center px-8 space-x-3'>
+          {/* <div className='w-full flex items-center px-8 space-x-3'>
              {[
                 '/p5.png',
                 '/p6.png',
@@ -19,13 +19,13 @@ export default function ProductDisplay({product}:any) {
                 return(
                     <img 
                       src={image}
-                      className="w-44  h-44"
+                      className="w-[150px]  h-[150px]"
                     />
                 )
                })
 
              }
-          </div>
+          </div> */}
 
     </div>
   )

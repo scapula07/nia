@@ -4,12 +4,15 @@ import Details from '@/components/Product/details'
 import { useRouter } from 'next/router';
 import { doc,getDoc,setDoc , updateDoc,collection,addDoc,getDocs,query,where,onSnapshot}  from "firebase/firestore";
 import { db } from '@/firebase/config';
+import Modal from '@/components/modal';
 
 export default function Product() {
   const router = useRouter();
   const { id } = router.query; 
   const productId=id as string
   const [product,setProduct]=useState<any>({})
+  const [trigger,setTrigger]=useState(false)
+
   useEffect(()=>{
    if(id?.length != undefined){
      const unsub = onSnapshot(doc(db,"products",productId), (doc) => {
@@ -18,9 +21,9 @@ export default function Product() {
        setProduct({...doc.data(),id:doc?.id})
       });
      }
-    },[])
+    },[id])
   return (
-    <div className='w-full pt-10 px-10 h-full'>
+    <div className='w-full pt-10 pb-20 px-20 h-full'>
            <div className='w-full flex items-center space-x-4 text-black'>
                <h5>Home</h5>
                <span>/</span>

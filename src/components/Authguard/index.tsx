@@ -10,12 +10,12 @@ export default function AuthGuard({children}:{children:ReactNode}) {
     const [currentUser,setcurrentUser]=useRecoilState(userStore) 
     const user= globalThis?.localStorage?.getItem("user") as string
      useEffect( ()=>{ 
-      setcurrentUser(JSON.parse(user))
+      setcurrentUser(JSON?.parse(user))
       },[])
     useEffect( ()=>{ 
-        setcurrentUser(JSON.parse(user))
-      if(JSON.parse(user)?.id?.length >0){
-         const unsub = onSnapshot(doc(db,"users",JSON.parse(user)?.id), (doc) => {   
+        setcurrentUser(JSON?.parse(user))
+      if(JSON?.parse(user)?.id?.length >0){
+         const unsub = onSnapshot(doc(db,"users",JSON?.parse(user)?.id), (doc) => {   
            setcurrentUser({...doc.data(),id:doc?.id})
          });
         }

@@ -16,6 +16,7 @@ import { MdArrowForwardIos } from "react-icons/md";
 export default function Cart() {
    const [cart,setCart]=useState<any[]>([])
    const [trigger,setTrigger]=useState(false)
+   const [total,setTotal]=useState<number>(0)
    const currentUser=useRecoilValue(userStore) as {id:""}
 
    useEffect(()=>{
@@ -27,9 +28,25 @@ export default function Cart() {
          });
        }
     },[currentUser.id])
+
+    function calculateTotalPrice(products:any) {
+      let totalPrice = 0;
+
+      products.forEach((product:any)=> {
+        const subtotal = parseFloat(product.price) * product.qty; 
+        totalPrice += subtotal as number
+      });
+    
+      return totalPrice.toFixed(2); 
+   }
+
+   useEffect(()=>{
+      const totalPrice = calculateTotalPrice(cart);
+       setTotal(Number(totalPrice))
+    },[]) 
   return (
    <>
-    <div className='w-full py-10 px-10'>
+    <div className='w-full py-10 px-20'>
         <div className='flex flex-col space-y-6'>
               <h5 className='underline'>Return to Shopping</h5>
               <h5 className='text-2xl font-bold'>My Cart</h5>
@@ -60,16 +77,16 @@ export default function Cart() {
               </div>
               <div className='w-1/2'> 
                       <div className='border flex flex-col h-60 rounded-lg space-y-4 px-8 py-6'>
-                          <h5 className='font-semibold text-xl'>Cart Summary</h5>
+                          <h5 className='font-[700] text-[24px]'>Cart Summary</h5>
                           <div className='flex flex-col space-y-4'>
                                <div className='flex justify-between'>
-                                    <h5>Subtotal</h5>
-                                    <h5>$665</h5>
+                                    <h5 className='text-[18px] font-[700]'>Subtotal</h5>
+                                    <h5 className='text-[21px] font-[700]'>${total}</h5>
                               </div>
                               <hr></hr>
                               <div className='flex justify-between'>
-                                    <h5>Total</h5>
-                                    <h5>$665</h5>
+                                    <h5  className='text-[18px] font-[700]'>Total</h5>
+                                    <h5 className='text-[21px] font-[700]'>${total}</h5>
                               </div>
                             <Link href={"/checkout"}>
                                 <button
@@ -146,7 +163,7 @@ const Row=({item}:any)=>{
                         />
                          <input 
                             className='h-10 w-10 rounded-sm text-xs border-0 px-3 text-center bg-white'
-                            value={5}
+                            value={item.qty}
                         />
                         <IoMdAdd
                             className='text-2xl font-bold '
@@ -155,7 +172,7 @@ const Row=({item}:any)=>{
                 </div>
          </td>
          <td className='px-6'>${item.price}</td>
-         <td className='px-6'>$350</td>
+         <td className='px-6'>${Number(item.price) * Number(item.qty)}</td>
          <td>
           <RiDeleteBin6Line />
          </td>

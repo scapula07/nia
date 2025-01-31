@@ -26,7 +26,7 @@ export default function Shop() {
     
    
   return (
-    <div className='w-full'>
+    <div className='w-full px-10'>
           <div className='w-full'> </div>
 
           <div className='p-16 w-full'>

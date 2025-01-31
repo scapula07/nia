@@ -4,10 +4,7 @@ import React,{useState,useEffect} from 'react'
 import { useRecoilValue } from 'recoil'
 import { userStore } from '@/recoil'
 import { db } from '@/firebase/config'
-import {doc,setDoc,
-  addDoc,collection,
-  getDoc,getDocs,
-  query, where,updateDoc,orderBy,onSnapshot} from "firebase/firestore"
+import {doc,onSnapshot} from "firebase/firestore"
 
 export default function Checkout() {
   const [cart,setCart]=useState<any[]>([])
@@ -24,7 +21,7 @@ export default function Checkout() {
    },[currentUser.id])
 
   return (
-    <div className='pt-10 px-10'>
+    <div className='pt-10 pb-20 px-20'>
         <h5 className='font-bold text-2xl'>Checkout </h5>
         <div className='w-full flex space-x-10 py-6'>
             <div className='w-3/5'>
