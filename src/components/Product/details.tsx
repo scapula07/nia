@@ -19,10 +19,10 @@ export default function Details({product}:any) {
   const [trigger,setTrigger]=useState(false)
 
 
-  const addTocart=async()=>{
+  const addTocart=async(offerId:string)=>{
       setLoader(true)
       try{
-          const res=await productApi.addToCart(product,currentUser,qty)
+          const res=await productApi.addToCart(product,currentUser,qty,offerId)
           res&&setLoader(false)
         }catch(e){
         console.log(e)
@@ -40,7 +40,7 @@ export default function Details({product}:any) {
 
    const goTobuyNow=async()=>{
       try{
-         const res=await productApi.addToCart(product,currentUser,qty)
+         const res=await productApi.addToCart(product,currentUser,qty,"")
          router.push({
           pathname: '/checkout',
         });
@@ -49,7 +49,7 @@ export default function Details({product}:any) {
          console.log(e)
        }
    }
-   console.log(qty)
+
   return (
     <>
     <div className='w-full  flex flex-col '>
@@ -95,7 +95,7 @@ export default function Details({product}:any) {
                                   :
                                 <button 
                                   className='text-white py-2.5 space-x-4 px-4 bg-[#d41a1e] rounded-lg flex justify-center items-center w-full text-sm'
-                                  onClick={addTocart}
+                                  onClick={()=>addTocart("")}
                                   >
                                       <MdOutlineShoppingCart 
                                       className='text-xl' 
@@ -127,7 +127,7 @@ export default function Details({product}:any) {
 
     </div>
       <Modal trigger={trigger}  cname="w-[40%] py-2 h-96  px-4 rounded-lg">
-         <GroupBuying onClose={setTrigger}/>
+         <GroupBuying onClose={setTrigger} product={product} qty={qty} addTocart={addTocart}/>
      </Modal>
     </>
   )

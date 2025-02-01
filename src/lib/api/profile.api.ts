@@ -39,12 +39,10 @@ export const profileApi= {
             const ref =doc(db,"users",user?.id)
             const docSnap = await getDoc(ref);
                await updateDoc(doc(db,"users",user?.id), {
-                  email:profile?.emsil
+                  email:profile?.email
                 })
 
                 return true
-        
-
             }catch(e){
           console.log(e)
         }

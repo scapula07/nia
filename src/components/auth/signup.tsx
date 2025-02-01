@@ -7,7 +7,7 @@ import { authApi } from '@/lib/api/auth.api';
 import { useRouter } from "next/router";
 
 export default function Signup({onClose}:any) {
-  const [currentUser,setcurrentUser]=useState()
+  const [currentUser,setcurrentUser]=useState<any>()
   const [credentail,setCred]=useState({name:"",email:"",password:""})
   const [loader,setLoader]=useState(false)
   const [errorMsg, setErrorMsg] = useState<string | null>()
@@ -40,7 +40,7 @@ export default function Signup({onClose}:any) {
          
          setcurrentUser(user)
          replace('/shop')
-     }catch(e){
+     }catch(e:any){
          setLoader(false)
          setErrorMsg(e.message)
       }

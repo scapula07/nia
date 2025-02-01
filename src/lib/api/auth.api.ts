@@ -50,11 +50,11 @@ export const authApi= {
          }
       },
       changePassword:async function (password:any) {
-        const user = auth.currentUser;
+        const user:any = auth.currentUser;
         try{
            await updatePassword(user,password);
            return true
-          }catch(e){
+          }catch(e:any){
             console.log(e)
          
             throw new Error(e)

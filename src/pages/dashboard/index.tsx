@@ -1,54 +1,151 @@
-import { Box, Text, VStack, Grid, GridItem } from "@chakra-ui/react";
-import Sidebar from "@/components/Dashboard/Sidebar"; // Sidebar component (optional)
+import { Box, Grid, Link } from "@chakra-ui/react";
+import DashboardLayout from "@/components/Layout/DashboardLayout";
+import IncomeStats from "@/components/Dashboard/IncomeStats";
+import RecentOrders from "@/components/Dashboard/RecentOrders";
+import TopSellingProducts from "@/components/Dashboard/TopSellingProducts";
+import { StatLabel, StatRoot, StatValueText } from "@/components/ui/stat";
+import { getDocs, collection } from "firebase/firestore";
+import { db } from "@/firebase/config";
+import { useEffect, useState } from "react";
 
 const Dashboard = () => {
+    const [totalOrders, setTotalOrders] = useState(0);
+    const [totalCustomers, setTotalCustomers] = useState(0);
+    const [totalProducts, setTotalProducts] = useState(0);
 
-  // Placeholder content until user authentication is added
-  return (
-    <Box display="flex">
-      <Sidebar />
-      <Box flex="1" p={6}>
-        <Text fontSize="2xl" fontWeight="bold">
-          Welcome to the Dashboard!
-        </Text>
-        <Text mt={4}>This is your dashboard. Content will be user-specific later.</Text>
+    useEffect(() => {
+        const fetchStats = async () => {
+            try {
+                // Fetch total orders
+                const ordersSnapshot = await getDocs(collection(db, "orders"));
+                setTotalOrders(ordersSnapshot.size);
 
-        {/* Stats Boxes */}
-        <Grid templateColumns="repeat(3, 1fr)" gap={6} mt={6}>
-          {/* Stat Box 1 */}
-          <GridItem>
-            <Box bg="gray.100" p={4} borderRadius="md" boxShadow="sm">
+                // Fetch total customers
+                const customersSnapshot = await getDocs(collection(db, "customers"));
+                setTotalCustomers(customersSnapshot.size);
 
+                // Fetch total products
+                const productsSnapshot = await getDocs(collection(db, "inventory"));
+                setTotalProducts(productsSnapshot.size);
+            } catch (error) {
+                console.error("Error fetching stats:", error);
+            }
+        };
+
+        fetchStats();
+    }, []);
+
+    const recentOrders = [
+        { id: 101, customer: "Alice Johnson", status: "Completed", total: "$150.00" },
+        { id: 102, customer: "Bob Smith", status: "Pending", total: "$300.00" },
+        { id: 103, customer: "Charlie Brown", status: "Shipped", total: "$200.00" },
+        { id: 104, customer: "Diana Prince", status: "Completed", total: "$400.00" },
+        { id: 105, customer: "Eve Adams", status: "Cancelled", total: "$0.00" },
+    ];
+
+    return (
+        <DashboardLayout>
+            <Box bg="#EEEFF1" flex="1">
+                {/* Stats Boxes */}
+                <Grid templateColumns="repeat(3, 1fr)" gap={6} mt={6}>
+                    {/* Total Orders */}
+                    <Box
+                        bg="#FBDCDD"
+                        p={6}
+                        borderRadius="lg"
+                        height="170px"
+                        width="360px"
+                    >
+                        <StatRoot>
+                            <StatLabel pb={23} fontWeight="bold" color="#444444">
+                                Total Orders
+                            </StatLabel>
+                            <StatValueText fontSize="40px">{totalOrders}</StatValueText>
+                        </StatRoot>
+                        <Link
+                            href="/dashboard/orders"
+                            fontSize="18px"
+                            fontWeight="600"
+                            mt={23}
+                            _hover={{ textDecoration: "underline" }}
+                            bottom={4}
+                            left={6}
+                            color="#D41A1F"
+                        >
+                            View All Orders
+                        </Link>
+                    </Box>
+
+                    {/* Total Customers */}
+                    <Box
+                        bg="#D3FFE8"
+                        p={6}
+                        borderRadius="lg"
+                        height="170px"
+                        width="360px"
+                    >
+                        <StatRoot>
+                            <StatLabel pb={23} fontWeight="bold" color="#444444">
+                                Total Customers
+                            </StatLabel>
+                            <StatValueText fontSize="40px">{totalCustomers}</StatValueText>
+                        </StatRoot>
+                        <Link
+                            href="/dashboard/customers"
+                            fontSize="18px"
+                            fontWeight="600"
+                            mt={23}
+                            _hover={{ textDecoration: "underline" }}
+                            bottom={4}
+                            left={6}
+                            color="#009E4D"
+                        >
+                            View All Customers
+                        </Link>
+                    </Box>
+
+                    {/* Total Products */}
+                    <Box
+                        bg="#8B58F533"
+                        p={6}
+                        borderRadius="lg"
+                        height="170px"
+                        width="360px"
+                    >
+                        <StatRoot>
+                            <StatLabel pb={23} fontWeight="bold" color="#444444">
+                                Total Products
+                            </StatLabel>
+                            <StatValueText fontSize="40px">{totalProducts}</StatValueText>
+                        </StatRoot>
+                        <Link
+                            href="/dashboard/inventory"
+                            fontSize="18px"
+                            fontWeight="600"
+                            mt={23}
+                            _hover={{ textDecoration: "underline" }}
+                            bottom={4}
+                            left={6}
+                            color="#8B58F5"
+                        >
+                            View All Products
+                        </Link>
+                    </Box>
+                </Grid>
+
+                {/* Income Stats and Top Selling Products Section */}
+                <Grid templateColumns={{ base: "1fr", lg: "2fr 1fr" }} gap={6} mt={6}>
+                    <IncomeStats />
+                    <TopSellingProducts />
+                </Grid>
+
+                {/* Recent Orders */}
+                <Box mt={6}>
+                    <RecentOrders orders={recentOrders} pageSize={5} />
+                </Box>
             </Box>
-          </GridItem>
-
-          {/* Stat Box 2 */}
-          <GridItem>
-            <Box bg="gray.100" p={4} borderRadius="md" boxShadow="sm">
-
-            </Box>
-          </GridItem>
-
-          {/* Stat Box 3 */}
-          <GridItem>
-            <Box bg="gray.100" p={4} borderRadius="md" boxShadow="sm">
-
-            </Box>
-          </GridItem>
-        </Grid>
-
-        {/* Additional Features Section */}
-        <Box mt={6}>
-          <Text fontWeight="bold">Dashboard Features:</Text>
-          <ul>
-            <li>Overview of your activities</li>
-            <li>Statistics and insights (to be added)</li>
-            <li>Upcoming events or tasks (to be added)</li>
-          </ul>
-        </Box>
-      </Box>
-    </Box>
-  );
+        </DashboardLayout>
+    );
 };
 
 export default Dashboard;

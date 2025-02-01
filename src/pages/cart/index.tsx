@@ -10,6 +10,7 @@ import Link from 'next/link';
 import Modal from '@/components/modal';
 import GroupBuying from '@/components/GroupBuying';
 import { MdArrowForwardIos } from "react-icons/md";
+import { productApi } from '@/lib/api/product.api';
 
 
 
@@ -43,7 +44,7 @@ export default function Cart() {
    useEffect(()=>{
       const totalPrice = calculateTotalPrice(cart);
        setTotal(Number(totalPrice))
-    },[]) 
+    },[cart]) 
   return (
    <>
     <div className='w-full py-10 px-20'>

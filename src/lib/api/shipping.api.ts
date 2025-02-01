@@ -4,7 +4,7 @@ import axios from "axios"
 
 
 export const shippingApi= {
-    retreiveParcel:async function (parceId:string) {
+    retreiveParcel:async function (parcelId:string) {
         try{
           const response =await  axios.get(`https://api.goshippo.com/parcels/${parcelId}`, {
               headers: {
