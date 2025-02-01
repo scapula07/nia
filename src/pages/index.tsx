@@ -29,10 +29,8 @@ export default function Home() {
             <HeroSection />
             <StatsSection />
             <WelcomeSection />
-            <FeatureSection />
             <CategoriesSection />
             <FeaturedProducts /> 
-            <ValueSection />
             <FAQSection />
         </Box>
 

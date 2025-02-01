@@ -6,25 +6,14 @@ const CategoriesSection = () => {
       <Box p={16}>
         <Heading 
           as="h1" 
-          fontSize="28px"  
+          fontSize="48px"  
           color="black" 
           fontWeight="700" 
-          lineHeight="76.8px" 
+          lineHeight="57.6px" 
           textAlign="center"
-          mb={6}>
-          Explore Affordable and Nutritious Categories
+          p={12}>
+          Discover Food, Drink and More
         </Heading>
-        <Text 
-          fontSize="24px" 
-          mb={8}  
-          fontFamily="'Proxima Nova Condensed', sans-serif" 
-          fontWeight="400"
-          lineHeight="28.8px"
-          color="black"
-          textAlign="center"
-        >
-          Bringing Freshness to Every Table In Food Deserts
-        </Text>
 
         <Grid templateColumns="repeat(3, 1fr)" gap={6}>
           <Box>

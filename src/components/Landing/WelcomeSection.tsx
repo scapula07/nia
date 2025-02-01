@@ -28,10 +28,11 @@ const WelcomeSection = () => {
                 lineHeight="57.6px"
  
             >
-                Welcome to Nia: Nourishing Food for All!
+                Welcome to Nia:
+                Wholesale Marketplace for Independent Business Owners
             </Text>
             <Text fontSize="24px" color="black" fontWeight="400">
-            Join us in making nutritious food accessible to everyone, especially in food deserts across America. Explore our diverse selection of affordable and healthy food options today!
+            At Nia, we're empowering small business owners and independent brands to buy and sell wholesale goods online. If you're a retailer or business shopping for wholesale products, Nia offers you straight-forward financial terms and logistics that were previously only available to large retail chains. We also provide powerful sales, marketing, and analytics tools for brands, so sellers can simplify their wholesale businesses and expand their reach of independent shop owners.
             </Text>
             <ShopButton />
             <Text fontWeight="400" fontSize="18px" lineHeight="21.6px" color="#5B5B5B">Your privacy matters. Read our policy here.</Text>
@@ -40,7 +41,7 @@ const WelcomeSection = () => {
           {/* Right Section: Image */}
           <Box width={{ base: '100%', md: '50%' }}>
             <Image
-                src="./welcome_image.jpeg"
+                src="./m_image.png"
                 alt="Shop Now"
                 borderRadius="12px" // Border radius set to 12px
                 border="1px" // Border thickness of 1px
