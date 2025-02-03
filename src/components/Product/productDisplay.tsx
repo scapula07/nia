@@ -15,10 +15,11 @@ export default function ProductDisplay({product}:any) {
                 '/p6.png',
                 '/p1.png'
 
-               ].map((image)=>{
+               ].map((image, index)=>{
                 return(
                     <img 
                       src={image}
+                      key={index}
                       className="w-44  h-44"
                     />
                 )

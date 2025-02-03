@@ -82,15 +82,7 @@ export default function Header() {
                                 </button>
                             </>
                         }
-                        {currentUser?.id &&
-
-                            <button onClick={handleLogout} className="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path d="M14 19.75H15C17.0711 19.75 18.75 18.0711 18.75 16V8C18.75 5.92893 17.0711 4.25 15 4.25H14M8.24998 15.25L6.23743 13.2374C5.554 12.554 5.554 11.446 6.2374 10.7626L8.24998 8.75M8.74998 12H15.75" stroke="#D41A1F" stroke-width="1.25" stroke-linecap="round" />
-                                </svg>
-                            </button>
-                        }
-                        <IoNotificationsOutline className='text-3xl' />
+                                                <IoNotificationsOutline className='text-3xl' />
                         {currentUser?.id?.length > 0 &&
                             <Link href={"/cart"}>
                                 <div className='flex'>
@@ -103,6 +95,15 @@ export default function Header() {
                                 </div>
                             </Link>
                         }
+                        {currentUser?.id &&
+
+                            <button onClick={handleLogout} className="flex items-center pl-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M14 19.75H15C17.0711 19.75 18.75 18.0711 18.75 16V8C18.75 5.92893 17.0711 4.25 15 4.25H14M8.24998 15.25L6.23743 13.2374C5.554 12.554 5.554 11.446 6.2374 10.7626L8.24998 8.75M8.74998 12H15.75" stroke="#D41A1F" strokeWidth="1.25" strokeLinecap="round" />
+                                </svg>
+                            </button>
+                        }
+
                     </div>
                 </div>
             </div>

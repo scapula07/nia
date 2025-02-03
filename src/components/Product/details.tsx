@@ -1,16 +1,16 @@
 import React,{useState} from 'react'
 import { BsDash } from "react-icons/bs";
 import { IoMdAdd } from "react-icons/io";
-import { MdOutlineStar,MdOutlineShoppingCart  } from "react-icons/md";
-import { useRouter } from 'next/router';
+import {MdOutlineShoppingCart  } from "react-icons/md";
 import { productApi } from '@/lib/api/product.api';
 import { useRecoilValue } from 'recoil';
 import { userStore } from '@/recoil';
 import { ClipLoader } from 'react-spinners';
+
 export default function Details({product}:any) {
-  const router = useRouter();
+
   const [loader,setLoader]=useState(false)
-  const currentUser=useRecoilValue(userStore)
+  const currentUser = useRecoilValue(userStore)
   
   const addTocart=async()=>{
       setLoader(true)
@@ -23,15 +23,16 @@ export default function Details({product}:any) {
       }
    }
 
+
   return (
     <div className='w-full  flex flex-col '>
           <div className='w-full flex flex-col space-y-3'>
               <h5 className='text-xl text-gray-600'>{product.title}</h5>
-              <h5 className='font-bold text-lg'>Gallon of Fresh Milk</h5>
+              <h5 className='font-bold text-lg'>{product.productName}</h5>
 
               <div className='flex flex-col py-4 space-y-3'>
                   <h5 className=''>${product.price}</h5>
-                  <p className='leading-1'>Pure, farm-fresh whole milk packed with essential nutrients like calcium and vitamin D. Perfect for drinking, cooking, and baking, with a rich, creamy taste you'll love.</p>
+                  <p className='leading-1'>{product.productDescription}</p>
                    
                    <div className='flex flex-col space-y-1'>
                             <h5>Quantity</h5>    
@@ -41,7 +42,6 @@ export default function Details({product}:any) {
                                             />
                                             <input 
                                                 className='h-10 w-10 rounded-sm text-lg border-0 px-3 text-center bg-white'
-                                                value={1}
                                             />
                                             <IoMdAdd
                                                 className='text-2xl font-bold '

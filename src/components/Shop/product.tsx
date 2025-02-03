@@ -53,7 +53,7 @@ export default function Product({product}:any) {
 
                 <div className='w-full'>             
                         <div className='flex flex-col '>         
-                                <h5 className='text-gray-600 text-lg' >{product.title}</h5>         
+                                <h5 className='text-gray-600 text-lg' >{product.productName}</h5>         
                                 <h5 className='text-slate-800 text-2xl h-9 font-bold'>${product.price}</h5>
                                
                         </div>

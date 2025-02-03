@@ -25,7 +25,7 @@ const Dashboard = () => {
                 setTotalCustomers(customersSnapshot.empty ? 0 : customersSnapshot.size);
 
                 // Fetch total products
-                const productsSnapshot = await getDocs(collection(db, "inventory"));
+                const productsSnapshot = await getDocs(collection(db, "products"));
                 setTotalProducts(productsSnapshot.empty ? 0 : productsSnapshot.size);
                 
             } catch (error) {

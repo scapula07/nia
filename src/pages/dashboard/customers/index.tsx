@@ -88,19 +88,19 @@ const Customers = () => {
             <Table.Root key="line" variant="line" size="md" borderRadius="lg" overflow="hidden">
                 <Table.Header>
                     <Table.Row bg="white">
-                        <Table.Cell fontSize="18px" color="#888888">
+                        <Table.Cell fontSize="18px">
                             <Checkbox borderWidth="1px" />
                         </Table.Cell>
-                        <Table.Cell fontSize="18px" color="#888888">
+                        <Table.Cell fontSize="18px" fontWeight="700" textAlign="left">
                             Name
                         </Table.Cell>
-                        <Table.Cell fontSize="18px" color="#888888">
+                        <Table.Cell fontSize="18px" fontWeight="700"  textAlign="center">
                             Address
                         </Table.Cell>
-                        <Table.Cell fontSize="18px" color="#888888">
+                        <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
                             Orders
                         </Table.Cell>
-                        <Table.Cell fontSize="18px" color="#888888">
+                        <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
                             Amount Spent
                         </Table.Cell>
                     </Table.Row>
@@ -116,9 +116,9 @@ const Customers = () => {
                                     {customer.name}
                                 </Link>
                             </Table.Cell>
-                            <Table.Cell>{customer.address}</Table.Cell>
-                            <Table.Cell>{customer.orders}</Table.Cell>
-                            <Table.Cell>{customer.amountSpent}</Table.Cell>
+                            <Table.Cell textAlign="center">{customer.address}</Table.Cell>
+                            <Table.Cell textAlign="center">{customer.orders}</Table.Cell>
+                            <Table.Cell textAlign="center">{customer.amountSpent}</Table.Cell>
                         </Table.Row>
                     ))}
                 </Table.Body>

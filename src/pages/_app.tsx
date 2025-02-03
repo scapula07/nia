@@ -23,8 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
                <AuthGuard>
                     <Layout>
                           <Component {...pageProps} />
-                          <Footer />
-                      </Layout>
+                    </Layout>
                </AuthGuard>
          
         </RecoilRoot>

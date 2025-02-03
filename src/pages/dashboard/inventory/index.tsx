@@ -20,7 +20,7 @@ const Inventory = () => {
     useEffect(() => {
         // Fetch inventory data from Firestore on component mount
         const fetchInventory = async () => {
-            const inventoryCollection = collection(db, "inventory");
+            const inventoryCollection = collection(db, "products");
             const inventorySnapshot = await getDocs(inventoryCollection);
             const inventoryList = inventorySnapshot.docs.map((doc) => ({
                 id: doc.id, // Firebase document ID
@@ -98,29 +98,31 @@ const Inventory = () => {
             <Table.Root key="line" variant="line" size="md" borderRadius="lg" overflow="hidden">
                 <Table.Header>
                     <Table.Row bg="white">
-                        <Table.Cell fontSize="18px" color="#888888"> 
+                        <Table.Cell fontSize="18px" fontWeight="700" > 
                             Product Name
                         </Table.Cell>
-                        <Table.Cell fontSize="18px" color="#888888">
+                        <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
                             Category
                         </Table.Cell>
-                        <Table.Cell fontSize="18px" color="#888888">
+                        <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
                             Price
                         </Table.Cell>
-                        <Table.Cell fontSize="18px" color="#888888">
+                        <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
                             Stock
                         </Table.Cell>
-                        <Table.Cell></Table.Cell>
+                        <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
+                            Action
+                        </Table.Cell>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
                     {currentInventory.map((item) => (
                         <Table.Row key={item.id} bg="white" borderWidth="1px">
                             <Table.Cell>{item.productName}</Table.Cell>
-                            <Table.Cell>{item.categories}</Table.Cell>
-                            <Table.Cell>{item.price}</Table.Cell>
-                            <Table.Cell>{item.quantity}</Table.Cell>
-                            <Table.Cell>
+                            <Table.Cell textAlign="center">{item.categories}</Table.Cell>
+                            <Table.Cell textAlign="center">{item.price}</Table.Cell>
+                            <Table.Cell textAlign="center">{item.quantity}</Table.Cell>
+                            <Table.Cell textAlign="center">
                                 <Button
                                     colorScheme="red"
                                     size="sm"

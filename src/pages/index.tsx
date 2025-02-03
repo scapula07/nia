@@ -27,7 +27,6 @@ export default function Home() {
     return (
         <Box bg="#FAFAFA">
             <HeroSection />
-            <StatsSection />
             <WelcomeSection />
             <CategoriesSection />
             <FeaturedProducts /> 
