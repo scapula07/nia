@@ -4,6 +4,8 @@ import { useState, useRef } from "react";
 import { Heading, Table, Flex, Link, VStack, Text, Box, Button } from "@chakra-ui/react";
 import DashboardLayout from "@/components/Layout/DashboardLayout";
 import Image from "next/image";
+import { productApi } from "@/lib/api/product.api";
+import { replace } from "react-router-dom";
 
 const UploadCSV = () => {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -28,6 +30,15 @@ const UploadCSV = () => {
 
     const handleBrowseClick = () => {
         fileInputRef.current?.click();
+    };
+
+    const handleUpload = () => {
+        if (selectedFile) {
+            productApi.uploadCSV(selectedFile); 
+        } else {
+            console.error("No file selected");
+        }
+        replace("/dashboard/inventory")
     };
 
     return (
@@ -61,6 +72,7 @@ const UploadCSV = () => {
                             height="46px"
                             bg="#D41A1F"
                             color="white"
+                            onClick={handleUpload}
                         >
                             Save
                         </Button>

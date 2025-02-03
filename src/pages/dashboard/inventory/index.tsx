@@ -7,12 +7,9 @@ import DashboardLayout from "@/components/Layout/DashboardLayout";
 import { useEffect, useState } from "react";
 import { db } from "@/firebase/config";
 import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
-
-// Pagination settings
-const pageSize = 5;
+;
 
 const Inventory = () => {
-    const [currentPage, setCurrentPage] = useState(1);
     const [inventory, setInventory] = useState<any[]>([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [deleteItemId, setDeleteItemId] = useState<string | null>(null);
@@ -51,9 +48,6 @@ const Inventory = () => {
     const filteredInventory = inventory.filter((item) =>
         item.productName?.toLowerCase().includes(searchQuery.toLowerCase())
     );
-
-    const startIndex = (currentPage - 1) * pageSize;
-    const currentInventory = filteredInventory.slice(startIndex, startIndex + pageSize);
 
     return (
         <DashboardLayout>
@@ -116,7 +110,7 @@ const Inventory = () => {
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
-                    {currentInventory.map((item) => (
+                    {inventory.map((item) => (
                         <Table.Row key={item.id} bg="white" borderWidth="1px">
                             <Table.Cell>{item.productName}</Table.Cell>
                             <Table.Cell textAlign="center">{item.categories}</Table.Cell>
