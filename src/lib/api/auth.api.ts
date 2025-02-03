@@ -16,7 +16,7 @@ export const authApi= {
             await setDoc(ref,{
                  id:user?.uid,
                  email:email,
-                 
+                 name:name,  
             })
             const docSnap = await getDoc(ref);
             if (docSnap.exists()) {
