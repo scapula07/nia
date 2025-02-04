@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Heading, Input, Flex, Spacer, Table, Badge } from "@chakra-ui/react";
+import { Heading, Input, Flex, Spacer, Table, Badge, Progress } from "@chakra-ui/react";
 import { InputGroup } from "@/components/ui/input-group";
 
 
@@ -105,16 +105,16 @@ const Orders = () => {
                             Product
                         </Table.Cell>
                         <Table.Cell fontSize="18px" fontWeight="700">
-                            Customer Email
-                        </Table.Cell>
-                        <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
-                            Quantity
+                            Customers
                         </Table.Cell>
                         <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
                             Status
                         </Table.Cell>
-                        <Table.Cell fontSize="18px" fontWeight="700"  textAlign="center">
-                            Amount
+                        <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
+                            Target Limit
+                        </Table.Cell>
+                        <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
+                            Progress
                         </Table.Cell>
                         <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
                             Date & Time
@@ -124,11 +124,29 @@ const Orders = () => {
                 <Table.Body>
                     {orders.map((order) => (
                         <Table.Row key={order.id} bg="white" borderWidth="1px">
-                            <Table.Cell>{order.product.title}</Table.Cell>
-                            <Table.Cell>{order.customer.email}</Table.Cell>
-                            <Table.Cell textAlign="center">{order.product.qty}</Table.Cell>
+                            <Table.Cell>
+
+                                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                    <img
+                                        src={order.product.img}
+                                        alt={order.product.title}
+                                        style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "5px" }}
+                                    />
+                                    <span>{order.product.title}</span>
+                                </div>
+                            </Table.Cell>
+                            <Table.Cell>
+                                {order.customer.email}
+                            </Table.Cell>
                             <Table.Cell textAlign="center">{getStatusBadge(order.status)}</Table.Cell>
                             <Table.Cell textAlign="center">${order.total}</Table.Cell>
+                            <Table.Cell textAlign="center">
+                                <Progress.Root maxW="150px" colorPalette="green">
+                                    <Progress.Track>
+                                        <Progress.Range />
+                                    </Progress.Track>
+                                </Progress.Root>
+                            </Table.Cell>
                             <Table.Cell textAlign="center">{formatDate(order.time)}</Table.Cell>
                         </Table.Row>
                     ))}

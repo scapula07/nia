@@ -10,8 +10,6 @@ import ValueSection from "@/components/Landing/ValueSection";
 import FeaturedProducts from "@/components/Landing/FeaturedProducts";
 
 
-
-
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",

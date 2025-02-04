@@ -8,6 +8,7 @@ import {
     Button,
     Image,
     Heading,
+    Flex,
 } from "@chakra-ui/react";
 import DashboardLayout from "@/components/Layout/DashboardLayout";
 
@@ -27,9 +28,38 @@ const DealsOfTheDay: React.FC = () => {
 
     return (
         <DashboardLayout>
-            <Heading fontSize="40px" fontWeight="700" color="black" pb={6}>
-                Offers
-            </Heading>
+            <Flex justifyContent="space-between" alignItems="center" pb="24px">
+                {/* Back Link and Heading */}
+                <Flex flexDirection="column">
+                    <Heading mb={4} fontSize="32px" fontWeight="700">
+                        Offers
+                    </Heading>
+                </Flex>
+
+                {/* Save and Cancel Buttons */}
+                <Flex>
+                    <Button
+                        width="105px"
+                        height="46px"
+                        bg="#FBDCDD"
+                        mr={4}
+                        color="#D41A1F"
+
+                    >
+                        Cancel
+                    </Button>
+                    <Button
+                        width="105px"
+                        height="46px"
+                        bg="#D41A1F"
+                        color="white"
+
+                    >
+                        Save
+                    </Button>
+                </Flex>
+            </Flex>
+
             <Box
                 bg="gray.50"
                 p={6}
@@ -42,21 +72,21 @@ const DealsOfTheDay: React.FC = () => {
                 </Text>
 
                 <VStack align="start" spacing={6} mt={4}>
-                    <Box>
-                        <Text fontSize="sm" fontWeight="medium" color="gray.600" mb={2}>
-                            Product Name
-                        </Text>
-                        <Input
-                            placeholder="Title"
-                            value={productName}
-                            onChange={(e) => setProductName(e.target.value)}
-                            bg="gray.100"
-                            rounded="lg"
-                            p={3}
-                            color="gray.600"
-                            width="100%"
-                        />
-                    </Box>
+
+                    <Text fontSize="sm" fontWeight="medium" color="gray.600" mb={2}>
+                        Product Name
+                    </Text>
+                    <Input
+                        placeholder="Title"
+                        value={productName}
+                        onChange={(e) => setProductName(e.target.value)}
+                        bg="gray.100"
+                        rounded="lg"
+                        p={3}
+                        color="gray.600"
+                        width="full"
+                    />
+
 
                     <Text fontSize="lg" fontWeight="bold" color="black">
                         Price
@@ -94,55 +124,20 @@ const DealsOfTheDay: React.FC = () => {
                         </Box>
                     </HStack>
 
-                    <Box>
-                        <Text fontSize="lg" fontWeight="bold" color="black" mb={2}>
-                            Stock Quantity
-                        </Text>
-                        <Input
-                            placeholder="Number of items"
-                            value={stock}
-                            onChange={(e) => setStock(e.target.value)}
-                            bg="gray.100"
-                            rounded="lg"
-                            p={3}
-                            color="gray.600"
-                        />
-                    </Box>
 
-                    <Box>
-                        <Text fontSize="lg" fontWeight="bold" color="black" mb={4}>
-                            Deal Thumbnail
-                        </Text>
-                        <Box
-                            bg="gray.100"
-                            p={6}
-                            rounded="lg"
-                            border="2px dashed"
-                            borderColor="gray.300"
-                            textAlign="center"
-                        >
-                            <VStack spacing={3}>
-                                <Image
-                                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/0d6c76022e50bdccc1cef9d8e5240999e05ac154ed98be055934eb169821353f"
-                                    alt="Upload Icon"
-                                    boxSize="40px"
-                                />
-                                <Text fontSize="sm" color="gray.500">
-                                    Drop your images here or{" "}
-                                    <Text as="span" color="red.600">
-                                        browse
-                                    </Text>
-                                </Text>
-                                <Text fontSize="xs" color="gray.400">
-                                    Maximum upload file size: 120MB
-                                </Text>
-                            </VStack>
-                        </Box>
-                    </Box>
+                    <Text fontSize="lg" fontWeight="bold" color="black" mb={2}>
+                        Stock Quantity
+                    </Text>
+                    <Input
+                        placeholder="Number of items"
+                        value={stock}
+                        onChange={(e) => setStock(e.target.value)}
+                        bg="gray.100"
+                        rounded="lg"
+                        p={3}
+                        color="gray.600"
+                    />
 
-                    <HStack spacing={4} align="center" w="full">
-
-                    </HStack>
 
                     <Button
                         mt={4}
