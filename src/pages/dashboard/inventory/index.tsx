@@ -92,7 +92,7 @@ const Inventory = () => {
             <Table.Root key="line" variant="line" size="md" borderRadius="lg" overflow="hidden">
                 <Table.Header>
                     <Table.Row bg="white">
-                        <Table.Cell fontSize="18px" fontWeight="700" > 
+                        <Table.Cell fontSize="18px" fontWeight="700" >
                             Product Name
                         </Table.Cell>
                         <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
@@ -112,7 +112,16 @@ const Inventory = () => {
                 <Table.Body>
                     {inventory.map((item) => (
                         <Table.Row key={item.id} bg="white" borderWidth="1px">
-                            <Table.Cell>{item.productName}</Table.Cell>
+                            <Table.Cell>
+                                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                    <img
+                                        src={item.image}
+                                        alt={item.productName}
+                                        style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "5px" }}
+                                    />
+                                    <span>{item.productName}</span>
+                                </div>
+                            </Table.Cell>
                             <Table.Cell textAlign="center">{item.categories}</Table.Cell>
                             <Table.Cell textAlign="center">{item.price}</Table.Cell>
                             <Table.Cell textAlign="center">{item.quantity}</Table.Cell>

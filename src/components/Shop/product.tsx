@@ -35,7 +35,7 @@ export default function Product({product}:any) {
                     <div className='relative h-60 w-full'>
                         
                                 <img 
-                                    src={product?.img}
+                                    src={product?.image}
                                     className="w-full h-full rounded-lg"
                                 />
                     

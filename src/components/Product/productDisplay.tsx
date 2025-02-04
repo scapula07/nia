@@ -5,7 +5,7 @@ export default function ProductDisplay({product}:any) {
     <div className='w-full flex flex-col space-y-6'>
           <div className='w-full'>
                 <img 
-                  src={product.img}
+                  src={product.image}
                   className='w-full h-96'
                />
           </div>
