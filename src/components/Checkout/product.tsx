@@ -5,7 +5,7 @@ export default function Product({item}:any) {
   return (
     <div className='flex w-full bg-white rounded-xl shadow px-4 space-x-6 items-center h-28 py-4'>
          <img 
-            src={item.img}
+            src={item.image}
             className="w-20 h-20"
           />
       <div className='flex w-full justify-between'>

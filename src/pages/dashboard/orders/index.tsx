@@ -3,8 +3,6 @@
 import { useEffect, useState } from "react";
 import { Heading, Input, Flex, Spacer, Table, Badge, Progress } from "@chakra-ui/react";
 import { InputGroup } from "@/components/ui/input-group";
-
-
 import {
     PaginationItems,
     PaginationNextTrigger,
@@ -13,7 +11,8 @@ import {
 } from "@/components/ui/pagination";
 import DashboardLayout from "@/components/Layout/DashboardLayout";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/firebase/config"; // Import Firebase
+import { db } from "@/firebase/config";
+import Link from "next/link";
 
 type Product = {
     id: string;
@@ -38,13 +37,12 @@ const Orders = () => {
 
 
     useEffect(() => {
-        // Fetch orders data from Firestore
         const fetchOrders = async () => {
-            const ordersCollection = collection(db, "orders"); // "orders" is your Firestore collection name
+            const ordersCollection = collection(db, "orders"); 
             const ordersSnapshot = await getDocs(ordersCollection);
             const ordersList: Order[] = ordersSnapshot.docs.map((doc) => ({
-                id: doc.id, // Use Firestore's document ID as the unique ID
-                ...(doc.data() as Omit<Order, "id">), // Spread the rest of the document data
+                id: doc.id, 
+                ...(doc.data() as Omit<Order, "id">), 
             }));
             setOrders(ordersList);
         };
@@ -54,7 +52,7 @@ const Orders = () => {
 
     const formatDate = (timestamp: number) => {
         const date = new Date(timestamp);
-        return date.toLocaleString(); // Converts to a human-readable date string
+        return date.toLocaleString(); 
     };
 
     const getStatusBadge = (status: string) => {
@@ -123,17 +121,19 @@ const Orders = () => {
                 </Table.Header>
                 <Table.Body>
                     {orders.map((order) => (
+
                         <Table.Row key={order.id} bg="white" borderWidth="1px">
                             <Table.Cell>
-
-                                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                                    <img
-                                        src={order.product.img}
-                                        alt={order.product.title}
-                                        style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "5px" }}
-                                    />
-                                    <span>{order.product.title}</span>
-                                </div>
+                                <Link href={`/dashboard/orders/${order.id}`} passHref>
+                                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                        <img
+                                            src={order.product.img}
+                                            alt={order.product.title}
+                                            style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "5px" }}
+                                        />
+                                        <span>{order.product.title}</span>
+                                    </div>
+                                </Link>
                             </Table.Cell>
                             <Table.Cell>
                                 {order.customer.email}
@@ -149,6 +149,7 @@ const Orders = () => {
                             </Table.Cell>
                             <Table.Cell textAlign="center">{formatDate(order.time)}</Table.Cell>
                         </Table.Row>
+
                     ))}
                 </Table.Body>
             </Table.Root>

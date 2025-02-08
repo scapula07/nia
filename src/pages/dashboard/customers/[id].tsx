@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/router";
-import { Box, Heading, Text, Stack, Button, Input, Link, Flex, Badge, Avatar, Spinner } from "@chakra-ui/react";
+import { Box, Heading, Text, Stack, Button, Input, Link, Flex, Badge, Avatar, Spinner, Textarea } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import DashboardLayout from "@/components/Layout/DashboardLayout";
 import { db } from "@/firebase/config";
@@ -126,10 +126,21 @@ const CustomerDetails = () => {
                                     <Box w={{ base: "full", md: "73%" }}>
                                         {/* Notes Section */}
                                         <Box p={5}>
-                                            <Heading size="sm" mb={2} fontWeight="700">
+                                            <Heading size="sm" pb="16px" fontWeight="700">
                                                 Notes
                                             </Heading>
-                                            <Input pl="2" placeholder="" size="md" min-height="90px" borderWidth={1} borderRadius="md" bg="white" />
+
+                                            <Textarea
+                                                id="productDescription"
+                                                placeholder="Product Description"
+                                                mb={4}
+                                                bg="gray.100"
+                                                pt="10px"
+                                                pl="16px"
+                                                height="91px"
+                                                borderRadius="12px"
+                                            />
+
                                         </Box>
                                     </Box>
                                     <Box ml={5} w={{ base: "full", md: "27%" }}>
@@ -164,7 +175,7 @@ const CustomerDetails = () => {
                                 </Box>
                             </Flex>
                             {/* User Status Section */}
-                            <Box p={5}mt={5}>
+                            <Box p={5} mt={5}>
                                 <Heading size="sm" mb={2} fontWeight="700">
                                     Status
                                 </Heading>

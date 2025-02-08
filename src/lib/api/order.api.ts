@@ -11,9 +11,11 @@ export const orderApi= {
      try{
                 const orderPromises = products.map(async (product:any) => {
                       const total = parseFloat(product.price); // Total price for the order is just the price of the product
+                      const orderID = `ORD-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
                 
                       const snap = await addDoc(collection(db, "orders"), {
                         product, // Place the product in an array to match the structure of orders
+                        orderID, 
                         creator: user?.id,
                         status: "active",
                         total: total.toFixed(2), // Round total to 2 decimal places

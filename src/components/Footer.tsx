@@ -80,7 +80,7 @@ const Footer: React.FC = () => {
             </Stack>
 
             {/* Personal Links */}
-            <Stack spacing={2} mr={{ base: 0, md: 8 }}>
+            <Stack spacing={2} mr={{ base: 0, md: 8 }} pl="150px">
               <Text fontWeight="bold">Personal</Text>
               <Link href="/profile" _hover={{ color: 'teal.300' }} color="#B6B6B6">My Profile</Link>
               <Link href="/orders" _hover={{ color: 'teal.300' }} color="#B6B6B6">My Orders</Link>
@@ -88,7 +88,7 @@ const Footer: React.FC = () => {
             </Stack>
 
             {/* Socials Links */}
-            <Stack spacing={2}>
+            <Stack spacing={2} pl="150px">
               <Text fontWeight="bold">Follow Us</Text>
               <Link href="/profile" _hover={{ color: 'teal.300' }} color="#B6B6B6">Facebook</Link>
               <Link href="/orders" _hover={{ color: 'teal.300' }} color="#B6B6B6">Instagram</Link>

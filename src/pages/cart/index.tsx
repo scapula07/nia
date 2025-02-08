@@ -27,6 +27,18 @@ export default function Cart() {
             });
         }
     }, [currentUser.id])
+
+    const [total, setTotal] = useState(0);
+
+    useEffect(() => {
+        if (cart.length > 0) {
+            const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            setTotal(totalPrice);
+        } else {
+            setTotal(0);
+        }
+    }, [cart]);
+
     return (
         <>
             <div className='w-full py-10 px-10'>
@@ -66,12 +78,12 @@ export default function Cart() {
                             <div className='flex flex-col space-y-4'>
                                 <div className='flex justify-between'>
                                     <h5>Subtotal</h5>
-                                    <h5>$665</h5>
+                                    <h5></h5>
                                 </div>
                                 <hr></hr>
                                 <div className='flex justify-between'>
                                     <h5>Total</h5>
-                                    <h5>$665</h5>
+                                    <h5>${total.toFixed(2)}</h5>
                                 </div>
                                 <Link href={"/checkout"}>
                                     <button
@@ -158,7 +170,7 @@ const Row = ({ item }: any) => {
                 </div>
             </td>
             <td className='px-6'>${item.price}</td>
-            <td className='px-6'>$350</td>
+            <td className='px-6'>${(item.price * item.quantity).toFixed(2)}</td>
             <td>
                 <RiDeleteBin6Line />
             </td>
@@ -172,12 +184,12 @@ const Product = ({ item }: any) => {
     return (
         <div className='flex space-x-4'>
             <img
-                src={item?.img}
+                src={item?.image}
                 className='w-20 h-20 rounded-xl'
             />
             <div className='flex flex-col'>
-                <h5 className='font-bold text-lg'>{item?.title}</h5>
-                <p className='text-sm'>Pure, farm-fresh whole milk packed <br></br> with essential nutrients like calcium and vitamin D.</p>
+                <h5 className='font-bold text-lg'>{item?.productName}</h5>
+                <p className='text-sm'>{item.description}</p>
 
             </div>
 

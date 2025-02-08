@@ -6,11 +6,11 @@ import {
     VStack,
     HStack,
     Button,
-    Image,
     Heading,
     Flex,
 } from "@chakra-ui/react";
 import DashboardLayout from "@/components/Layout/DashboardLayout";
+import { InputGroup } from "@/components/ui/input-group";
 
 const DealsOfTheDay: React.FC = () => {
     const [productName, setProductName] = useState("");
@@ -76,16 +76,20 @@ const DealsOfTheDay: React.FC = () => {
                     <Text fontSize="sm" fontWeight="medium" color="gray.600" mb={2}>
                         Product Name
                     </Text>
-                    <Input
-                        placeholder="Title"
-                        value={productName}
-                        onChange={(e) => setProductName(e.target.value)}
-                        bg="gray.100"
-                        rounded="lg"
-                        p={3}
-                        color="gray.600"
-                        width="full"
-                    />
+                    <InputGroup width="full" startElement={<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M17.5 17.5L13.1692 13.1691M13.1692 13.1691C14.3413 11.997 14.9998 10.4072 14.9998 8.74956C14.9998 7.0919 14.3413 5.50213 13.1692 4.32998C11.997 3.15783 10.4073 2.49933 8.74959 2.49933C7.09193 2.49933 5.50216 3.15783 4.33001 4.32998C3.15786 5.50213 2.49936 7.0919 2.49936 8.74956C2.49936 10.4072 3.15786 11.997 4.33001 13.1691C5.50216 14.3413 7.09193 14.9998 8.74959 14.9998C10.4073 14.9998 11.997 14.3413 13.1692 13.1691Z" stroke="#5B5B5B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>}>
+                        <Input
+                            placeholder="Title"
+                            value={productName}
+                            onChange={(e) => setProductName(e.target.value)}
+                            bg="gray.100"
+                            rounded="lg"
+                            p={3}
+                            color="gray.600"
+                            width="full"
+                        />
+                    </InputGroup>
 
 
                     <Text fontSize="lg" fontWeight="bold" color="black">
@@ -141,7 +145,7 @@ const DealsOfTheDay: React.FC = () => {
 
                     <Button
                         mt={4}
-                        colorScheme="red"
+                        color="#D41A1F"
                         onClick={() => console.log("Create New Deal")}
                     >
                         + Create New
