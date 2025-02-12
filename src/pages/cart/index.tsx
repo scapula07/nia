@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { BsDash } from "react-icons/bs";
 import { IoMdAdd } from "react-icons/io";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { onSnapshot, doc } from 'firebase/firestore'
+import { onSnapshot, doc, updateDoc } from 'firebase/firestore'
 import { db } from '@/firebase/config';
 import { useRecoilValue } from 'recoil';
 import { userStore } from '@/recoil';
@@ -39,6 +39,19 @@ export default function Cart() {
         }
     }, [cart]);
 
+    const removeFromCart = (itemId: string) => {
+        const updatedCart = cart.filter(item => item.id !== itemId); // Remove the item
+        setCart(updatedCart); // Update state
+
+        // Update the database
+        if (currentUser?.id?.length > 0) {
+            const ref = doc(db, "bucket", currentUser.id);
+            // Update the cart field in the document
+            updateDoc(ref, { cart: updatedCart });
+        }
+    };
+
+
     return (
         <>
             <div className='w-full py-10 px-10'>
@@ -50,7 +63,7 @@ export default function Cart() {
                 </div>
                 <div className='flex flex-col py-8 w-4/5 space-y-6'>
                     <h5 className='text-green-700  font-semibold'>You have {cart?.length} items in your cart</h5>
-                    <Table cart={cart} />
+                    <Table cart={cart}  removeFromCart={removeFromCart}/>
                 </div>
 
                 <div className='flex w-4/5 space-x-6'>
@@ -107,7 +120,7 @@ export default function Cart() {
     )
 }
 
-const Table = ({ cart }: any) => {
+const Table = ({ cart, removeFromCart }: any) => {
     return (
         <div className='flex flex-col py-4 '>
             <table className="table-auto w-full ">
@@ -132,7 +145,7 @@ const Table = ({ cart }: any) => {
                     {
                         cart?.map((item: any) => {
                             return (
-                                <Row item={item} />
+                                <Row key={item.id} item={item} removeFromCart={removeFromCart} />
                             )
                         })
                     }
@@ -147,7 +160,7 @@ const Table = ({ cart }: any) => {
 
 
 
-const Row = ({ item }: any) => {
+const Row = ({ item , removeFromCart}: any) => {
 
     return (
         <tr className=' border-black py-4'>
@@ -172,7 +185,10 @@ const Row = ({ item }: any) => {
             <td className='px-6'>${item.price}</td>
             <td className='px-6'>${(item.price * item.quantity).toFixed(2)}</td>
             <td>
-                <RiDeleteBin6Line />
+                <RiDeleteBin6Line
+                    className='cursor-pointer text-red-600'
+                    onClick={() => removeFromCart(item.id)}
+                />
             </td>
 
         </tr>
