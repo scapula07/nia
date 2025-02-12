@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { RecoilRoot } from "recoil";
 import { Provider } from "@/components/ui/provider"
-import Footer from "@/components/Footer"
+import Footer from "@/components/footer"
 import Layout from "@/components/Layout";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";

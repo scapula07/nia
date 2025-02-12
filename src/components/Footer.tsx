@@ -1,17 +1,16 @@
 import React from 'react';
-import { Box, Container, Stack, Text, Link, IconButton, HStack, Input, Button, Flex, Image} from '@chakra-ui/react';
+import { Box, Container, Stack, Text, Link, IconButton, HStack, Input, Button, Flex, Image } from '@chakra-ui/react';
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 import { Field } from "@/components/ui/field"
 
 const Footer: React.FC = () => {
   return (
-    <Box bg="black" color="white" py={8} height="389px">
+    <Box bg="black" color="white" py={8}>
       <Container maxW="container.xl">
         <Flex
           direction={{ base: 'column', md: 'row' }}
           justify="space-between"
           align="flex-start"
-          h="full"
         >
           {/* Left Section: Join the Newsletter */}
           <Stack spacing={4} width={{ base: '100%', md: '40%' }} mb={{ base: 8, md: 0 }}>
@@ -32,7 +31,7 @@ const Footer: React.FC = () => {
                         color="black"
                         borderRadius="12px"
                         border="1px"
-                        width="328px"
+                        width={{ base: '100%', md: '328px' }}
                         height="46px" 
                         paddingLeft="12px"
                     />
@@ -64,14 +63,13 @@ const Footer: React.FC = () => {
           {/* Right Section: Three Columns of Links */}
           <Flex
             direction={{ base: 'column', md: 'row' }}
-            ml="auto" // This pushes the columns to the right
             width={{ base: '100%', md: '60%' }}
             align="flex-start"
-            justify="flex-end" // Ensure items are aligned to the right
-            h="full"
+            justify={{ base: 'flex-start', md: 'flex-end' }}
+            mt={{ base: 4, md: 0 }}
           >
             {/* Main Menu Links */}
-            <Stack spacing={2} mr={{ base: 0, md: 8 }}>
+            <Stack spacing={2} mr={{ base: 0, md: 8 }} mb={{ base: 4, md: 0 }}>
               <Text fontWeight="bold">Main Menu</Text>
               <Link href="/" _hover={{ color: 'teal.300' }} color="#B6B6B6">Home</Link>
               <Link href="/about" _hover={{ color: 'teal.300' }} color="#B6B6B6">About</Link>
@@ -80,7 +78,7 @@ const Footer: React.FC = () => {
             </Stack>
 
             {/* Personal Links */}
-            <Stack spacing={2} mr={{ base: 0, md: 8 }} pl="150px">
+            <Stack spacing={2} mr={{ base: 0, md: 8 }} mb={{ base: 4, md: 0 }} pl={{ base: 0, md: '150px' }}>
               <Text fontWeight="bold">Personal</Text>
               <Link href="/profile" _hover={{ color: 'teal.300' }} color="#B6B6B6">My Profile</Link>
               <Link href="/orders" _hover={{ color: 'teal.300' }} color="#B6B6B6">My Orders</Link>
@@ -88,7 +86,7 @@ const Footer: React.FC = () => {
             </Stack>
 
             {/* Socials Links */}
-            <Stack spacing={2} pl="150px">
+            <Stack spacing={2} mb={{ base: 4, md: 0 }} pl={{ base: 0, md: '150px' }}>
               <Text fontWeight="bold">Follow Us</Text>
               <Link href="/profile" _hover={{ color: 'teal.300' }} color="#B6B6B6">Facebook</Link>
               <Link href="/orders" _hover={{ color: 'teal.300' }} color="#B6B6B6">Instagram</Link>

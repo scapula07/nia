@@ -74,7 +74,7 @@ const Orders = () => {
         <DashboardLayout>
             <Flex mb={4} align="center">
                 <Heading fontSize="40px" fontWeight="700" color="black">
-                    Orders
+                    Group Orders
                 </Heading>
                 <Spacer />
 
@@ -127,11 +127,11 @@ const Orders = () => {
                                 <Link href={`/dashboard/orders/${order.id}`} passHref>
                                     <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                                         <img
-                                            src={order.product.img}
-                                            alt={order.product.title}
+                                            src={order.product.image}
+                                            alt={order.product.productName}
                                             style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "5px" }}
                                         />
-                                        <span>{order.product.title}</span>
+                                        <span>{order.product.productName}</span>
                                     </div>
                                 </Link>
                             </Table.Cell>
@@ -139,7 +139,7 @@ const Orders = () => {
                                 {order.customer.email}
                             </Table.Cell>
                             <Table.Cell textAlign="center">{getStatusBadge(order.status)}</Table.Cell>
-                            <Table.Cell textAlign="center">${order.total}</Table.Cell>
+                            <Table.Cell textAlign="center">100</Table.Cell>
                             <Table.Cell textAlign="center">
                                 <Progress.Root maxW="150px" colorPalette="green">
                                     <Progress.Track>

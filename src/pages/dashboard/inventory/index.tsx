@@ -1,6 +1,7 @@
 "use client";
 
 import { Heading, Input, Flex, Spacer, Table, Button } from "@chakra-ui/react";
+import { Tooltip } from "@/components/ui/tooltip"
 import { IoMdClose } from "react-icons/io";
 import { InputGroup } from "@/components/ui/input-group";
 import DashboardLayout from "@/components/Layout/DashboardLayout";
@@ -43,6 +44,11 @@ const Inventory = () => {
                 console.error("Error deleting item:", error);
             }
         }
+    };
+    const handleCopyToClipboard = (productId: string) => {
+        navigator.clipboard.writeText(productId)
+            .then(() => alert(`Product ID ${productId} copied to clipboard!`))
+            .catch((error) => console.error("Failed to copy to clipboard:", error));
     };
 
     const filteredInventory = inventory.filter((item) =>
@@ -96,6 +102,9 @@ const Inventory = () => {
                             Product Name
                         </Table.Cell>
                         <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
+                            Product ID
+                        </Table.Cell>
+                        <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
                             Category
                         </Table.Cell>
                         <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
@@ -121,6 +130,16 @@ const Inventory = () => {
                                     />
                                     <span>{item.productName}</span>
                                 </div>
+                            </Table.Cell>
+                            <Table.Cell textAlign="center">
+                                <Tooltip label="Click to copy" fontSize="sm">
+                                    <Button
+                                        variant="ghost"
+                                        onClick={() => handleCopyToClipboard(item.id)}
+                                    >
+                                        {item.id}
+                                    </Button>
+                                </Tooltip>
                             </Table.Cell>
                             <Table.Cell textAlign="center">{item.categories}</Table.Cell>
                             <Table.Cell textAlign="center">{item.price}</Table.Cell>
