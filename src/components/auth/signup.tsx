@@ -7,7 +7,7 @@ import { authApi } from '@/lib/api/auth.api';
 
 export default function Signup({ onClose }: any) {
     const [currentUser, setCurrentUser] = useState();
-    const [credentials, setCredentials] = useState({ firstName: "", lastName: "", email: "", password: "", confirmPassword: "" });
+    const [credentials, setCredentials] = useState({ fullName: "", email: "", phoneNumber: "", password: ""});
     const [loader, setLoader] = useState(false);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
@@ -28,15 +28,10 @@ export default function Signup({ onClose }: any) {
             return;
         }
 
-        if (credentials.password !== credentials.confirmPassword) {
-            setErrorMsg("Passwords do not match");
-            setLoader(false);
-            return;
-        }
 
         try {
             setLoader(true);
-            const user = await authApi.register(credentials?.email, credentials?.password, `${credentials?.firstName} ${credentials?.lastName}`);
+            const user = await authApi.register(credentials?.email, credentials?.phoneNumber, credentials?.password, credentials?.fullName);
             setLoader(false);
             localStorage.clear();
             localStorage.setItem('user', JSON.stringify(user));
@@ -52,7 +47,7 @@ export default function Signup({ onClose }: any) {
     };
 
     return (
-        <div className='w-full fixed inset-0 flex justify-center items-center p-4 '>
+        <div className='w-409 fixed inset-0 flex justify-center items-center p-4 '>
             <div className='bg-white w-full rounded-lg px-6 py-4'>
                 <div className='flex justify-end'>
                     <IoMdClose className='text-3xl' onClick={() => onClose(false)} />
@@ -65,11 +60,10 @@ export default function Signup({ onClose }: any) {
                     {errorMsg && <h5 className='text-xs font-semibold text-red-500'>{errorMsg}</h5>}
                     <div className='flex flex-col space-y-3 py-4'>
                         {[
-                            { label: "First Name", desc: "Enter your first name", type: "text", value: credentials?.firstName, click: (txt: string) => setCredentials({ ...credentials, firstName: txt }) },
-                            { label: "Last Name", desc: "Enter your last name", type: "text", value: credentials?.lastName, click: (txt: string) => setCredentials({ ...credentials, lastName: txt }) },
+                            { label: "Full Name", desc: "Enter your full name", type: "text", value: credentials?.fullName, click: (txt: string) => setCredentials({ ...credentials, fullName: txt }) },
                             { label: "Email", desc: "Enter your email", type: "text", value: credentials?.email, click: (txt: string) => setCredentials({ ...credentials, email: txt }) },
+                            { label: "Phone number", desc: "Enter your phone number", type: "text", value: credentials?.phoneNumber, click: (txt: string) => setCredentials({ ...credentials, phoneNumber: txt }) },
                             { label: "Password", desc: "Enter your password", type: "password", value: credentials?.password, click: (txt: string) => setCredentials({ ...credentials, password: txt }) },
-                            { label: "Confirm Password", desc: "Re-enter your password", type: "password", value: credentials?.confirmPassword, click: (txt: string) => setCredentials({ ...credentials, confirmPassword: txt }) },
                         ].map((item, index) => (
                             <div className='flex flex-col space-y-1' key={index}>
                                 <label className='text-slate-500 text-lg font-light text-sm'>{item.label}</label>
@@ -83,6 +77,7 @@ export default function Signup({ onClose }: any) {
                         ))}
                     </div>
                     <div className='flex flex-col w-full pt-3 space-y-6 items-center pb-2'>
+    
                         {!loader ? (
                             <button className='text-white py-2.5 space-x-4 px-4 rounded-lg flex justify-center items-center bg-[#009E4D] w-full text-sm' onClick={login}>
                                 <span>Sign up</span>
@@ -93,7 +88,7 @@ export default function Signup({ onClose }: any) {
                         <div className='flex items-center text-xs'>
                             <h5>Already have an account?</h5>
                             <Link href={"/signup"}>
-                                <h5 className='text-[#009E4D]'>Signin</h5>
+                                <h5 className='text-[#009E4D]'> Signin</h5>
                             </Link>
                         </div>
                     </div>

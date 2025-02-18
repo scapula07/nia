@@ -5,8 +5,8 @@ export default function ProductDisplay({product}:any) {
     <div className='w-full flex flex-col space-y-6'>
           <div className='w-full'>
                 <img 
-                  src={product.img}
-                  className='w-full h-[500px]'
+                  src={product.image}
+                  className='w-full h-96'
                />
           </div>
           {/* <div className='w-full flex items-center px-8 space-x-3'>
@@ -15,11 +15,12 @@ export default function ProductDisplay({product}:any) {
                 '/p6.png',
                 '/p1.png'
 
-               ].map((image)=>{
+               ].map((image, index)=>{
                 return(
                     <img 
                       src={image}
-                      className="w-[150px]  h-[150px]"
+                      key={index}
+                      className="w-44  h-44"
                     />
                 )
                })

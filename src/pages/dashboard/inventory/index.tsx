@@ -1,18 +1,16 @@
 "use client";
 
 import { Heading, Input, Flex, Spacer, Table, Button } from "@chakra-ui/react";
+import { Tooltip } from "@/components/ui/tooltip"
 import { IoMdClose } from "react-icons/io";
 import { InputGroup } from "@/components/ui/input-group";
 import DashboardLayout from "@/components/Layout/DashboardLayout";
 import { useEffect, useState } from "react";
 import { db } from "@/firebase/config";
 import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
-
-// Pagination settings
-const pageSize = 5;
+;
 
 const Inventory = () => {
-    const [currentPage, setCurrentPage] = useState(1);
     const [inventory, setInventory] = useState<any[]>([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [deleteItemId, setDeleteItemId] = useState<string | null>(null);
@@ -20,7 +18,7 @@ const Inventory = () => {
     useEffect(() => {
         // Fetch inventory data from Firestore on component mount
         const fetchInventory = async () => {
-            const inventoryCollection = collection(db, "inventory");
+            const inventoryCollection = collection(db, "products");
             const inventorySnapshot = await getDocs(inventoryCollection);
             const inventoryList = inventorySnapshot.docs.map((doc) => ({
                 id: doc.id, // Firebase document ID
@@ -47,13 +45,15 @@ const Inventory = () => {
             }
         }
     };
+    const handleCopyToClipboard = (productId: string) => {
+        navigator.clipboard.writeText(productId)
+            .then(() => alert(`Product ID ${productId} copied to clipboard!`))
+            .catch((error) => console.error("Failed to copy to clipboard:", error));
+    };
 
     const filteredInventory = inventory.filter((item) =>
         item.productName?.toLowerCase().includes(searchQuery.toLowerCase())
     );
-
-    const startIndex = (currentPage - 1) * pageSize;
-    const currentInventory = filteredInventory.slice(startIndex, startIndex + pageSize);
 
     return (
         <DashboardLayout>
@@ -98,29 +98,53 @@ const Inventory = () => {
             <Table.Root key="line" variant="line" size="md" borderRadius="lg" overflow="hidden">
                 <Table.Header>
                     <Table.Row bg="white">
-                        <Table.Cell fontSize="18px" color="#888888"> 
+                        <Table.Cell fontSize="18px" fontWeight="700" >
                             Product Name
                         </Table.Cell>
-                        <Table.Cell fontSize="18px" color="#888888">
+                        <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
+                            Product ID
+                        </Table.Cell>
+                        <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
                             Category
                         </Table.Cell>
-                        <Table.Cell fontSize="18px" color="#888888">
+                        <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
                             Price
                         </Table.Cell>
-                        <Table.Cell fontSize="18px" color="#888888">
+                        <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
                             Stock
                         </Table.Cell>
-                        <Table.Cell></Table.Cell>
+                        <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
+                            Action
+                        </Table.Cell>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
-                    {currentInventory.map((item) => (
+                    {inventory.map((item) => (
                         <Table.Row key={item.id} bg="white" borderWidth="1px">
-                            <Table.Cell>{item.productName}</Table.Cell>
-                            <Table.Cell>{item.categories}</Table.Cell>
-                            <Table.Cell>{item.price}</Table.Cell>
-                            <Table.Cell>{item.quantity}</Table.Cell>
                             <Table.Cell>
+                                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                    <img
+                                        src={item.image}
+                                        alt={item.productName}
+                                        style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "5px" }}
+                                    />
+                                    <span>{item.productName}</span>
+                                </div>
+                            </Table.Cell>
+                            <Table.Cell textAlign="center">
+                                <Tooltip label="Click to copy" fontSize="sm">
+                                    <Button
+                                        variant="ghost"
+                                        onClick={() => handleCopyToClipboard(item.id)}
+                                    >
+                                        {item.id}
+                                    </Button>
+                                </Tooltip>
+                            </Table.Cell>
+                            <Table.Cell textAlign="center">{item.categories}</Table.Cell>
+                            <Table.Cell textAlign="center">{item.price}</Table.Cell>
+                            <Table.Cell textAlign="center">{item.quantity}</Table.Cell>
+                            <Table.Cell textAlign="center">
                                 <Button
                                     colorScheme="red"
                                     size="sm"

@@ -50,28 +50,40 @@ const FeaturedProducts = () => {
   ];
 
   return (
-    <Box py={16} px={16} color="black">
+    <Box py={{ base: 8, md: 16 }} px={{ base: 4, md: 16 }} color="black">
       <Container maxW="container.xl">
         {/* Subheader */}
-        <Heading fontSize="56px" fontWeight="700" lineHeight="67.2px" mb={6} textAlign="center">
+        <Heading
+          fontSize={{ base: "32px", md: "56px" }}
+          fontWeight="700"
+          lineHeight={{ base: "40px", md: "67.2px" }}
+          mb={6}
+          textAlign="center"
+        >
           Featured Products
         </Heading>
-        <Text fontSize="25.4px" lineHeight="30.48px" fontWeight="400" textAlign="center" mb={6}>
+        <Text
+          fontSize={{ base: "16px", md: "25.4px" }}
+          lineHeight={{ base: "20px", md: "30.48px" }}
+          fontWeight="400"
+          textAlign="center"
+          mb={6}
+        >
           Visit our shop for more amazing deals.
         </Text>
 
         {/* Navigation Links */}
-        <Flex justify="center" mb={10} gap={4}>
+        <Flex justify="center" mb={10} gap={4} flexWrap="wrap">
           <Link
-            fontSize="16px"
+            fontSize={{ base: "14px", md: "16px" }}
             fontWeight="600"
-            _hover={{ color: "#009E4D"  }}
+            _hover={{ color: "#009E4D" }}
             href="#"
           >
             Groceries and Vegetables
           </Link>
           <Link
-            fontSize="16px"
+            fontSize={{ base: "14px", md: "16px" }}
             fontWeight="600"
             _hover={{ color: "#009E4D" }}
             href="#"
@@ -79,31 +91,31 @@ const FeaturedProducts = () => {
             Grains and Breads
           </Link>
           <Link
-            fontSize="16px"
+            fontSize={{ base: "14px", md: "16px" }}
             fontWeight="600"
-            _hover={{ color: "#009E4D"  }}
+            _hover={{ color: "#009E4D" }}
             href="#"
           >
             Canned Products
           </Link>
           <Link
-            fontSize="16px"
+            fontSize={{ base: "14px", md: "16px" }}
             fontWeight="600"
-            _hover={{ color: "#009E4D"  }}
+            _hover={{ color: "#009E4D" }}
             href="#"
           >
             Meats and Proteins
           </Link>
           <Link
-            fontSize="16px"
+            fontSize={{ base: "14px", md: "16px" }}
             fontWeight="600"
-            _hover={{ color: "#009E4D"  }}
+            _hover={{ color: "#009E4D" }}
             href="#"
           >
             Dairy Products
           </Link>
           <Link
-            fontSize="16px"
+            fontSize={{ base: "14px", md: "16px" }}
             fontWeight="600"
             _hover={{ color: "#009E4D" }}
             href="#"
@@ -113,7 +125,10 @@ const FeaturedProducts = () => {
         </Flex>
 
         {/* Grid Layout for Featured Products */}
-        <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+        <Grid 
+          templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }} 
+          gap={6}
+        >
           {products.map((product, index) => (
             <ProductCard
               key={index}
@@ -138,8 +153,7 @@ const FeaturedProducts = () => {
             alignItems="center"
             textDecoration="underline"
           >
-            Go to Shop <MdArrowForward/>
-            
+            Go to Shop <Icon as={MdArrowForward} ml={1} />
           </Link>
         </Flex>
       </Container>

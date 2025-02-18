@@ -1,23 +1,23 @@
 import React,{useState} from 'react'
 import { BsDash } from "react-icons/bs";
 import { IoMdAdd } from "react-icons/io";
-import { MdOutlineStar,MdOutlineShoppingCart  } from "react-icons/md";
-import { useRouter } from 'next/router';
+import {MdOutlineShoppingCart  } from "react-icons/md";
 import { productApi } from '@/lib/api/product.api';
 import { useRecoilValue } from 'recoil';
 import { userStore } from '@/recoil';
 import { ClipLoader } from 'react-spinners';
 import Modal from '../modal';
 import GroupBuying from '../GroupBuying';
-
+import { useRouter } from 'next/router';
 
 export default function Details({product}:any) {
-  const router = useRouter();
+
   const [loader,setLoader]=useState(false)
   const currentUser=useRecoilValue(userStore)
   const [qty,setQty]=useState<number>(1)
   const [trigger,setTrigger]=useState(false)
 
+  const router = useRouter();
 
   const addTocart=async(offerId:string)=>{
       setLoader(true)

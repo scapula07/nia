@@ -23,18 +23,14 @@ const Settings = () => {
         try {
           const auth = getAuth();
           const currentUser = auth.currentUser;
+          console.log(currentUser)
           const email = currentUser?.email
   
           if (currentUser) {
-            const firestore = getFirestore();
-            const userDoc = doc(firestore, "users", currentUser.uid);
-            const userSnap = await getDoc(userDoc);
+            setUser(currentUser)
+            
   
-            if (userSnap.exists()) {
-              setUser(userSnap.data());
-            } else {
-              console.error("No user data found in Firestore.");
-            }
+
           }
         } catch (error) {
           console.error("Error fetching user data:", error);
@@ -83,7 +79,7 @@ const Settings = () => {
                                     Admin Name
                                 </Text>
                                 <Text mt={1} fontWeight="bold" color="black">
-                                   {user?.name || "Unknown User"} 
+                                   {user?.name} 
                                 </Text>
                             </Box>
                             <Box bg="gray.100" p={3} width="324px" borderRadius="md" mt={3}>
@@ -91,7 +87,7 @@ const Settings = () => {
                                     Admin Email
                                 </Text>
                                 <Text mt={1} fontWeight="bold" color="black">
-                                    {user?.email || "Unknown User"}
+                                    {user?.email}
                                 </Text>
                             </Box>
                         </HStack>
@@ -119,6 +115,7 @@ const Settings = () => {
                         border="none"
                         borderRadius="md"
                         h="46px"
+                        pl={4}
                     />
                 </Box>
 
@@ -133,6 +130,7 @@ const Settings = () => {
                         border="none"
                         borderRadius="md"
                         h="46px"
+                        pl={4}
                     />
                 </Box>
 
@@ -147,6 +145,7 @@ const Settings = () => {
                         border="none"
                         borderRadius="md"
                         h="46px"
+                        pl={4}
                     />
                 </Box>
 

@@ -1,10 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Heading, Input, Flex, Spacer, Table, Badge } from "@chakra-ui/react";
+import { Heading, Input, Flex, Spacer, Table, Badge, Progress } from "@chakra-ui/react";
 import { InputGroup } from "@/components/ui/input-group";
-
-
 import {
     PaginationItems,
     PaginationNextTrigger,
@@ -13,7 +11,8 @@ import {
 } from "@/components/ui/pagination";
 import DashboardLayout from "@/components/Layout/DashboardLayout";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/firebase/config"; // Import Firebase
+import { db } from "@/firebase/config";
+import Link from "next/link";
 
 type Product = {
     id: string;
@@ -44,13 +43,12 @@ const Orders = () => {
 
 
     useEffect(() => {
-        // Fetch orders data from Firestore
         const fetchOrders = async () => {
-            const ordersCollection = collection(db, "orders"); // "orders" is your Firestore collection name
+            const ordersCollection = collection(db, "orders"); 
             const ordersSnapshot = await getDocs(ordersCollection);
             const ordersList: Order[] = ordersSnapshot.docs.map((doc) => ({
-                id: doc.id, // Use Firestore's document ID as the unique ID
-                ...(doc.data() as Omit<Order, "id">), // Spread the rest of the document data
+                id: doc.id, 
+                ...(doc.data() as Omit<Order, "id">), 
             }));
             setOrders(ordersList);
         };
@@ -60,13 +58,13 @@ const Orders = () => {
 
     const formatDate = (timestamp: number) => {
         const date = new Date(timestamp);
-        return date.toLocaleString(); // Converts to a human-readable date string
+        return date.toLocaleString(); 
     };
 
     const getStatusBadge = (status: string) => {
         switch (status) {
             case "active":
-                return <Badge colorPalette="green" width="122px" height="25px" justifyContent="center" textAlign="center">Order Confirmed</Badge>;
+                return <Badge colorPalette="green" width="122px" height="25px" justifyContent="center" textAlign="center" bg="#CC7914" color="#FAFAFA" borderRadius="lg">Order Confirmed</Badge>;
             case "shipped":
                 return <Badge colorScheme="green">Shipped</Badge>;
             case "delivered":
@@ -82,12 +80,12 @@ const Orders = () => {
         <DashboardLayout>
             <Flex mb={4} align="center">
                 <Heading fontSize="40px" fontWeight="700" color="black">
-                    Orders
+                    Group Orders
                 </Heading>
                 <Spacer />
 
                 <InputGroup width="282" height="46px" startElement={<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M17.5 17.5L13.1692 13.1691M13.1692 13.1691C14.3413 11.997 14.9998 10.4072 14.9998 8.74956C14.9998 7.0919 14.3413 5.50213 13.1692 4.32998C11.997 3.15783 10.4073 2.49933 8.74959 2.49933C7.09193 2.49933 5.50216 3.15783 4.33001 4.32998C3.15786 5.50213 2.49936 7.0919 2.49936 8.74956C2.49936 10.4072 3.15786 11.997 4.33001 13.1691C5.50216 14.3413 7.09193 14.9998 8.74959 14.9998C10.4073 14.9998 11.997 14.3413 13.1692 13.1691Z" stroke="#5B5B5B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M17.5 17.5L13.1692 13.1691M13.1692 13.1691C14.3413 11.997 14.9998 10.4072 14.9998 8.74956C14.9998 7.0919 14.3413 5.50213 13.1692 4.32998C11.997 3.15783 10.4073 2.49933 8.74959 2.49933C7.09193 2.49933 5.50216 3.15783 4.33001 4.32998C3.15786 5.50213 2.49936 7.0919 2.49936 8.74956C2.49936 10.4072 3.15786 11.997 4.33001 13.1691C5.50216 14.3413 7.09193 14.9998 8.74959 14.9998C10.4073 14.9998 11.997 14.3413 13.1692 13.1691Z" stroke="#5B5B5B" strokeWidth="1.5" strokeLinecap="round" stroke-linejoin="round" />
                 </svg>}>
 
                     <Input
@@ -107,36 +105,57 @@ const Orders = () => {
             <Table.Root key="line" variant="line" size="md" borderRadius="lg" overflow="hidden">
                 <Table.Header>
                     <Table.Row bg="white">
-                        <Table.Cell fontSize="18px" color="#888888">
+                        <Table.Cell fontSize="18px" fontWeight="700">
                             Product
                         </Table.Cell>
-                        <Table.Cell fontSize="18px" color="#888888">
-                            Customer Name
+                        <Table.Cell fontSize="18px" fontWeight="700">
+                            Customers
                         </Table.Cell>
-                        <Table.Cell fontSize="18px" color="#888888">
-                            Quantity
-                        </Table.Cell>
-                        <Table.Cell fontSize="18px" color="#888888">
+                        <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
                             Status
                         </Table.Cell>
-                        <Table.Cell fontSize="18px" color="#888888">
-                            Amount
+                        <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
+                            Target Limit
                         </Table.Cell>
-                        <Table.Cell fontSize="18px" color="#888888">
+                        <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
+                            Progress
+                        </Table.Cell>
+                        <Table.Cell fontSize="18px" fontWeight="700" textAlign="center">
                             Date & Time
                         </Table.Cell>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
                     {orders.map((order) => (
+
                         <Table.Row key={order.id} bg="white" borderWidth="1px">
-                            <Table.Cell>{order.product.title}</Table.Cell>
-                            <Table.Cell>{order.customer.name}</Table.Cell>
-                            <Table.Cell>{order.product.qty}</Table.Cell>
-                            <Table.Cell>{getStatusBadge(order.status)}</Table.Cell>
-                            <Table.Cell>${order.total}</Table.Cell>
-                            <Table.Cell>{formatDate(order.time)}</Table.Cell>
+                            <Table.Cell>
+                                <Link href={`/dashboard/orders/${order.id}`} passHref>
+                                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                        <img
+                                            src={order.product.image}
+                                            alt={order.product.productName}
+                                            style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "5px" }}
+                                        />
+                                        <span>{order.product.productName}</span>
+                                    </div>
+                                </Link>
+                            </Table.Cell>
+                            <Table.Cell>
+                                {order.customer.email}
+                            </Table.Cell>
+                            <Table.Cell textAlign="center">{getStatusBadge(order.status)}</Table.Cell>
+                            <Table.Cell textAlign="center">100</Table.Cell>
+                            <Table.Cell textAlign="center">
+                                <Progress.Root maxW="150px" colorPalette="green">
+                                    <Progress.Track>
+                                        <Progress.Range />
+                                    </Progress.Track>
+                                </Progress.Root>
+                            </Table.Cell>
+                            <Table.Cell textAlign="center">{formatDate(order.time)}</Table.Cell>
                         </Table.Row>
+
                     ))}
                 </Table.Body>
             </Table.Root>

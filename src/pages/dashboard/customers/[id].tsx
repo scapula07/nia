@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/router";
-import { Box, Heading, Text, Stack, Button, Input, Link, Flex, Badge, Avatar, Spinner } from "@chakra-ui/react";
+import { Box, Heading, Text, Stack, Button, Input, Link, Flex, Badge, Avatar, Spinner, Textarea } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import DashboardLayout from "@/components/Layout/DashboardLayout";
 import { db } from "@/firebase/config";
@@ -14,7 +14,6 @@ const CustomerDetails = () => {
 
     const [customer, setCustomer] = useState<any | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
-    const [notes, setNotes] = useState<string>("");
 
     useEffect(() => {
         if (!id) return;
@@ -99,22 +98,22 @@ const CustomerDetails = () => {
                                 <Box flex="1">
                                     {/* User Details Section */}
                                     <Box p={5} >
-                                        <Heading size="md" mb={2}>
+                                        <Heading size="md" mb={2} fontWeight="700">
                                             {customer.name}
                                         </Heading>
-                                        <Text color="gray.500" mb={2}>
+                                        <Text color="gray.500" mb={2} fontWeight="600">
                                             Location: San Antonio, Texas
                                         </Text>
-                                        <Text color="gray.500" mb={2}>
+                                        <Text color="gray.500" mb={2} fontWeight="600">
                                             Orders: 14
                                         </Text>
-                                        <Text color="gray.500">Joined: July 2024</Text>
+                                        <Text color="gray.500" fontWeight="600">Joined: July 2024</Text>
                                     </Box>
                                 </Box>
                                 <Box ml={5} flex="1">
                                     {/* Address Section */}
                                     <Box p={5} >
-                                        <Heading size="sm" mb={2}>
+                                        <Heading size="sm" mb={2} fontWeight="700">
                                             Address
                                         </Heading>
                                         <Text color="gray.600">{customer.address}</Text>
@@ -127,16 +126,27 @@ const CustomerDetails = () => {
                                     <Box w={{ base: "full", md: "73%" }}>
                                         {/* Notes Section */}
                                         <Box p={5}>
-                                            <Heading size="sm" mb={2}>
+                                            <Heading size="sm" pb="16px" fontWeight="700">
                                                 Notes
                                             </Heading>
-                                            <Input pl="2" placeholder="" size="md" min-height="90px" borderWidth={1} borderRadius="md" bg="white" />
+
+                                            <Textarea
+                                                id="productDescription"
+                                                placeholder="Product Description"
+                                                mb={4}
+                                                bg="gray.100"
+                                                pt="10px"
+                                                pl="16px"
+                                                height="91px"
+                                                borderRadius="12px"
+                                            />
+
                                         </Box>
                                     </Box>
                                     <Box ml={5} w={{ base: "full", md: "27%" }}>
                                         {/* Last Order Section */}
                                         <Box p={5} >
-                                            <Heading size="sm" mb={2}>
+                                            <Heading size="sm" mb={2} fontWeight="700">
                                                 Last Order
                                             </Heading>
                                             <Text color="gray.600">September 29, 2024</Text>
@@ -152,21 +162,21 @@ const CustomerDetails = () => {
                             <Flex gap={5} justify="space-between" w="full" direction={{ base: "column", sm: "row" }}>
                                 {/* Contact Info Section */}
                                 <Box p={5} w="full">
-                                    <Heading size="sm" mb={2}>
+                                    <Heading size="sm" mb={2} fontWeight="700">
                                         Email
                                     </Heading>
                                     <Text color="gray.600">{customer.email}</Text>
                                 </Box>
                                 <Box p={5} w="full">
-                                    <Heading size="sm" mb={2}>
+                                    <Heading size="sm" mb={2} fontWeight="700">
                                         Phone
                                     </Heading>
                                     <Text color="gray.600">+1(123) 232 3634</Text>
                                 </Box>
                             </Flex>
                             {/* User Status Section */}
-                            <Box p={5}mt={5}>
-                                <Heading size="sm" mb={2}>
+                            <Box p={5} mt={5}>
+                                <Heading size="sm" mb={2} fontWeight="700">
                                     Status
                                 </Heading>
                                 <Badge colorScheme="green" variant="solid">

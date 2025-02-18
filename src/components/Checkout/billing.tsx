@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React, { useEffect, useState } from 'react'
 import { orderApi } from '@/lib/api/order.api'
 import { ClipLoader } from 'react-spinners'
 import { useRouter } from "next/router";
@@ -9,7 +9,7 @@ export default function Billing({cart,currentUser,customer}:any) {
      const [errorMsg, setErrorMsg] = useState(null)
      const [total,setTotal]=useState<number>(0)
 
-     const { replace } = useRouter()
+    const { replace } = useRouter()
 
      const processPayment=async()=>{
         setLoading(true)
