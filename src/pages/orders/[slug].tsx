@@ -17,11 +17,11 @@ export default function Orders() {
     }, [slug]);
   
   return (
-    <div className='pt-10 px-10'>
-         <h5 className='text-2xl font-semibold'>My Orders</h5>
-         <div className='py-10 flex flex-col space-y-9'>
+    <div className='pt-10 px-4 sm:px-10'>
+         <h5 className='text-xl sm:text-2xl font-semibold'>My Orders</h5>
+         <div className='py-6 sm:py-10 flex flex-col space-y-6 sm:space-y-9'>
               
-             <div className='border py-2.5 px-3 rounded-lg flex w-1/4 justify-between items-center'>
+             <div className='border py-2 px-3 rounded-lg flex w-full sm:w-1/4 justify-between items-center'>
                   <input
                       placeholder='Search'
                       className='outline-none border-0 w-full text-xs text-black bg-white'
@@ -31,7 +31,7 @@ export default function Orders() {
                     />   
               </div>
 
-             <div className='border rounded-lg flex items-center w-1/3 justify-between'>
+             <div className='border rounded-lg flex flex-col sm:flex-row items-center w-full sm:w-1/3 justify-between'>
                      {[{text:"Active",link:"active" },{text:"Completed",link:"completed"},{text:"Cancelled",link:"cancelled"}].map((item)=>{
                             const part =`${"/" +item?.link}`
                         return(
@@ -49,7 +49,7 @@ export default function Orders() {
                          )})}
                 </div> 
 
-               <div className='w-4/5'>
+               <div className='w-full sm:w-4/5'>
                     {slug=='active'&& <Active />}
                     {slug=='completed'&& <Completed />}
                     {slug=='cancelled'&& <Cancelled />}
