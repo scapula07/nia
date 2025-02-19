@@ -8,7 +8,7 @@ import { userStore } from '@/recoil';
 import { useRecoilValue } from 'recoil';
 import { offerApi } from '@/lib/api/offer.api';
 import Slider from "react-slick";
-
+import Link from 'next/link';
 
 export default function GroupBuying({onClose,products,qty,addTocart}:any) {
   const [offers,setOffers]=useState<any>([])
@@ -91,8 +91,8 @@ export default function GroupBuying({onClose,products,qty,addTocart}:any) {
         </div>
 
         <div className='flex flex-col w-full py-4 px-6'>
-                <button className='py-2 bg-[#009E4D] px-4 rounded-sm w-full text-white'
-                   onClick={!isLoading?join:undefined}
+             <Link href={"/checkout~group~buying"}>
+                <button className='py-2 bg-[#009E4D] px-4 rounded-sm w-full text-white'              
                  >
                   {isLoading?
                      <ClipLoader color='white' size={10}/>
@@ -100,10 +100,8 @@ export default function GroupBuying({onClose,products,qty,addTocart}:any) {
                      "Checkout with Group Buying"
                   }        
                 </button>
-
+              </Link>
          </div>
-        
-
     </div>
   )
 }

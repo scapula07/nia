@@ -22,8 +22,8 @@ export default function Product() {
         }
     }, [])
     return (
-        <div className='w-full pt-10 px-10 h-full'>
-            <div className='w-full flex items-center space-x-4 text-black'>
+        <div className='w-full pt-10 px-4 md:px-10 h-full'>
+            <div className='w-full flex flex-wrap items-center space-x-2 md:space-x-4 text-black'>
                 <Link href="/">
                     <h5 className="hover:underline cursor-pointer">Home</h5>
                 </Link>
@@ -35,11 +35,11 @@ export default function Product() {
                 <h5 className="">{product.productName}</h5>
             </div>
 
-            <div className='w-full py-4 flex space-x-10'>
-                <div className='w-1/2'>
+            <div className='w-full py-4 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-10'>
+                <div className='w-full md:w-1/2'>
                     <ProductDisplay product={product} />
                 </div>
-                <div className='w-1/2'>
+                <div className='w-full md:w-1/2'>
                     <Details product={product} />
                 </div>
             </div>

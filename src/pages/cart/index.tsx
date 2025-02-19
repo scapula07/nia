@@ -202,7 +202,7 @@ const Product = ({ item }: any) => {
         <div className='flex space-x-4'>
             <img
                 src={item?.image}
-                className='w-20 h-20 rounded-xl'
+                className='w-16 h-16 md:w-20 md:h-20 rounded-xl'
             />
             <div className='flex flex-col'>
                 <h5 className='font-bold text-lg'>{item?.productName}</h5>

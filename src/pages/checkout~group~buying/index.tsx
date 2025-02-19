@@ -21,16 +21,15 @@ export default function Checkout() {
    },[currentUser.id])
 
   return (
-    <div className='pt-10 pb-20 px-20'>
+    <div className='pt-10 pb-20 px-4 md:px-20'>
         <h5 className='font-bold text-2xl'>Checkout </h5>
-        <div className='w-full flex space-x-10 py-6'>
-            <div className='w-3/5'>
+        <div className='w-full flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-10 py-6'>
+            <div className='w-full md:w-3/5'>
                 <Order  cart={cart} customer={customer} setCustomer={setCustomer}/>
             </div>
-           <div className='w-[28%]'>
+           <div className='w-full md:w-[28%]'>
                 <Billing  cart={cart} currentUser={currentUser} customer={customer} />
            </div>
-           
         </div>
     </div>
   )
