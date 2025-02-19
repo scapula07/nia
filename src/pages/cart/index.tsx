@@ -55,40 +55,37 @@ export default function Cart() {
 
     return (
         <>
-            <div className='w-full py-10 px-10'>
-                <div className='flex flex-col space-y-6'>
+            <div className='w-full py-6 px-4 md:px-10'>
+                <div className='flex flex-col space-y-4'>
                     <Link href="/shop">
                         <h5 className="hover:underline cursor-pointer">Return to shopping</h5>
                     </Link>
-                    <h5 className='text-2xl font-bold'>My Cart</h5>
+                    <h5 className='text-xl md:text-2xl font-bold'>My Cart</h5>
                 </div>
-                <div className='flex flex-col py-8 w-4/5 space-y-6'>
-                    <h5 className='text-green-700  font-semibold'>You have {cart?.length} items in your cart</h5>
-                    <Table cart={cart}  removeFromCart={removeFromCart}/>
+                <div className='flex flex-col py-6 w-full md:w-4/5 space-y-4'>
+                    <h5 className='text-green-700 font-semibold'>You have {cart?.length} items in your cart</h5>
+                    <Table cart={cart} removeFromCart={removeFromCart} />
                 </div>
 
-                <div className='flex w-4/5 space-x-6'>
-                    <div className='w-1/2 flex flex-col space-y-6'>
-
+                <div className='flex flex-col md:flex-row w-full md:w-4/5 space-y-4 md:space-y-0 md:space-x-4'>
+                    <div className='w-full md:w-1/2 flex flex-col space-y-4'>
                         <button
-                            className='text-white py-3 space-x-4 px-4 bg-green-600 rounded-full flex justify-center items-center  text- font-semibbold w-56'
+                            className='text-white py-3 space-x-4 px-4 bg-green-600 rounded-full flex justify-center items-center text-font-semibbold w-full md:w-56'
                             onClick={() => setTrigger(true)}
                         >
                             Use Group Buying
                         </button>
 
-                        <div className='border-b py-4 px-6 w-[80%]'>
+                        <div className='border-b py-4 px-6 w-full md:w-[80%]'>
                             <div className='flex items-center justify-between'>
                                 <h5 className='text-[#D41A1F] text-lg'>How Group Buying works?</h5>
                                 <MdArrowForwardIos className='text-xl' />
                             </div>
-
                         </div>
-
                     </div>
-                    <div className='w-1/2'>
-                        <div className='border flex flex-col h-60 rounded-lg space-y-4 px-8 py-6'>
-                            <h5 className='font-semibold text-xl'>Cart Summary</h5>
+                    <div className='w-full md:w-1/2'>
+                        <div className='border flex flex-col h-60 rounded-lg space-y-4 px-4 md:px-8 py-6'>
+                            <h5 className='font-semibold text-lg md:text-xl'>Cart Summary</h5>
                             <div className='flex flex-col space-y-4'>
                                 <div className='flex justify-between'>
                                     <h5>Subtotal</h5>
@@ -104,18 +101,14 @@ export default function Cart() {
                                         className='text-white py-2.5 space-x-4 px-4 bg-[#d41a1e] rounded-lg flex justify-center items-center w-full text-sm'>
                                         Checkout
                                     </button>
-
                                 </Link>
                             </div>
-
-
                         </div>
                     </div>
-
                 </div>
             </div>
-            <Modal trigger={trigger} cname="w-[40%] py-2 h-96  px-4 rounded-lg">
-                <GroupBuying onClose={setTrigger} products={cart}/>
+            <Modal trigger={trigger} cname="w-full md:w-[40%] py-2 h-96 px-4 rounded-lg">
+                <GroupBuying onClose={setTrigger} products={cart} />
             </Modal>
         </>
     )
@@ -123,10 +116,10 @@ export default function Cart() {
 
 const Table = ({ cart, removeFromCart }: any) => {
     return (
-        <div className='flex flex-col py-4 '>
-            <table className="table-auto w-full ">
+        <div className='flex flex-col py-4 overflow-x-auto'>
+            <table className="table-auto w-full min-w-[600px]">
                 <thead>
-                    <tr className='py-2  border-black' >
+                    <tr className='py-2 border-black'>
                         {
                             [
                                 "Product",
@@ -135,12 +128,11 @@ const Table = ({ cart, removeFromCart }: any) => {
                                 "Subtotal"
                             ].map((text) => {
                                 return (
-                                    <th className='py-1 text-black text-start  py-2 px-4'>{text}</th>
+                                    <th className='py-1 text-black text-start py-2 px-4'>{text}</th>
                                 )
                             })
                         }
                     </tr>
-
                 </thead>
                 <tbody className='space-y-4'>
                     {
@@ -152,35 +144,24 @@ const Table = ({ cart, removeFromCart }: any) => {
                     }
                 </tbody>
             </table>
-
         </div>
     )
 }
 
-
-
-
-
-const Row = ({ item , removeFromCart}: any) => {
-
+const Row = ({ item, removeFromCart }: any) => {
     return (
-        <tr className=' border-black py-4'>
+        <tr className='border-black py-4'>
             <td>
                 <Product item={item} />
             </td>
             <td>
-                <div className='flex items-center space-x-5 border px-4 rounded-xl w-36 justify-center bg-white' >
-                    <BsDash
-                        className='text-2xl font-bold '
-                    />
+                <div className='flex items-center space-x-5 border px-4 rounded-xl w-full md:w-36 justify-center bg-white'>
+                    <BsDash className='text-2xl font-bold' />
                     <input
                         className='h-10 w-10 rounded-sm text-xs border-0 px-3 text-center bg-white'
                         value={5}
                     />
-                    <IoMdAdd
-                        className='text-2xl font-bold '
-                    />
-
+                    <IoMdAdd className='text-2xl font-bold' />
                 </div>
             </td>
             <td className='px-6'>${item.price}</td>
@@ -191,11 +172,9 @@ const Row = ({ item , removeFromCart}: any) => {
                     onClick={() => removeFromCart(item.id)}
                 />
             </td>
-
         </tr>
     )
 }
-
 
 const Product = ({ item }: any) => {
     return (
@@ -207,9 +186,7 @@ const Product = ({ item }: any) => {
             <div className='flex flex-col'>
                 <h5 className='font-bold text-lg'>{item?.productName}</h5>
                 <p className='text-sm'>{item.description}</p>
-
             </div>
-
         </div>
     )
 }
