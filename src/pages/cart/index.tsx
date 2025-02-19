@@ -115,7 +115,7 @@ export default function Cart() {
                 </div>
             </div>
             <Modal trigger={trigger} cname="w-[40%] py-2 h-96  px-4 rounded-lg">
-                <GroupBuying onClose={setTrigger} />
+                <GroupBuying onClose={setTrigger} products={cart}/>
             </Modal>
         </>
     )

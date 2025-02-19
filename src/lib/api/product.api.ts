@@ -5,7 +5,7 @@ import Papa from "papaparse";
 
 
 export const productApi= {
-    addToCart:async function (product:any,user:any,quantity:any,offerId:string) {
+    addToCart:async function (product:any,user:any,quantity:number,offerId:string) {
       
       const { qty, ...rest } = product;
         try{
@@ -21,8 +21,9 @@ export const productApi= {
                 return true
 
             }
-        } catch (e) {
+        } catch (e:any) {
             console.log(e)
+            throw new Error(e.message)
         }
     },
     uploadCSV: async function (file: File) {

@@ -16,7 +16,7 @@ export default function Product({product}:any) {
     const addTocart=async()=>{
         setLoader(true)
         try{
-            const res=await productApi.addToCart(product,currentUser)
+            const res=await productApi.addToCart(product,currentUser,1,"")
             res&&setLoader(false)
           }catch(e){
           console.log(e)

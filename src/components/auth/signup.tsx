@@ -31,7 +31,7 @@ export default function Signup({ onClose }: any) {
 
         try {
             setLoader(true);
-            const user = await authApi.register(credentials?.email, credentials?.phoneNumber, credentials?.password, credentials?.fullName);
+            const user:any = await authApi.register(credentials?.email, credentials?.phoneNumber, credentials?.password, credentials?.fullName);
             setLoader(false);
             localStorage.clear();
             localStorage.setItem('user', JSON.stringify(user));
@@ -40,7 +40,7 @@ export default function Signup({ onClose }: any) {
             onClose(false);
       
             replace('/shop');
-        } catch (e) {
+        } catch (e:any) {
             setLoader(false);
             setErrorMsg(e.message);
         }
