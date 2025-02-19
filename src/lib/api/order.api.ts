@@ -92,28 +92,30 @@ export const orderApi = {
         }
     },
 
-    checkout:async function (products:any,id:string) {
-        console.log(host,"host")
-          try{
-              const url=`${host}/api/stripe`
-              const config = {
-                headers:{
+    checkout: async function (products: any, id: string) {
+        console.log(host, "host")
+        try {
+            const url = `/api/checkout_sessions`
+            const config = {
+                headers: {
                     'Content-Type': 'application/json',
-                    },
-                };
-              const response= await axios.post(
-                        url,
-                        {
-                         products,
-                         orderId:id
-                        },
-                        config
-                  )
-                  console.log(response,"response")
-                  return response?.data?.session
-           }catch(e){
-                console.log(e)
-           }
-      
-      }
+                },
+            };
+            const response = await axios.post(
+                url,
+                {
+                    products,
+                    orderId: id.toString()
+                },
+                config
+            )
+            console.log("asdasdasdasd")
+            console.log(response)
+
+            return response
+        } catch (e) {
+            console.log(e)
+        }
+
+    }
 };
