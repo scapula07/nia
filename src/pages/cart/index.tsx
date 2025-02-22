@@ -33,7 +33,7 @@ export default function Cart() {
 
     useEffect(() => {
         if (cart.length > 0) {
-            const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
             setTotal(totalPrice);
         } else {
             setTotal(0);
@@ -159,13 +159,13 @@ const Row = ({ item, removeFromCart }: any) => {
                     <BsDash className='text-2xl font-bold' />
                     <input
                         className='h-10 w-10 rounded-sm text-xs border-0 px-3 text-center bg-white'
-                        value={5}
+                        value={item.qty}
                     />
                     <IoMdAdd className='text-2xl font-bold' />
                 </div>
             </td>
             <td className='px-6'>${item.price}</td>
-            <td className='px-6'>${(item.price * item.quantity).toFixed(2)}</td>
+            <td className='px-6'>${(item.price * item.qty).toFixed(2)}</td>
             <td>
                 <RiDeleteBin6Line
                     className='cursor-pointer text-red-600'

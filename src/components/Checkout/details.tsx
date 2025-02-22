@@ -4,7 +4,7 @@ export default function Details({customer,setCustomer}:any) {
   return (
     <div className='w-full flex flex-col space-y-6 py-4'>
           <h5 className='font-bold text-2xl'>1. Shipping Details</h5>
-          <div className='grid grid-cols-2 gap-4'>
+          <div className='grid md:grid-cols-2 gap-4'>
                {[
                   {
                     label:'Enter your email address',

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import { FiSearch } from "react-icons/fi";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { AiOutlineShoppingCart, AiOutlineMenu } from "react-icons/ai"; // Added AiOutlineMenu for the hamburger icon
@@ -26,7 +26,10 @@ export default function Header() {
     const [signinTrigger, setSigninTrigger] = useState(false);
     const [signupTrigger, setSignupTrigger] = useState(false);
     const [isSearchVisible, setIsSearchVisible] = useState(false); // State to toggle search bar visibility
-    const currentUser = useRecoilValue(userStore) as { id: "" };
+    const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+  
+    const currentUser = useRecoilValue(userStore) as { id: "" ,img:"",name:""};
     const router = useRouter();
     const auth = getAuth();
 
@@ -39,6 +42,20 @@ export default function Header() {
         }
     }, [currentUser?.id]);
 
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+          if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+            setIsOpen(false);
+          }
+        }
+    
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+          document.removeEventListener("mousedown", handleClickOutside);
+        };
+      }, []);
+    
+
     const handleLogout = async () => {
         try {
             localStorage.clear();
@@ -49,10 +66,12 @@ export default function Header() {
             console.error("Error logging out:", error);
         }
     };
+    
+    console.log(currentUser?.img?.length,"uu")
 
     return (
         <>
-            <div className='w-full fixed flex px-4 md:px-20 bg-white z-50'>
+            <div className='w-full fixed flex px-4 md:px-20 bg-white z-50 ' ref={dropdownRef}>
                 <div className='flex w-full md:w-1/2 items-center space-x-4 md:space-x-20'>
                     <img
                         src='/nia_logo.png'
@@ -94,8 +113,8 @@ export default function Header() {
                         </Link>
                         <p>Contact Us</p>
                     </div>
-                    <div className='flex items-center space-x-4'>
-                        {!currentUser?.id &&
+                    <div className='flex items-center space-x-2'>
+                        {!currentUser?.id ?
                             <>
                                 <button className='border px-4 py-2 rounded-lg font-semibold'
                                     onClick={() => setSigninTrigger(true)}>
@@ -106,8 +125,28 @@ export default function Header() {
                                     Sign up to shop
                                 </button>
                             </>
+                            :
+                            <div className='w-full'>
+                                 {currentUser?.img?.length == undefined?
+                                    <h5 className='rounded-full bg-[#009E4D]  relative text-white font-semibold text-sm p-1 border-2 border-white lg:w-8 lg:h-8 w-6 h-6 flex items-center justify-center'
+                                    onClick={() => setIsOpen(!isOpen)}
+
+                                        >
+                                        {currentUser?.name?.slice(0,1)}    
+                                        L                                        
+                                    </h5>
+                                        :
+                                       
+                                     <img 
+                                        src={currentUser?.img}
+                                        className="rounded-full lg:w-8 lg:h-8 w-6 h-6  relative"
+                                        onClick={() => setIsOpen(!isOpen)}
+                                     />
+                                 } 
+                                       {isOpen && <Profile  currentUser={currentUser}/>}
+                            </div>
                         }
-                        <IoNotificationsOutline className='text-3xl' />
+                        <IoNotificationsOutline className='text-6xl' />
                         {currentUser?.id?.length > 0 &&
                             <Link href={"/cart"}>
                                 <div className='flex'>
@@ -197,4 +236,34 @@ export default function Header() {
             </Modal>
         </>
     );
+}
+
+const Profile=({currentUser}:any)=>{
+    return(
+        <div className="absolute right-0 w-72 bg-white shadow-lg rounded-lg py-4 ">
+          <div className="flex flex-col items-center space-y-4">
+            <img 
+              src={currentUser?.img} 
+              alt="Profile" 
+              className="w-20 h-20 rounded-full"
+            />
+            <div className='flex flex-col items-center space-x-2'>
+              <p className="font-semibold">{currentUser?.name}</p>
+              <p className="text-sm text-gray-500">{currentUser?.email}</p>
+              <Link href={"/profile"} className="w-full">
+                 <button className='w-full bg-[#E3E3E3] py-2 rounded-full text-sm'>Edit Profile</button>
+              </Link>
+          
+            </div>
+          </div>
+          <hr className="my-2" />
+          <Link href={`/orders/active`}>
+              <button className="w-full text-left py-2 px-4 hover:bg-gray-100 rounded">My Orders</button>
+          </Link>
+      
+          <button className="w-full text-left py-2 px-4 hover:bg-gray-100 rounded">Saved Items</button>
+          {/* <button className="w-full text-left py-2 px-4 text-red-500 hover:bg-red-100 rounded">Log Out</button> */}
+        </div>
+
+    )
 }

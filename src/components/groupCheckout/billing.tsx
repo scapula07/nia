@@ -72,12 +72,12 @@ const BillingSummary = ({ cart, total }: any) => {
                 <h5 className='text-lg font-bold text-[#2D2D2D]'>Discount</h5>
                 <div className='flex items-center justify-between'>
                     <h5 className='text-[14px] text-[#5B5B5B]'>Group buying goal is to buy 25 gallons</h5>
-                    <h5 className='font-bold text-green-500 text-[14px]'>15% off</h5>
+                    <h5 className='font-light text-green-500 text-[14px]'>15% off</h5>
 
                 </div>
                 <div className='flex items-center justify-between'>
                     <h5 className='text-[14px] text-[#5B5B5B]'>Achieve goal in 24 hours</h5>
-                    <h5 className='font-bold text-green-500 text-[14px]'>20% off</h5>
+                    <h5 className='font-light text-green-500 text-[14px]'>20% off</h5>
                 </div>
             </div>
 
@@ -112,11 +112,17 @@ const OrderSummary = ({ cart, processPayment, loading, total }: any) => {
 
                 </div>
                 <h5 className='text-[24px] font-[600] text-[#2D2D2D]'>Shipping</h5>
-                <div className='flex items-center justify-between'>
-                    <h5 className=' '>Free shipping</h5>
-                    <h5 className='font-bold text-green-500 text-xl'>${0.0}</h5>
-                </div>
+                    <div className='flex items-center justify-between'>
+                        <h5 className=' '>Free shipping</h5>
+                        <h5 className='font-light text-green-500 text-sm'>${0.0}</h5>
+                    </div>
+
+                    <div className='flex items-center justify-between'>
+                        <h5 className=' '>Pickup Location(free)</h5>
+                        <h5 className='font-light text-green-500 text-xs'>Select schedule</h5>
+                    </div>
             </div>
+            <hr></hr>
 
             <div className='w-full flex flex-col'>
                 <div className='flex items-center justify-between py-7'>
