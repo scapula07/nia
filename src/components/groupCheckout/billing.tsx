@@ -15,7 +15,7 @@ export default function Billing({ cart, currentUser, customer }: any) {
         setLoading(true)
         setErrorMsg(null)
         try {
-            const id: any = await orderApi.create(cart, currentUser, customer)
+            const id: any = await orderApi.createGroupOrder(cart, currentUser, customer)
             const res = await orderApi.checkout(cart, id)
             console.log(res)
             setLoading(false)

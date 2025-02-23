@@ -228,10 +228,10 @@ export default function Header() {
                 </div>
             </div>
 
-            <Modal trigger={signinTrigger} cname="w-full md:w-1/3 py-2 h-96 px-4 rounded-lg">
+            <Modal trigger={signinTrigger} cname="w-full md:w-1/3 py-2 h-96 px-4 rounded-lg" onClose={() => setSigninTrigger(false)}>
                 <Signin onClose={() => setSigninTrigger(false)} />
             </Modal>
-            <Modal trigger={signupTrigger} cname="w-full md:w-1/3 py-2 h-96 px-4 rounded-lg">
+            <Modal trigger={signupTrigger} cname="w-full md:w-1/3 py-2 h-96 px-4 rounded-lg" onClose={() => setSignupTrigger(false)} >
                 <Signup onClose={() => setSignupTrigger(false)} />
             </Modal>
         </>

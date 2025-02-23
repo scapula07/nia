@@ -5,7 +5,57 @@ import axios from "axios";
 const host = globalThis?.window?.location?.origin;
 
 export const orderApi = {
-    create: async function (products: any, user: any, customer: any) {
+    createRegularOrder: async function (products: any, user: any, customer: any) {
+        try {
+            const orders = {};
+
+            const orderPromises = products.map(async (product: any) => {
+                const total = parseFloat(product.price); // Total price for the order is just the price of the product
+                const orderID = `ORD-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+                    // If no order exists, create a new one with the customer added to the list
+                const snap = await addDoc(collection(db, "orders"), {
+                    product, // Place the product in an array to match the structure of orders
+                    orderID,
+                    creator: user?.id,
+                    status: "active",
+                    total: total.toFixed(2), // Round total to 2 decimal places
+                    paid: false,
+                    time: Number(new Date()),
+                    deliveryStatus: "pending",
+                    shipmentId: "",
+                    customers: [customer], // Initialize the customer list with the new customer
+                    qty: product.qty, // Add quantity to the order
+                });
+
+                    // Update product quantity in the inventory
+                    try {
+                        const ref = doc(db, "products", product?.id);
+                        const docSnap = await getDoc(ref);
+                        const newQty = Number(docSnap?.data()?.qty) - Number(product?.qty);
+
+                        await updateDoc(doc(db, "products", product?.id), {
+                            qty: newQty,
+                        });
+
+                        // Clear the user's cart
+                        await updateDoc(doc(db, "bucket", user?.id), {
+                            cart: [],
+                        });
+                    } catch (e) {
+                        console.log(e);
+                    }
+
+                    return snap; // Return the new order reference
+                
+            });
+
+            return Promise.all(orderPromises);
+        } catch (e) {
+            console.log(e);
+            throw new Error("Failed to create or update orders");
+        }
+    },
+    createGroupOrder: async function (products: any, user: any, customer: any) {
         try {
             const orders = {};
 
@@ -109,7 +159,6 @@ export const orderApi = {
                 },
                 config
             )
-            console.log("asdasdasdasd")
             console.log(response)
 
             return response
@@ -117,5 +166,26 @@ export const orderApi = {
             console.log(e)
         }
 
-    }
+    },
+    editCustomer:async function (customerId:string,customer:any) {
+        try{
+            const ref =doc(db,"customers",customerId)
+            const docSnap = await getDoc(ref);
+
+            if (docSnap.exists()) {
+                await updateDoc(doc(db,"customers",customerId), {
+                    ...customer
+                  })
+                return true
+            }else{
+                await setDoc(doc(db, "customers", customerId), {
+                    ...customer
+                  })
+                return true
+            }
+  
+       }catch(e){
+          console.log(e)
+        }
+    },
 };
