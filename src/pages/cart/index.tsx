@@ -11,6 +11,7 @@ import Modal from '@/components/modal';
 import GroupBuying from '@/components/GroupBuying';
 import { MdArrowForwardIos } from "react-icons/md";
 import { productApi } from '@/lib/api/product.api';
+import DynamicInput from '@/components/Checkout/quantity'
 
 
 
@@ -154,16 +155,7 @@ const Row = ({ item, removeFromCart }: any) => {
             <td>
                 <Product item={item} />
             </td>
-            <td>
-                <div className='flex items-center space-x-5 border px-4 rounded-xl w-full md:w-36 justify-center bg-white'>
-                    <BsDash className='text-2xl font-bold' />
-                    <input
-                        className='h-10 w-10 rounded-sm text-xs border-0 px-3 text-center bg-white'
-                        value={5}
-                    />
-                    <IoMdAdd className='text-2xl font-bold' />
-                </div>
-            </td>
+            <DynamicInput/>
             <td className='px-6'>${item.price}</td>
             <td className='px-6'>${(item.price * item.quantity).toFixed(2)}</td>
             <td>
