@@ -59,5 +59,49 @@ export const productApi= {
             });
         });
     },
+    filterProducts:async function (filters:string[]) {
+        try{
+          const q = query(
+            collection(db, 'products'),where('categories', 'in', filters));
 
-}
+             const products:any[]= [];
+  
+             const querySnapshot = await getDocs(q);
+              querySnapshot.forEach((doc) => {
+              
+                console.log(doc.id, " => ", doc.data());
+                products.push({...doc?.data(),id:doc?.id});
+              });
+                console.log(products,"o")
+              return products
+
+        }catch(e){
+          console.log(e)
+        }
+      },
+      findPrice:async function (prices:any) {
+        try{
+          const q = query(
+            collection(db, 'products'),
+              or(where('price', '>', prices?.low),
+                where('price', '<', prices?.high)
+                ),orderBy('createdAt', 'desc')
+             );
+
+             const products:any[]= [];
+  
+             const querySnapshot = await getDocs(q);
+              querySnapshot.forEach((doc) => {
+              
+                console.log(doc.id, " => ", doc.data());
+                products.push({...doc?.data(),id:doc?.id});
+              });
+
+              return products
+
+        }catch(e){
+          console.log(e)
+        }
+
+      },
+    }

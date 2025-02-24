@@ -25,7 +25,7 @@ export default function Product({item}:any) {
       </div>
       <div className='flex flex-col items-center w-full md:w-[20%] space-y-8'>
         <h5 className='font-[400] text-[#5B5B5B]'>Summary</h5>
-        <h5>${item.price}</h5>
+        <h5>${item.price * item.qty}</h5>
       </div>
     </div>
   )
