@@ -11,6 +11,7 @@ import Modal from '@/components/modal';
 import GroupBuying from '@/components/GroupBuying';
 import { MdArrowForwardIos } from "react-icons/md";
 import { productApi } from '@/lib/api/product.api';
+import DynamicInput from '@/components/Checkout/quantity'
 
 
 

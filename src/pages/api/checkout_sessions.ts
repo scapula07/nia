@@ -10,15 +10,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             const orderID =orderId as string
             console.log(orderID)
 
-            // Map the products to Stripe's line_items format
-            const line_items = products.map((product: { productName: any; price: number; qty: any; }) => ({
+            const line_items = products.map((product: {
+                image: any; productName: any; price: number; qty: any;
+            }) => ({
                 price_data: {
                     currency: 'usd',
                     product_data: {
                         name: product.productName,
-                        // Include other product details here if needed
+                        images: [product.image],
                     },
-                    unit_amount: Math.round(product.price * 100), // Amount in cents
+                    unit_amount: Math.round(product.price * 100), 
                 },
                 quantity: product.qty,
             }));
