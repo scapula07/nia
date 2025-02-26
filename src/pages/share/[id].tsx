@@ -8,7 +8,7 @@ import { db } from '@/firebase/config';
 import { useRouter } from 'next/router';
 
 export default function Share() {
-  const [product,setProduct]=useState<any>({})
+  const [order,setOrder]=useState<any>({})
   const router = useRouter();
   const { id } = router.query; 
   const productId=id as string
@@ -16,12 +16,12 @@ export default function Share() {
     if(id?.length != undefined){
       const unsub = onSnapshot(doc(db,"order",productId), (doc) => {
         console.log(doc.data(),"daa")
-        setProduct({...doc.data(),id:doc?.id})
+        setOrder({...doc.data(),id:doc?.id})
        });
       }
      },[id])
 
-     console.log(id,product,"id")
+     console.log(id,order?.product.image,"id")
 
 
   return (
@@ -38,7 +38,7 @@ export default function Share() {
                     <div className='flex flex-col items-center space-y-6'>
                          <h5 className='font-bold text-xl'>Thank You For Your Order!</h5>
                          <img 
-                           src={'/p2.png'}
+                           src={order?.product?.image}
                            className='w-44 h-44'
                          />
                          <div className='flex flex-col space-y-3 py-4'>

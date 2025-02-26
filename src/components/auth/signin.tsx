@@ -134,9 +134,9 @@ export default function Signin({ onClose }: any) {
                             </button>
                             :
                             <ClipLoader
-                                color="#C74A1F"
+                                color="#009E4D"
                                 loading={true}
-                                size="12"
+                                size="14"
                             />
 
                         }

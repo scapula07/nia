@@ -83,7 +83,7 @@ export default function Signup({ onClose }: any) {
                                 <span>Sign up</span>
                             </button>
                         ) : (
-                            <ClipLoader color="#C74A1F" loading={true} size={12} />
+                            <ClipLoader color="#009E4D" loading={true} size={15} />
                         )}
                         <div className='flex items-center text-xs'>
                             <h5>Already have an account?</h5>

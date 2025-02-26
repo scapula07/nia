@@ -148,7 +148,7 @@ const Table = ({ cart, removeFromCart }: any) => {
     )
 }
 
-const Row = ({ item, removeFromCart }: any) => {
+const Row = ({ item = {}, removeFromCart }: any) => {
     return (
         <tr className='border-black py-4'>
             <td>

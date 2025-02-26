@@ -232,7 +232,7 @@ const Scheduler = () => {
       <div className="mt-4">
         <label className="block text-sm font-medium text-gray-700 mb-1">Select a Time Window</label>
         <select
-          className="block w-full mt-1 p-2 border border-gray-300 rounded-md"
+          className="block w-full mt-1 p-2 border border-gray-300 bg-white rounded-md"
           value={timeWindow}
           onChange={(e) => setTimeWindow(e.target.value)}
         >

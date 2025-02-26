@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import Order from './order'
 import { useRecoilValue } from 'recoil';
-import { doc,getDoc,setDoc , updateDoc,collection,addDoc,query,onSnapshot,where}  from "firebase/firestore";
+import { doc,getDoc,setDoc , updateDoc,collection,addDoc,query,onSnapshot,where,or,and}  from "firebase/firestore";
 import { userStore } from '@/recoil';
 import { db } from '@/firebase/config';
 
@@ -11,7 +11,12 @@ export default function Cancelled() {
   const [orders,setOrders]=useState([])
   useEffect(()=>{
     if(currentUser?.id?.length >0){
-      const q = query(collection(db, "orders"),where('creator', '==', currentUser?.id),where("status", "==", "cancelled"));
+      const q = query(collection(db, "orders"),and(
+        or(where('customer', '==', currentUser?.id),
+           where('customers',  "array-contains", currentUser?.id)
+        ),
+        where("status", "==", "cancelled"))
+      );
          const unsubscribe = onSnapshot(q, (querySnapshot) => {
           const products:any = []
             querySnapshot.forEach((doc) => {

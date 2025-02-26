@@ -6,7 +6,9 @@ const stripe = new Stripe(process.env.STRIPE_KEY!);
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
         try {
-            const { products, orderId } = req.body;
+            const { products, orderId  } = req.body;
+            const orderID =orderId as string
+            console.log(orderID)
 
             // Map the products to Stripe's line_items format
             const line_items = products.map((product: { productName: any; price: number; qty: any; }) => ({
@@ -27,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 payment_method_types: ['card'],
                 line_items,
                 mode: 'payment',
-                success_url: `${req.headers.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
+                success_url: `${req.headers.origin}/share?session_id={CHECKOUT_SESSION_ID}`,
                 cancel_url: `${req.headers.origin}/cart`,
                 metadata: {
                     orderId,

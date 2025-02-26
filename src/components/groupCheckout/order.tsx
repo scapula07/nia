@@ -5,27 +5,7 @@ import { doc,getDoc,setDoc , updateDoc,collection,addDoc,getDocs,query,where,onS
 import { db } from '@/firebase/config';
 import { IoCloseSharp } from "react-icons/io5";
 
-export default function Order({cart,customer,setCustomer}:any) {
-  const [offers,setOffers]=useState<any>([])
-  useEffect(()=>{
-    if(cart?.length >0){
-     const productIds = cart?.map((item:any)=> item.id);
-
- 
-           
-     const q = query(collection(db, "offers"),where('productID','in', productIds));
-     const unsubscribe = onSnapshot(q, (querySnapshot) => {
-       querySnapshot.forEach((doc) => {
-         const offerlist:any[] = []
-         querySnapshot.forEach((doc) => {
-           offerlist.push({ ...doc.data(), id: doc.id })
- 
-         });
-          setOffers(offerlist)
-        });
-     });
-      }
-     },[cart])
+export default function Order({cart,customer,setCustomer,offers}:any) {
   return (
     <div className='bg-[#f3f3f3] w-full rounded-lg px-4 md:px-6 py-4'>
         <h5 className='font-semibold text-xl'>Order</h5>

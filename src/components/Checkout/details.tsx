@@ -133,12 +133,7 @@ export default function Details({customer,setCustomer}:any) {
 
                 </div>
               </div>
-              
-     
-
           }
-
-
     </div>
   )
 }

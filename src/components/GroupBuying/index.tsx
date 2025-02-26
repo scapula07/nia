@@ -45,17 +45,7 @@ export default function GroupBuying({onClose,products,qty,addTocart}:any) {
      }
     },[products])
 
-    const join=async()=>{
-      //   setLoading(true)
-      // try{
-      //        addTocart(offer?.id)
-      //        const res=await offerApi.join(product,currentUser,offer,qty)
-      //       res&&setLoading(false)
-      //  }catch(e){
-      //     console.log(e)
-      //     setLoading(false)
-      //  }
-    }
+
 
     console.log(offers,"oo")
   return (
