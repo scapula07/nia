@@ -15,20 +15,19 @@ export default function Order({item}:any) {
                <h5 className='text-sm sm:text-base'>Order ID: <span className='font-bold'>{item.orderID}</span></h5>
                <h5 className='text-sm sm:text-base'>Order Date:<span className='font-bold'>30-09-2024</span> </h5>
                {item?.status==="active"&&
-                    <h5 className='text-sm sm:text-base'>Order Status:  <span className='bg-[#CC7914] text-white text-xs rounded-full px-2 py-1'>Order confirmed</span>  </h5>
-               }
-               {item?.status==="completed"&&
-                    <h5 className='text-sm sm:text-base'>Order Status:  <span className='bg-[#0B7B69] text-white text-xs rounded-full px-2 py-1'>Order Completed</span>  </h5>
-               }
-              {item?.status==="cancelled"&&
-                    <h5 className='text-sm sm:text-base'>Order Status:  <span className='bg-[#B6B6B6] text-white text-xs rounded-full px-2 py-1'>Order Cancelled</span>  </h5>
-               }
-            {item?.status==="active"&&          
-               <button onClick={() => setDropDown(!dropDown)} className='text-green-600 text-3xl'>
-                    {dropDown ? <IoIosArrowUp /> : <IoIosArrowDown />}
-               </button>
-           }
-           {item?.status==="completed"&&          
+                         <h5 className='text-sm sm:text-base'>
+                              <span className='hidden sm:inline'>Order Status: </span>
+                          <span className='bg-[#CC7914] text-white text-xs rounded-full px-2 py-1'>Order confirmed</span>  </h5>
+                    }
+                    {item?.status==="completed"&&
+                         <h5 className='text-sm sm:text-base'>
+                                   <span  className='hidden sm:inline'>Order Status: </span>:  <span className='bg-[#0B7B69] text-white text-xs rounded-full px-2 py-1'>Order Completed</span>  </h5>
+                    }
+                   {item?.status==="cancelled"&&
+                         <h5 className='text-sm sm:text-base'>
+                                   <span  className='hidden sm:inline'>Order Status: </span>:  <span className='bg-[#B6B6B6] text-white text-xs rounded-full px-2 py-1'>Order Cancelled</span>  </h5>
+                    }
+            {(item?.status==="active" || item?.status==="completed")&&          
                <button onClick={() => setDropDown(!dropDown)} className='text-green-600 text-3xl'>
                     {dropDown ? <IoIosArrowUp /> : <IoIosArrowDown />}
                </button>
@@ -70,8 +69,8 @@ const Details=({item}:any)=>{
        },[item])
   return(
      <div className='w-full flex flex-col space-y-6'>
-          <div className='w-full flex  space-x-8'>
-                 <div className='w-[40%] space-y-6'>
+          <div className='w-full flex flex-col sm:flex-row space-x-0 sm:space-x-8'>
+                 <div className='w-full sm:w-[40%] space-y-6'>
                      <h5 className='font-bold'>Details:</h5>
                      <div className='flex flex-col font-light text-[#2D2D2D] text-sm'>
                           <p>{customer?.name}</p>
@@ -100,7 +99,7 @@ const Details=({item}:any)=>{
 
                  </div>
                   {item.offerDeal&&(
-                         <div className='w-1/2'>                            
+                         <div className='w-full sm:w-1/2'>                            
                                 <h5 className='font-bold'>Group Buying Offer</h5>
                                 <p className='text-xs'>Buy {offer?.minQty} units of {item.product.productName} together with Friends and Family or other members of your community. Each one gets {offer?.offeredDiscount}% discount on their order. </p>
                    
