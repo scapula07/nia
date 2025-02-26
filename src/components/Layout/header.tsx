@@ -218,6 +218,15 @@ export default function Header() {
                                     </Link>
                                 )
                             }
+                                     {
+                                currentUser?.id && (
+                                    <Link href="/orders/active" passHref>
+                                        <MenuItem value="orders">
+                                            My Orders
+                                        </MenuItem>
+                                    </Link>
+                                )
+                            }
                             {currentUser?.id &&
                                 <MenuItem value="logout" onClick={handleLogout}>
                                     Logout
