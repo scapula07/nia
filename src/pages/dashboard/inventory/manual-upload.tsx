@@ -31,6 +31,7 @@ const ManualUpload = () => {
     const [selectedCategories, setSelectedCategories] = React.useState<string[]>([]);
     const [productName, setProductName] = React.useState('');
     const [productDescription, setProductDescription] = React.useState('');
+    const [productDimension, setproductDimension] = React.useState('');
     const [productPrice, setProductPrice] = React.useState('');
     const [discountPrice, setDiscountPrice] = React.useState('');
     const [stockQuantity, setStockQuantity] = React.useState('');
@@ -58,6 +59,7 @@ const ManualUpload = () => {
         const newProduct = {
             productName: productName,
             productDescription: productDescription,
+            productDimension: productDimension,
             price: productPrice,
             discountPrice: discountPrice,
             categories: selectedCategories,
@@ -124,6 +126,16 @@ const ManualUpload = () => {
                             pl="16px"
                             bg="gray.100"
                             onChange={(e) => setProductName(e.target.value)}
+                        />
+                    </Field>
+                    <Field label="Product Dimension">
+                        <Input
+                            id="ProductDimension"
+                            placeholder="Product Dimension"
+                            mb={4}
+                            pl="16px"
+                            bg="gray.100"
+                            onChange={(e) => setproductDimension(e.target.value)}
                         />
                     </Field>
                     <Field label="Product Description">

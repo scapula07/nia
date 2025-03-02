@@ -1,6 +1,5 @@
-import { auth, db } from "@/firebase/config";
+import { db } from "@/firebase/config";
 import { doc, getDoc, setDoc, updateDoc, collection, addDoc, query, where, getDocs } from "firebase/firestore";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
 import axios from "axios";
 const host = globalThis?.window?.location?.origin;
 
@@ -261,6 +260,30 @@ export const orderApi = {
         }
 
     },
+
+    groupbuyCheckout: async function (newCart: any[], id: any) {
+        console.log(host, "host")
+        try {
+            console.log("asdnasndamsnd,mansd,masnd")
+            const url = `/api/groupbuy_checkout_sessions`
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            };
+            const response = await axios.post(
+                url,
+                config
+            )
+            console.log(response)
+
+            return response
+        } catch (e) {
+            console.log(e)
+        }
+
+    },
+
     editCustomer:async function (customerId:string,customer:any) {
         try{
             const ref =doc(db,"customers",customerId)
