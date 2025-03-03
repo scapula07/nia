@@ -154,6 +154,7 @@ const BillingSummary = ({ cart, total,offers,totalDiscount }: any) => {
                             }
                 </div>
             </div>
+            <hr></hr>
 
             <div className='w-full flex flex-col'>
                 {/* <div className='flex items-center justify-between py-3'>
@@ -161,6 +162,7 @@ const BillingSummary = ({ cart, total,offers,totalDiscount }: any) => {
                     <h5 className='font-bold text-red-500 text-xl'>18h : 47m : 36s</h5>
 
                 </div> */}
+
                 <div className='flex items-center justify-between py-7'>
                     <h5 className=' text-lg'>Total price:</h5>
                     <h5 className='font-bold text-3xl'>${totalDiscount}</h5>

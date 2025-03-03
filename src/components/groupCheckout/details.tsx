@@ -14,9 +14,14 @@ export default function Details({customer,setCustomer}:any) {
    const currentUser=useRecoilValue(userStore) as {id:""}
 
   const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
+    { value: "St. Anne's Catholic Church (2140 Westheimer Rd)", label:"St. Anne's Catholic Church (2140 Westheimer Rd)" },
+    { value: "CVS Pharmacy #13644 (2351 Westheimer Rd, Houston, TX 77098)", label:"CVS Pharmacy #13644 (2351 Westheimer Rd, Houston, TX 77098)" },
+    { value: "UPS Customer Center - Houston (2351 Westheimer Rd)", label:"UPS Customer Center - Houston (2351 Westheimer Rd)" },
+    { value: "Walmart Supercenter - Heights (1801 Airline Dr)", label:"Walmart Supercenter - Heights (1801 Airline Dr)" },
+    { value: "FedEx at Walgreens (105 West Rd)", label:" FedEx at Walgreens (105 West Rd)" },
+    { value: "FedEx Office - Houston (2323 Westheimer Rd)", label:"FedEx Office - Houston (2323 Westheimer Rd)" },
+    { value: "Houston Public Library - Central Library (500 McKinney St)", label:"Houston Public Library - Central Library (500 McKinney St)" },
+    { value: "Houston ISD ¹ ²", label:"Houston ISD ¹ ²" }
   ]
 
 

@@ -97,11 +97,17 @@ const OrderSummary = ({ cart, processPayment, loading, total }: any) => {
             <h5 className='font-[600] text-[18px]'>Order Summary</h5>
             <div className='flex flex-col space-y-1'>
                 <h5 className='text-[18px] font-[500] text-[#5B5B5B]'>Item Total</h5>
-                <div className='flex items-center justify-between py-3'>
-                    <h5 className='font-[500] text-[#E62F34] text-[18px]'>{cart?.length} Product</h5>
-                    <h5 className='font-[500] text-[#E62F34]  text-[20px]'>${total}</h5>
-
-                </div>
+                <div className='flex flex-col space-y-1'>
+                    {cart?.map((c:any)=>{
+                        return(
+                        <div className='flex items-center justify-between '>
+                            <h5 className='font-[500] text-[#E62F34] text-[18px]'>{c?.qty} ({c?.price})</h5>
+                            <h5 className='font-[500] text-[#E62F34]  text-[20px]'>${c.qty*c.price}</h5>
+            
+                        </div>
+                        )
+                    }) }
+              </div>
                 <h5 className='text-[24px] font-[600] text-[#2D2D2D]'>Shipping</h5>
                    {
                     [
