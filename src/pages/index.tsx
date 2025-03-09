@@ -93,13 +93,12 @@ export default function Home() {
             <Box py={{ base: 8, md: 16 }} px={{ base: 4, md: 16 }} bg="white">
                 <Container maxW="container.xl">
                     <Stack
-                        spacing={{ base: 4, md: 8 }}
                         direction={{ base: "column", md: "row" }}
                         align="center"
                         justify="space-between"
                     >
                         {/* Left: Text & Button */}
-                        <Stack spacing={4} width={{ base: "100%", md: "50%" }}>
+                        <Stack  width={{ base: "100%", md: "50%" }}>
                             <Text
                                 fontSize={{ base: "24px", md: "48px" }}
                                 color="black"

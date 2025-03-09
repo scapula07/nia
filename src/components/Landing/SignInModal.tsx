@@ -51,7 +51,7 @@ const SignInModal: React.FC<SignInModalProps> = ({ isOpen, onClose }) => {
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <VStack spacing={4} align="start">
+          <VStack  align="start">
             {/* Email Input */}
             <FormControl isRequired>
               <FormLabel htmlFor="email">Email</FormLabel>

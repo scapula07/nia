@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
           align="flex-start"
         >
           {/* Left Section: Join the Newsletter */}
-          <Stack spacing={4} width={{ base: '100%', md: '40%' }} mb={{ base: 8, md: 0 }}>
+          <Stack  width={{ base: '100%', md: '40%' }} mb={{ base: 8, md: 0 }}>
             <Image 
                 src="/nia_logo.png" // Path from the public directory
                 width="66.33px" // Adjust width of the image
@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
             />
             <Text fontSize="xl" fontWeight="bold">Join our newsletter to stay up to date on features and releases</Text>
             <Field label="Your Email">
-                <HStack spacing={2}>
+                <HStack >
                     <Input
                         id="email"
                         type="email"
@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
             mt={{ base: 4, md: 0 }}
           >
             {/* Main Menu Links */}
-            <Stack spacing={2} mr={{ base: 0, md: 8 }} mb={{ base: 4, md: 0 }}>
+            <Stack  mr={{ base: 0, md: 8 }} mb={{ base: 4, md: 0 }}>
               <Text fontWeight="bold">Main Menu</Text>
               <Link href="/" _hover={{ color: 'teal.300' }} color="#B6B6B6">Home</Link>
               <Link href="/about" _hover={{ color: 'teal.300' }} color="#B6B6B6">About</Link>
@@ -78,7 +78,7 @@ const Footer: React.FC = () => {
             </Stack>
 
             {/* Personal Links */}
-            <Stack spacing={2} mr={{ base: 0, md: 8 }} mb={{ base: 4, md: 0 }} pl={{ base: 0, md: '150px' }}>
+            <Stack  mr={{ base: 0, md: 8 }} mb={{ base: 4, md: 0 }} pl={{ base: 0, md: '150px' }}>
               <Text fontWeight="bold">Personal</Text>
               <Link href="/profile" _hover={{ color: 'teal.300' }} color="#B6B6B6">My Profile</Link>
               <Link href="/orders" _hover={{ color: 'teal.300' }} color="#B6B6B6">My Orders</Link>
@@ -86,7 +86,7 @@ const Footer: React.FC = () => {
             </Stack>
 
             {/* Socials Links */}
-            <Stack spacing={2} mb={{ base: 4, md: 0 }} pl={{ base: 0, md: '150px' }}>
+            <Stack  mb={{ base: 4, md: 0 }} pl={{ base: 0, md: '150px' }}>
               <Text fontWeight="bold">Follow Us</Text>
               <Link href="/profile" _hover={{ color: 'teal.300' }} color="#B6B6B6">Facebook</Link>
               <Link href="/orders" _hover={{ color: 'teal.300' }} color="#B6B6B6">Instagram</Link>
