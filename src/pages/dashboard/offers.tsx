@@ -87,13 +87,13 @@ const DealsOfTheDay: React.FC = () => {
 
             <Box bg="gray.50" p={6} rounded="xl" maxW="700px" mx="auto">
                 <Text fontSize="lg" fontWeight="bold" color="black">Deals of the Day</Text>
-                <VStack align="start" spacing={6} mt={4}>
+                <VStack align="start"  mt={4}>
                     <InputGroup width="full">
                         <Field label="Product ID">
                             <Input placeholder="Enter Product's ID" value={productID} onChange={(e) => setProductID(e.target.value)} bg="gray.100" rounded="lg" p={3} />
                         </Field>
                     </InputGroup>
-                    <HStack spacing={6} w="full">
+                    <HStack  w="full">
                         <Field label="Stock">
                             <Input placeholder="Enter price" value={productPrice} onChange={(e) => setProductPrice(e.target.value)} bg="gray.100" rounded="lg" p={3} />
                         </Field>

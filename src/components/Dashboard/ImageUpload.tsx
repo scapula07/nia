@@ -58,7 +58,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ maxSize = 120, onUpload }) =>
       cursor="pointer"
       _hover={{ borderColor: "gray.400" }}
     >
-      <VStack spacing={3}>
+      <VStack >
         <Text fontSize="md">
           Drop your images here or{" "}
           <Text as="span" color="red.500" fontWeight="bold">

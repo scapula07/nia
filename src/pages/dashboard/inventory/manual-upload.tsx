@@ -114,7 +114,7 @@ const ManualUpload = () => {
                     </Button>
                 </Flex>
             </Flex>
-            <HStack alignItems="flex-start" spacing={25}>
+            <HStack alignItems="flex-start">
                 {/* Product Information */}
                 <Box p={6} width="703px" bg="gray.50" borderRadius="xl">
                     <Heading color="black" fontSize="18px" fontWeight="700" pb="24px">Information</Heading>
@@ -254,7 +254,7 @@ const ManualUpload = () => {
                         _hover={{ borderColor: "gray.400" }}
                     >
 
-                        <VStack spacing={3}>
+                        <VStack >
                             <Text fontSize="md">
                                 Drop your images here or{" "}
                                 <Input type="file" accept="image/*" multiple onChange={handleFileChange} />

@@ -60,7 +60,7 @@ const Navbar: React.FC = () => {
         </Box>
 
         {/* Links */}
-        <HStack spacing={8} alignItems="center" display={{ base: 'none', md: 'flex' }}>
+        <HStack  alignItems="center" display={{ base: 'none', md: 'flex' }}>
           {links.map((link) => (
             <Link href={link.href} key={link.label} passHref>
               <Button

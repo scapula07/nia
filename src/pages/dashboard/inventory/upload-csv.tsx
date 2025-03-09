@@ -99,7 +99,7 @@ const UploadCSV = () => {
                     onClick={handleBrowseClick}
                 >
                     <Image src="/upload-folder.png" width={180} height={180} alt="upload folder" />
-                    <VStack spacing={3} textAlign="center">
+                    <VStack  textAlign="center">
                         <Text fontSize="24px" fontWeight="700">Upload your files</Text>
                         <Text fontSize="18px" fontWeight="400">Drop your images here or <Button variant="link" onClick={handleBrowseClick}>browse</Button></Text>
                     </VStack>
