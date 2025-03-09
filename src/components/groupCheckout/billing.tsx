@@ -15,23 +15,18 @@ export default function Billing({ cart, currentUser, customer,offers }: any) {
 
     const { replace } = useRouter()
 
-    const processPayment = async () => {
+    const  processPayment = async () => {
         setLoading(true)
         setErrorMsg(null)
         const newCart = applyDiscountsToCart(cart, offers);
         
         try {
             const id: any = await orderApi.createGroupOrder(newCart, currentUser, customer)
-            const res = await orderApi.checkout(newCart, id)
+            const res = await orderApi.groupbuyCheckout(newCart, id)
            
             setLoading(false)
-            const { url } = res?.data;
-            if (url) {
-              window.location.href = url; // Redirect to Stripe Checkout
-            } else {
-              console.error('No URL returned from server');
-            }
-             setLoading(false)
+            console.log(res?.data.clientSecret)
+
         } catch (e) {
             console.log(e)
             setLoading(false)
