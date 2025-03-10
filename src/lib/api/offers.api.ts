@@ -1,5 +1,4 @@
 import { db } from "@/firebase/config";
-import { Description } from "@chakra-ui/react/dist/types/components/alert/namespace";
 import { collection, addDoc, getDocs, doc, getDoc } from "firebase/firestore";
 
 /**

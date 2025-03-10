@@ -183,20 +183,19 @@ export default function Header() {
                         </Link>
                     )}
                     <MenuRoot>
-                        <MenuTrigger >
+                        <MenuTrigger>
                             <Button variant="outline" size="sm" p={0}> {/* Adjusted padding for the icon */}
                                 <AiOutlineMenu className="text-xl" /> {/* Hamburger icon */}
                             </Button>
                         </MenuTrigger>
-                        <MenuContent>
-                            
-                            <MenuItem >
+                        <MenuContent>  
+                            <MenuItem value='1'>
                                <h5>Home</h5> 
                             </MenuItem>
-                            <MenuItem >
+                            <MenuItem value='2'>
                                 Shop
                             </MenuItem>
-                            <MenuItem >
+                            <MenuItem value='3'>
                                 Contact Us
                             </MenuItem>
                             {!currentUser?.id &&
@@ -213,7 +212,7 @@ export default function Header() {
                             {
                                 currentUser?.id && (
                                     <Link href="/profile" passHref>
-                                        <MenuItem >
+                                        <MenuItem value='4'>
                                             My Profile
                                         </MenuItem>
                                     </Link>
@@ -222,7 +221,7 @@ export default function Header() {
                                      {
                                 currentUser?.id && (
                                     <Link href="/orders/active" passHref>
-                                        <MenuItem >
+                                        <MenuItem value='5'>
                                             My Orders
                                         </MenuItem>
                                     </Link>

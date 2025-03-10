@@ -8,6 +8,7 @@ import {
     Stack,
     Grid,
     Flex,
+    Accordion,
 } from "@chakra-ui/react";
 import FeaturedProducts from "@/components/Landing/FeaturedProducts";
 import ShopButton from "@/components/Landing/ShopButton";
@@ -98,7 +99,7 @@ export default function Home() {
                         justify="space-between"
                     >
                         {/* Left: Text & Button */}
-                        <Stack  width={{ base: "100%", md: "50%" }}>
+                        <Stack width={{ base: "100%", md: "50%" }}>
                             <Text
                                 fontSize={{ base: "24px", md: "48px" }}
                                 color="black"
@@ -249,10 +250,10 @@ export default function Home() {
                     <AccordionRoot collapsible defaultValue={["b"]}>
                         {/* FAQ Item 1 */}
                         <Box border="1px solid #E2E8F0" borderRadius="8px" p={4} mb={4}>
-                            <AccordionItem value="item1">
-                                <AccordionItemTrigger color="black">
-                                    What Food &amp; Beverages products can I buy on Nia at wholesale prices for
-                                    my store?
+                            <AccordionItem value="1">
+                                <AccordionItemTrigger>
+                                   <span>What Food &amp; Beverages products can I buy on Nia at wholesale prices for
+                                    my store?</span> 
                                 </AccordionItemTrigger>
                                 <AccordionItemContent>
                                     On Nia, there's a variety of products in Food &amp; Beverages available for
@@ -265,8 +266,8 @@ export default function Home() {
 
                         {/* FAQ Item 2 */}
                         <Box border="1px solid #E2E8F0" borderRadius="8px" p={4} mb={4}>
-                            <AccordionItem value="item6">
-                                <AccordionItemTrigger color="black">
+                            <AccordionItem value="2">
+                                <AccordionItemTrigger>
                                     How can I buy Food &amp; Beverages products at wholesale prices for my store?
                                 </AccordionItemTrigger>
                                 <AccordionItemContent>

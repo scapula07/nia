@@ -65,7 +65,6 @@ const Settings = () => {
                             mt={2}
                             size="sm"
                             colorScheme="red"
-                            variant="link"
                             onClick={handleProfilePictureChange}
                         >
                             Change display picture

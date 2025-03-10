@@ -27,35 +27,34 @@ const DealsOfTheDay: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const [offers, setOffers] = useState<{ productName: string; Image: string; id: string }[]>([]);
 
-    useEffect(() => {
-        fetchOffers();
-    }, []);
+    // useEffect(() => {
+    //     fetchOffers();
+    // }, []);
 
-    const fetchOffers = async () => {
-        try {
-            const offersCollection = await getDocs(collection(db, "offers"));
+    // const fetchOffers = async () => {
+    //     try {
+    //         const offersCollection = await getDocs(collection(db, "offers"));
 
-            const offerData = await Promise.all(
-                offersCollection.docs.map(async (doc) => {
-                    const offer = doc.data();
+    //         const offerData = await Promise.all(
+    //             offersCollection.docs.map(async (doc) => {
+    //                 const offer = doc.data();
 
-                    // Fetch product details using the getProductByID function
-                    const product = await getProductByID(offer.productID);
-                    console.log(product?.Image)
-                    return {
-                        id: doc.id,
-                        ...offer,
-                        productName: product?.productName || "Unknown Product",
-                        Image: product?.Image || "",
-                    };
-                })
-            );
+    //                 // Fetch product details using the getProductByID function
+    //                 const product = await getProductByID(offer.productID);
+    //                 return {
+    //                     id: doc.id,
+    //                     ...offer,
+    //                     productName: product?.productName || "Unknown Product",
+    //                     Image: product?.Image || "",
+    //                 };
+    //             })
+    //         );
 
-            setOffers(offerData);
-        } catch (error) {
-            console.error("Error fetching offers:", error);
-        }
-    };
+    //         setOffers(offerData);
+    //     } catch (error) {
+    //         console.error("Error fetching offers:", error);
+    //     }
+    // };
 
     const handleSaveOffer = async () => {
         if (!productID || !productPrice || !discountPrice || !stock) {
@@ -71,7 +70,7 @@ const DealsOfTheDay: React.FC = () => {
             setProductPrice("");
             setDiscountPrice("");
             setStock("");
-            fetchOffers();
+            // fetchOffers();
         } catch (error) {
             alert("Failed to add offer.");
         } finally {
@@ -115,11 +114,11 @@ const DealsOfTheDay: React.FC = () => {
                             height="91px"
                         />
                     </Field>
-                    <Button mt={4} color="#D41A1F" onClick={handleSaveOffer} isLoading={loading}>+ Create New</Button>
+                    <Button mt={4} color="#D41A1F" onClick={handleSaveOffer}>+ Create New</Button>
                 </VStack>
             </Box>
 
-            <Box pt={6}>
+            {/* <Box pt={6}>
                 <Table.Root size="md" borderRadius="lg" overflow="hidden">
                     <Table.Header>
                         <Table.Row bg="white">
@@ -150,7 +149,7 @@ const DealsOfTheDay: React.FC = () => {
                     </Table.Body>
 
                 </Table.Root>
-            </Box>
+            </Box> */}
         </DashboardLayout>
     );
 };

@@ -101,7 +101,7 @@ const UploadCSV = () => {
                     <Image src="/upload-folder.png" width={180} height={180} alt="upload folder" />
                     <VStack  textAlign="center">
                         <Text fontSize="24px" fontWeight="700">Upload your files</Text>
-                        <Text fontSize="18px" fontWeight="400">Drop your images here or <Button variant="link" onClick={handleBrowseClick}>browse</Button></Text>
+                        <Text fontSize="18px" fontWeight="400">Drop your images here or <Button onClick={handleBrowseClick}>browse</Button></Text>
                     </VStack>
                     <input type="file" accept=".csv" ref={fileInputRef} style={{ display: "none" }} onChange={handleFileUpload} />
                 </Box>

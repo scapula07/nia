@@ -15,8 +15,9 @@ import { db } from "@/firebase/config";
 import Link from "next/link";
 
 type Product = {
+    productName: string | undefined;
     id: string;
-    img: string;
+    image: string;
     price: string;
     qty: number;
     title: string;

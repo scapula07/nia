@@ -132,7 +132,7 @@ const Inventory = () => {
                                 </div>
                             </Table.Cell>
                             <Table.Cell textAlign="center">
-                                <Tooltip label="Click to copy" fontSize="sm">
+                                <Tooltip content={undefined}>
                                     <Button
                                         variant="ghost"
                                         onClick={() => handleCopyToClipboard(item.id)}
