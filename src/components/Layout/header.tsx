@@ -183,12 +183,13 @@ export default function Header() {
                         </Link>
                     )}
                     <MenuRoot>
-                        <MenuTrigger asChild>
+                        <MenuTrigger >
                             <Button variant="outline" size="sm" p={0}> {/* Adjusted padding for the icon */}
                                 <AiOutlineMenu className="text-xl" /> {/* Hamburger icon */}
                             </Button>
                         </MenuTrigger>
                         <MenuContent>
+                            
                             <MenuItem value="home" onClick={() => router.push("/")}>
                                 Home
                             </MenuItem>
