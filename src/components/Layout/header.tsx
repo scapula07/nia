@@ -190,30 +190,30 @@ export default function Header() {
                         </MenuTrigger>
                         <MenuContent>
                             
-                            <MenuItem value="home" onClick={() => router.push("/")}>
-                                Home
+                            <MenuItem >
+                               <h5>Home</h5> 
                             </MenuItem>
-                            <MenuItem value="shop" onClick={() => router.push("/shop")}>
+                            <MenuItem >
                                 Shop
                             </MenuItem>
-                            <MenuItem value="contact">
+                            <MenuItem >
                                 Contact Us
                             </MenuItem>
                             {!currentUser?.id &&
                                 <>
-                                    <MenuItem value="signin" onClick={() => setSigninTrigger(true)}>
+                                    {/* <MenuItem value="signin" onClick={() => setSigninTrigger(true)}>
                                         Sign in
                                     </MenuItem>
                                     <MenuItem value="signup" onClick={() => setSignupTrigger(true)}>
                                         Sign up to shop
-                                    </MenuItem>
+                                    </MenuItem> */}
 
                                 </>
                             }
                             {
                                 currentUser?.id && (
                                     <Link href="/profile" passHref>
-                                        <MenuItem value="profile">
+                                        <MenuItem >
                                             My Profile
                                         </MenuItem>
                                     </Link>
@@ -222,16 +222,17 @@ export default function Header() {
                                      {
                                 currentUser?.id && (
                                     <Link href="/orders/active" passHref>
-                                        <MenuItem value="orders">
+                                        <MenuItem >
                                             My Orders
                                         </MenuItem>
                                     </Link>
                                 )
                             }
                             {currentUser?.id &&
-                                <MenuItem value="logout" onClick={handleLogout}>
-                                    Logout
-                                </MenuItem>
+                                // <MenuItem value="logout" onClick={handleLogout}>
+                                //     Logout
+                                // </MenuItem>
+                                ""
                             }
                         </MenuContent>
                     </MenuRoot>
