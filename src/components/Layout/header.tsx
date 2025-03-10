@@ -66,8 +66,7 @@ export default function Header() {
             console.error("Error logging out:", error);
         }
     };
-    
-    console.log(currentUser?.img?.length,"uu")
+
 
     return (
         <>
